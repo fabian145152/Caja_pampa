@@ -102,6 +102,7 @@ $row = $result_movil->fetch_assoc();
                         <br><br>
                         <a href="lista_movil.php" class="btn btn-primary">SALIR</a>
                     </div>
+                </form>
             </div>
         </div>
     </div>

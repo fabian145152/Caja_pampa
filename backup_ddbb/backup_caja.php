@@ -77,6 +77,8 @@
 
         # Se guardará dependiendo del directorio, en una carpeta llamada respaldos
         $carpeta = __DIR__ . "/respaldos";
+        //$carpeta = __DIR__ . "//BaclupPampa/d:";
+
         if (!file_exists($carpeta)) {
             mkdir($carpeta);
         }
@@ -107,15 +109,14 @@
     echo "Hace backup de la BBDD remises y lo guarda en localhost/backup_ddbb/respaldos";
 
 
-    //header("<Location:../index.php");
+
     ?>
     <script>
         window.alert("Backup del dia Realizado");
         window.location = "../php/menu.php";
     </script>
     <?php
-    //exit();
-    //header("Location:../menu.php");
+
     ?>
 
 </body>
