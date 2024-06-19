@@ -58,7 +58,7 @@ $con->set_charset("utf8mb4");
             &nbsp; &nbsp; &nbsp;
             <a href="insert_tropa.php" class="btn btn-primary btn-sm">NUEVA TROPA</a>
             &nbsp; &nbsp; &nbsp;
-            <a href="../../menu.php" target=" _blank" class="btn btn-primary btn-sm">VOLVER</a>
+            <a href="../../menu.php" class="btn btn-primary btn-sm">VOLVER</a>
             &nbsp; &nbsp; &nbsp;
             <a href="../../ayuda/ayuda.html" target=" _blank" class="btn btn-primary btn-sm">AYUDA</a>
         </div>

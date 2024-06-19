@@ -17,17 +17,38 @@ $semana_actual = date("W");
 
 <body>
 
-    <a href="../../menu.php">SALIR</a>
+
+
+
 
     <h4 style="text-align: center; ">SEMANA: <?php echo $semana_actual ?></h4>
-    <form style=" width: 50vw; margin : 20vw;" method="post" action="vista_cobros.php">
+    <form style=" text-align:center;" method="post" action="vista_cobros.php">
         Ingrese Movil:
         <input type="text" id="movil" name="movil" autofocus>
         <button type="submit">Sigue</button>
     </form>
+
+    <a href="../../menu.php">SALIR</a>
+    <br><br><br><br>
+
+    <form method="post" style=" text-align:center;">BORRAR TABLA
+        <input type="submit" name="vaciar_tabla" value="vaciar_tabla">
+    </form>
     <?php
+    if ($con->connect_error) {
+        die("Conexión fallida: " . $con->connect_error);
+    }
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['vaciar_tabla'])) {
+        // SQL para vaciar la tabla
+        $sql = "TRUNCATE TABLE caja_movil";
 
+        if ($con->query($sql) === TRUE) {
+            echo "Tabla Vaciada con éxito";
+        } else {
+            echo "Error vaciando la tabla: " . $con->error;
+        }
+    }
     ?>
     <?php foot(); ?>
 </body>

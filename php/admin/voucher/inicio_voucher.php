@@ -76,14 +76,14 @@ if ($reg_remi > 0) {
             </h6>
         </form>
         &nbsp; &nbsp;
-
+        <!--
         <form method="post" action="movil_vou/exportar_tabla.php" enctype="multipart/form-data" role="form">
             <h6>VAUCHIN<input type="text" style="width : 100px " id="v_movil" name="v_movil" placeholder="MOVIL">
                 <button>Buscar</button>
                 <input type="reset" value="Reset buscador" class="btn btn-success btn-sm">
             </h6>
         </form>
-
+    -->
 
         &nbsp; &nbsp;&nbsp; &nbsp;
         <form>

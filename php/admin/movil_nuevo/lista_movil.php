@@ -13,6 +13,10 @@ if ($_SESSION['logueado']) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>NUEVO MOVIL</title>
         <?php head(); ?>
+
+        <script src="../../../js/jquery-3.4.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/bootbox.min.js"></script>
         <style>
             body {
                 margin: 50px 50px;
@@ -127,7 +131,7 @@ if ($_SESSION['logueado']) {
 
                             <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>
 
-                            <td><button type="submit" name="qq" id="qq" value="<?php echo $id ?>" class=" btn btn-danger btn-sm">BORRAR</button>
+                            <td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $row['id']; ?>)">Borrar</td>
                             </td>
 
                         </tr>

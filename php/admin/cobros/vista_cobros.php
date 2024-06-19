@@ -10,8 +10,16 @@ $venta_2 = 0;
 $venta_3 = 0;
 $venta_4 = 0;
 $venta_5 = 0;
-$movil = $_POST['movil'];
+
+if (isset($_GET['movil'])) {
+    $movil = $_GET['movil'];
+    echo "Nombre recibido: " . htmlspecialchars($movil, ENT_QUOTES, 'UTF-8');
+} else {
+    //echo "No se recibió ningún numero de movil.";
+    $movil = $_POST['movil'];
+}
 $amovil = "A00" . $movil;
+
 $total = 0;
 $ven_1 = 0;
 $ven_2 = 0;
@@ -99,7 +107,7 @@ $sql_voucher = "SELECT * FROM voucher_validado WHERE movil = '$amovil'";
 $sql_voucher = $con->query($sql_voucher);
 $row_voucher = $sql_voucher->fetch_assoc();
 
-$sql = "SELECT COUNT(*) AS total_registros FROM voucher_validado";
+$sql = "SELECT COUNT(*) AS total_registros FROM voucher_validado WHERE movil = '$amovil'";
 $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
@@ -156,55 +164,46 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
         <?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h2>
 
 
-    <!-- <h5>Voucher</h5>
+    <h5>Voucher</h5>
 
 
-    <table class="table table-bordered table-sm table-hover flex">
+    <table class="table table-bordered table-sm table-hover flex" style="zoom:80%">
         <thead class="table">
             <tr>
-                <th></th>
+
                 <th>Id</th>
                 <th>cc</th>
                 <th>Viaje No</th>
                 <th>Tot x vouch sumado</th>
-            
+
         </thead>
         <tbody>
-    -->
-    <?php
-    while ($row_voucher = $sql_voucher->fetch_assoc()) {
-        if ($row_voucher['cc'] != 0) {
 
-    ?>
-            <tr>
+            <?php
+            while ($row_voucher = $sql_voucher->fetch_assoc()) {
+                if ($row_voucher['cc'] != 0) {
 
-                <th><?php echo $id = $row_voucher['id'] ?></th>
-                <th><?php echo $cc = $row_voucher['cc'] ?></th>
-                <th><?php echo $viaje_no = $row_voucher['viaje_no'] ?></th>
-                <?php $reloj = $row_voucher['reloj'] ?>
-                <?php $peaje = $row_voucher['peaje'] ?>
-                <?php $plus = $row_voucher['plus'] ?>
-                <?php $adicional = $row_voucher['adicional'] ?>
-                <?php $equipaje = $row_voucher['equipaje'] ?>
+            ?>
+                    <tr>
+                        <th class="col-sm-2"><?php echo $id = $row_voucher['id'] ?></th>
+                        <th class="col-sm-2"><?php echo $cc = $row_voucher['cc'] ?></th>
+                        <th class="col-sm-2"><?php echo $viaje_no = $row_voucher['viaje_no'] ?></th>
+                        <?php $reloj = $row_voucher['reloj'] ?>
+                        <?php $peaje = $row_voucher['peaje'] ?>
+                        <?php $plus = $row_voucher['plus'] ?>
+                        <?php $adicional = $row_voucher['adicional'] ?>
+                        <?php $equipaje = $row_voucher['equipaje'] ?>
+                        <?php
+                        $tot_voucher = $reloj + $peaje + $plus + $adicional + $equipaje;
+                        $total += $tot_voucher;
+                        ?>
+                        <th class="col-sm-10"><?php echo $total ?></th>
+
+
+                    </tr>
                 <?php
-                // Calcular la suma de la columna
-                $tot_voucher = $reloj + $peaje + $plus + $adicional + $equipaje;
-
-                $total += $tot_voucher;
+                }
                 ?>
-                <th><?php echo $total ?></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        <?php
-        }
-        ?>
         </tbody>
 
     <?php } ?>
@@ -239,8 +238,7 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
             <h6>Compro: <?php echo $row_venta_1['nombre'] . " " . "a" . " " . "$" . $ven_1 = $row_venta_1['precio'] ?>-</h6>
             <?php
             $total_ventas = $ven_1 + $ven_2 + $ven_3 + $ven_4 + $ven_5;
-            ?> <h4> <?php
-                    $total_ventas ?>-</h4>
+            ?> <h4> <?php $total_ventas ?></h4>
         <?php
         }
         ?>
@@ -292,24 +290,24 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
             <div>
                 <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
                     <li>
-                        <label class="mi-label">Gastos administrativos</label>
-                        <input type="text" id="gastos" name="gastos" value="<?php echo $tot_a_pagar = $deuda_anterior + $debe_de_semanas + $total_de_viajes + $total_ventas; ?>">
-                    </li>
-                    <li>
                         <label class="mi-label">Deuda anterior</label>
                         <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
                     </li>
                     <li>
+                        <label class="mi-label">Gastos administrativos</label>
+                        <input type="text" id="gastos" name="gastos" value="<?php echo $tot_a_pagar = $deuda_anterior + $debe_de_semanas + $total_de_viajes + $total_ventas; ?>" readonly>
+                    </li>
+                    <li>
                         <label class="mi-label">Recaudado en Voucher</label>
-                        <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>">
+                        <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>" readonly>
                     </li>
                     <li>
                         <label class="mi-label">Para el movil</label>
-                        <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total * .9 ?>">
+                        <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total * .9 ?>" readonly>
                     </li>
                     <li>
                         <label class="mi-label">Comisiones</label>
-                        <input type="text" id="" name="" value="<?php echo $diez = $total * .1 ?>">
+                        <input type="text" id="" name="" value="<?php echo $diez = $total * .1 ?>" readonly>
 
                     </li>
                     <?php
@@ -318,7 +316,8 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
                     ?>
                         <li>
                             <label class="mi-label">Pagarle al movil</label>
-                            <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $total_final ?>" style="background-color: #FFFF00">
+                            <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $total_final ?>" style="background-color: #FFFF00" readonly>
+                            <input type="hidden" id="pesos" name="pesos" value="<?php echo $pesos = 0 ?>">
                         </li>
                     <?php
                     } else {
@@ -326,28 +325,26 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
                         <li>
                             <label class="mi-label">El movil debe abonar: </label>
                             <input type="text" id="paga_mov" name="paga_mov" value="<?php echo $total_final ?>" style="background-color: #FF6600">
-                            <input type="text" id="pesos" name="pesos" placeholder="Ingrese dinero" autofocus>
+                            <input type="text" id="pesos" name="pesos" placeholder="Ingrese dinero" autofocus required>
                         </li>
                     <?php
                     }
-
-
-
                     ?>
-
-
                 </ul>
-
             </div>
             <li><button type="submit" class="btn btn-danger" target="_blank">GUARDAR no hay vueta atras</button></li>
         </div>
 
     </form>
 
+    <form action="resumen_cobros.php" method="post">
+        <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
+        <li><button type="submit" class="btn btn-info" target="_blank">Resumen</button></li>
+    </form>
 
-    <br><br>
-    <br><br>
-    <a href="inicio_cobros.php">VOLVER</a>
+
+
+    <li><a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
 
     <br><br><br>
     <?php foot() ?>

@@ -5,7 +5,7 @@ include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
 
-echo $id_del = $_GET['qq'];
+echo $id_del = $_GET['q'];
 
 
 $sql_semana = "SELECT * FROM completa WHERE id=" . $id_del;
@@ -18,13 +18,9 @@ echo $semana_movil = $row_semana['movil'];
 echo $dni_titu = $row_semana['dni_titu'];
 echo "<br>";
 
-if ($dni_titu <> 0) {
+if (!$dni_titu <> 0) {
 ?>
-    <script>
-        alert("Hello");
-    </script>
 
-    <?php header("Location:lista_movil.php"); ?>
 
 <?php
     echo "queres borrar un registro ya cargado...";
@@ -42,6 +38,6 @@ if ($dni_titu <> 0) {
     $sql = "DELETE FROM completa WHERE id=" . $id_del;
     $result = $con->query($sql);
 
-    header("Location:lista_movil.php");
+        header("Location:lista_movil.php");
     exit();
 }
