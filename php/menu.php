@@ -52,21 +52,25 @@ if ($_SESSION['logueado']) {
                         <li><a href="administrador/logeados/logeos.php" class="btn btn-info btn-block btn-sm">SESIONES en proceso</a></li>
                         <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-primary btn-block btn-sm">AYUDA</a></li>
+                    </ul>
+                    <h3>Menu Moviles</h3>
+                    <ul class="list-group">
 
-                        <h3>Menu Moviles</h3>
-                        <ul class="list-group">
-
-                            <li><a href="ayuda/crear_para_cobrar.php" target="_blank" class="btn btn-info btn-block btn-sm">COMO ARMAR UNA UNIDAD Y COMENZAR A COBRARLE</a></li>
-                            <br>
-                            <li><a href="admin/movil_nuevo/lista_movil.php" class="btn btn-primary btn-block btn-sm">NUEVO / EDITA TITULAR Y MOVIL</a></li>
-                            <br>
-                            <li><a href="admin/uni_comp/list_uni_comp.php" class="btn btn-primary btn-block btn-sm">EDICION DE UNIDAD COMPLETA</a></li>
-                            <br>
-                            <li><a href="admin/tropas/lista_tropas.php" class="btn btn-primary btn-block btn-sm">NUEVO / EDITA TROPA Y MOVILES</a></li>
-                            <br>
-                            <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
-                            <br>
-                        </ul>
+                        <li><a href="ayuda/crear_para_cobrar.php" target="_blank" class="btn btn-info btn-block btn-sm">COMO ARMAR UNA UNIDAD Y COMENZAR A COBRARLE</a></li>
+                        <br>
+                        <li><a href="admin/crear_no_de_movil/list_no_movil.php" target="_blank" class="btn btn-primary btn-block btn-sm">CREAR NUMERO DE MOVIL</a></li>
+                        <br>
+                        <li><a href="admin/tropas/lista_tropas.php" class="btn btn-primary btn-block btn-sm">CREAR NUEVA TROPA</a></li>
+                        <br>
+                        <li><a href="admin/movil_nuevo/lista_movil.php" class="btn btn-primary btn-block btn-sm">CREAR EDITAR TITULAR </a></li>
+                        <br>
+                        <li><a href="admin/choferes/list_chofer.php">CREAR EDITAR CHOFERES</a></li>
+                        <br>
+                        <li><a href="admin/uni_comp/list_uni_comp.php" class="btn btn-primary btn-block btn-sm">EDICION DE UNIDAD COMPLETA</a></li>
+                        <br>
+                        <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
+                        <br>
+                    </ul>
                 </div>
                 <div class="col-md-4">
                     <h3>Menu de Caja</h3>
@@ -76,7 +80,6 @@ if ($_SESSION['logueado']) {
                         <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP</a></li>
                         <br>
                         <li><a href="semana/semana.php" class=" btn btn-primary btn-block btn-sm">SEMANA
-
                                 <p style="margin-top:0; margin-bottom:0;"><small>Una vez, los lunes al empezar.</small></p>
                                 <p style="margin-top:0; margin-bottom:0;"><small>Si lo hacen mas de una vez no difiere.</small></p>
                             </a></li>
@@ -89,12 +92,13 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
                         <br>
-
                     </ul>
                 </div>
+                
+                
                 <div class="col-md-4">
                     <h3>Menu de caja</h3>
-                    <ul>
+                    <ul class="list-group">
                         <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm">VENTA</a></li>
                         <br>
                         <li><a href="admin/cobros/inicio_cobros.php" class=" btn btn-danger btn-block btn-sm">VAUCHIN</a></li>

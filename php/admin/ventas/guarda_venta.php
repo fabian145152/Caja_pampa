@@ -5,25 +5,26 @@ $con = conexion();
 $con->set_charset("utf8mb4");
 
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['opciones'])) {
         // Obtener las opciones seleccionadas
         $opciones = $_POST['opciones'];
 
+
         // Imprimir las opciones seleccionadas
         echo "Has seleccionado las siguientes opciones:<br>";
         foreach ($opciones as $opcion) {
-            $venta = substr($opcion, 0, 1);
+            $venta = substr($opcion, 0, 50);
             $movil = substr($opcion, 2, 4);
             echo htmlspecialchars($venta) . "<br>";
             echo htmlspecialchars($movil) . "<br>";
+
 
             $sql_comp = "SELECT * FROM completa WHERE movil = $movil";
             $res_comp = $con->query($sql_comp);
             $row_comp = $res_comp->fetch_assoc();
 
-         
+
 
 
             if ($row_comp['venta_1'] == 0) {
@@ -49,5 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "Método de solicitud no válido.";
 }
+
 
 header("Location: inicio_ventas.php");

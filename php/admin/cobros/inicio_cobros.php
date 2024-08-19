@@ -13,22 +13,32 @@ $semana_actual = date("W");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COBROS</title>
     <?php head() ?>
+    <style>
+        #Power-Contenedor {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
-
-
-
-
     <h4 style="text-align: center; ">SEMANA: <?php echo $semana_actual ?></h4>
-    <form style=" text-align:center;" method="post" action="vista_cobros.php">
+    <form style=" text-align:center;" method="post" action="vista_con_voucher.php">
         Ingrese Movil:
         <input type="text" id="movil" name="movil" autofocus>
-        <button type="submit">Sigue</button>
+        <button type="submit">Continuar</button>
     </form>
+    <br><br><br>
 
-    <a href="../../menu.php">SALIR</a>
+    
+
+    <br><br><br>
+
+    <div id="Power-Contenedor">
+        <a href="../../menu.php" id="Anyadir-Rutina-btn" class="btn btn-primary">SALIR</a>
+    </div>
+
+
     <br><br><br><br>
 
     <form method="post" style=" text-align:center;">BORRAR TABLA

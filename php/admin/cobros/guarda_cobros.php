@@ -5,9 +5,11 @@ $con = conexion();
 $con->set_charset("utf8mb4");
 $dep_efect = 0;
 
-?>
-<h1>Revisar bien la cuenta al final a ver si da bien con pago en efectivo</h1>
 
+
+?>
+<h1>Falta guardar pago en efectivo y terminar de revisar los calculos</h1>
+<h2></h2>
 <?php
 
 echo "Movil: " . $movil = $_POST['movil'];
@@ -15,6 +17,19 @@ echo "<br>";
 if (!isset($pesos)) {
     echo "Deposito: " . $pesos = $_POST['pesos'];
 }
+echo "<br>";
+echo "Debe de semanas anteriores: " . $debe_ant = $_POST['debe_ant'];
+echo "<br>";
+echo "Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'];
+echo "<br>";
+echo "<br>";
+echo "<br>";
+
+echo $deuda_total = 
+
+
+
+exit();
 
 echo "<br>";
 $cant_viajes = $_POST['cant_viajes'];
@@ -24,11 +39,9 @@ echo "Abono semanal: " . $abono_semanal = $_POST['abono_semanal'];
 echo "<br>";
 echo "Paga por los viajes: " . $paga_de_viajes = $cant_viajes * $paga_x_viaje;
 echo "<br>";
-echo "Debe de semanas anteriores: " . $debe_ant = $_POST['debe_ant'];
 echo "<br>";
 echo "Productos comprados: " . $prod = $_POST['prod'];
 echo "<br>";
-echo "Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'];
 echo "<br>";
 echo "Suma= " . $suma = $abono_semanal + $paga_de_viajes + $debe_ant + $prod + $deuda_ant;
 echo "<br>";
@@ -114,11 +127,11 @@ echo "<br>";
 echo "Saldo Movil: " . $saldo_movil = $deuda_movil + $pesos;
 echo "<br>";
 
-exit();
+//exit();
 
-$sql_saldo_movil = "INSERT INTO caja_movil (movil, dep_efectivo, deuda_movil, saldo_movil, dep_fecha) VALUES(?,?,?,?,?)";
+$sql_saldo_movil = "INSERT INTO caja_movil (movil, dep_efectivo, deuda_ant, saldo_movil, dep_fecha) VALUES(?,?,?,?,?)";
 $stmt_2 = $con->prepare($sql_saldo_movil);
-$stmt_2->bind_param("iiiis", $movil, $pesos, $deuda_movil, $saldo_movil, $fecha);
+$stmt_2->bind_param("siiid", $movil, $pesos, $deuda_movil, $saldo_movil, $fecha);
 
 
 if ($stmt_2->execute()) {
@@ -148,10 +161,15 @@ echo "<br>";
 
 ## borrar voucher validados por ahi voy
 
-
+echo $mo = "A00" . $movil;
+echo "<br>";
+echo $mo;
+echo "<br>";
 
 // Consulta para vaciar la tabla
-$borra_voucher_validados = "TRUNCATE TABLE voucher_validado";
+
+
+$borra_voucher_validados = "DELETE FROM `voucher_validado` WHERE movil= '$mo'";
 
 
 

@@ -9,25 +9,14 @@ $movil = $_POST['movil'];
 $sql_comp = "SELECT * FROM completa WHERE movil = $movil";
 $res_comp = $con->query($sql_comp);
 $row_comp = $res_comp->fetch_assoc();
-$row_comp['nombre_titu'];
-//echo "<br>";
-$row_comp['venta_1'];
-//echo "<br>";
-$movil = $row_comp['movil'];
+
 
 $sql_venta = "SELECT * FROM productos WHERE 1";
 $res_venta = $con->query($sql_venta);
-$row_venta = $res_venta->fetch_assoc();
-$row_venta['nombre'];
-//echo "<br>";
-$row_venta['stock'];
-//echo "<br>";
-$venta = $row_venta['id'];
 
 ?>
 <!DOCTYPE html>
 <html lang="en-es">
-
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,8 +30,9 @@ $venta = $row_venta['id'];
 </head>
 
 <body>
-    <h2>Hola: <?php echo $row_comp['nombre_titu'] ?> Movil: <?php echo $row_comp['movil'] ?></h2>
-    <h4>Venta de productos</h4>
+    <h2>Nombre: <?php echo $row_comp['nombre_titu'] . " " .  $row_comp['apellido_titu'] ?> Movil: <?php echo $mov = $row_comp['movil'] ?></h2>
+    <h4>Venta de productos.</h4>
+
     <table class="table table-bordered table-sm table-hover">
         <thead class="thead-dark">
             <tr>
@@ -52,12 +42,10 @@ $venta = $row_venta['id'];
                 <th>Precio</th>
                 <th>Stock</th>
                 <th style="text-align: center">Seleccione</th>
-
             </tr>
         </thead>
         <tbody>
             <form action="guarda_venta.php" method="post">
-
                 <?php
                 while ($row_venta = $res_venta->fetch_assoc()) {
                 ?>
@@ -74,16 +62,18 @@ $venta = $row_venta['id'];
                 }
                 ?>
                 <button type="submit" id="id" name="id" class=" btn btn-danger btn-sm">GUARDAR</button>
-
-
             </form>
-
         </tbody>
         &nbsp &nbsp &nbsp &nbsp &nbsp
-        <a href="inicio_ventas.php" class=" btn btn-primary btn-sm">CANCELAR</a>
+        <a href="eliminar_venta.php?q=<?php echo $mov ?>" class=" btn btn-primary btn-sm">ELIMINAR VENTA</a>
+        &nbsp &nbsp &nbsp &nbsp &nbsp
+        <a href="inicio_ventas.php" class=" btn btn-primary btn-sm">VOLVER</a>
+
     </table>
+
     <div>
-        <h2> <?php echo $row_comp['nombre_titu'] . " " ?>COMPRO ANTERIORMENTE: </h2>
+        <h2>COMPRO ANTERIORMENTE: </h2>
+
         <?php
 
         $venta_1 = $row_comp['venta_1'];

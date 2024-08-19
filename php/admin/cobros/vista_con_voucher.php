@@ -13,12 +13,44 @@ $venta_5 = 0;
 
 if (isset($_GET['movil'])) {
     $movil = $_GET['movil'];
-    echo "Nombre recibido: " . htmlspecialchars($movil, ENT_QUOTES, 'UTF-8');
+    htmlspecialchars($movil, ENT_QUOTES, 'UTF-8');
 } else {
-    //echo "No se recibió ningún numero de movil.";
+
     $movil = $_POST['movil'];
 }
-$amovil = "A00" . $movil;
+$amovil = "A" . $movil;
+
+//Veridica si existe movil
+$sql_comp = "SELECT * FROM completa WHERE movil = $movil";
+$res_comp = $con->query($sql_comp);
+$row_comp = $res_comp->fetch_assoc();
+
+if ($row_comp['movil'] == 0) {
+    echo '<script type="text/javascript">';
+    echo 'alert("ESE MOVIL NO EXISTE");';
+    echo 'window.location.href = "inicio_cobros.php";'; // Enlace al que quieres redirigir
+    echo '</script>';
+}
+
+
+//---------------------------------------------------------------------
+// Verifica si tiene voucher, sino salta a vista_sin_voucher.php
+
+$sql_con_voucher = "SELECT COUNT(*) AS total_registros FROM voucher_validado WHERE movil = '$amovil'";
+$result = $con->query($sql_con_voucher);
+
+if ($result->num_rows > 0) {
+    // Obtener el resultado
+    $row = $result->fetch_assoc();
+    $can_viajes = $row['total_registros'];
+}
+if ($can_viajes == 0) {
+    // exit();
+    echo '<script type="text/javascript">';
+    echo 'alert("ESTE MOVIL NO HACE CUENTAS CORRIENTES");';
+    echo 'window.location.href = "vista_sin_voucher.php";'; // Enlace al que quieres redirigir
+    echo '</script>';
+}
 
 $total = 0;
 $ven_1 = 0;
@@ -26,10 +58,6 @@ $ven_2 = 0;
 $ven_3 = 0;
 $ven_4 = 0;
 $ven_5 = 0;
-
-$sql_comp = "SELECT * FROM completa WHERE movil = $movil";
-$res_comp = $con->query($sql_comp);
-$row_comp = $res_comp->fetch_assoc();
 
 $nombre_titu = $row_comp['nombre_titu'];
 $apellido_titu = $row_comp['apellido_titu'];
@@ -91,6 +119,7 @@ $row_viaje = $sql_viaje->fetch_assoc();
 $nom_viaje = $row_viaje['abono'] . " ";
 $paga_x_viaje = $row_viaje['importe'];
 
+
 ## Es lo que debe de semanas
 $sql_debe_semanas = "SELECT * FROM semanas WHERE movil = $movil";
 $sql_debe_semanas = $con->query($sql_debe_semanas);
@@ -98,36 +127,18 @@ $row_debe_semanas = $sql_debe_semanas->fetch_assoc();
 $deuda_semanas_anteriores = $row_debe_semanas['total'];
 $row_debe_semanas['x_semana'];
 
+
 ##variables de pago semanal e importe de semanas adeudadas
 $paga_x_semana = $row_debe_semanas['x_semana'];
 $debe_de_semanas =  $row_debe_semanas['total'];
 
+//$amovil;
+
 ## Voucher validads
 $sql_voucher = "SELECT * FROM voucher_validado WHERE movil = '$amovil'";
 $sql_voucher = $con->query($sql_voucher);
-$row_voucher = $sql_voucher->fetch_assoc();
-
-$sql = "SELECT COUNT(*) AS total_registros FROM voucher_validado WHERE movil = '$amovil'";
-$result = $con->query($sql);
-
-if ($result->num_rows > 0) {
-    // Obtener el resultado
-    $row = $result->fetch_assoc();
-    $can_viajes = $row['total_registros'];
-} else {
-    echo "0 resultados";
-}
 
 
-/*
-## esto es parte del listado de los voucher
-while ($row_voucher = $sql_voucher->fetch_assoc()) {
-    echo $row_voucher['movil'];
-    echo " " . $row_voucher['reloj'];
-    echo " " . $row_voucher['cc'];
-    echo "<br>";
-}
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en-es">
@@ -135,7 +146,7 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAUCHIN</title>
+    <title>VISTA CUENTA</title>
     <?php head() ?>
     <style>
         body {
@@ -159,16 +170,17 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
 </head>
 
 <body>
-    <h2>Estado de cuenta del movil <?php echo $movil ?>&nbsp;
+    <h4>Estado de cuenta del movil <?php echo $movil ?>&nbsp;
         <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br>
-        <?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h2>
+        <?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h4>
 
 
-    <h5>Voucher</h5>
+
 
 
     <table class="table table-bordered table-sm table-hover flex" style="zoom:80%">
         <thead class="table">
+
             <tr>
 
                 <th>Id</th>
@@ -180,22 +192,26 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
         <tbody>
 
             <?php
+
             while ($row_voucher = $sql_voucher->fetch_assoc()) {
-                if ($row_voucher['cc'] != 0) {
+                if ($row_voucher['cc'] >= 0) {
 
             ?>
                     <tr>
+
                         <th class="col-sm-2"><?php echo $id = $row_voucher['id'] ?></th>
                         <th class="col-sm-2"><?php echo $cc = $row_voucher['cc'] ?></th>
                         <th class="col-sm-2"><?php echo $viaje_no = $row_voucher['viaje_no'] ?></th>
                         <?php $reloj = $row_voucher['reloj'] ?>
+
                         <?php $peaje = $row_voucher['peaje'] ?>
                         <?php $plus = $row_voucher['plus'] ?>
                         <?php $adicional = $row_voucher['adicional'] ?>
-                        <?php $equipaje = $row_voucher['equipaje'] ?>
-                        <?php
+                        <?php $equipaje = $row_voucher['equipaje'];
+
+
                         $tot_voucher = $reloj + $peaje + $plus + $adicional + $equipaje;
-                        $total += $tot_voucher;
+                        echo $total += $tot_voucher;
                         ?>
                         <th class="col-sm-10"><?php echo $total ?></th>
 
@@ -206,8 +222,12 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
                 ?>
         </tbody>
 
-    <?php } ?>
+    <?php
+            }
+
+    ?>
     </table>
+
     <form action="guarda_cobros.php" method="post">
 
         <?php
@@ -234,11 +254,12 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
         }
         if ($venta_1 != 0) {
         ?>
-            <br>
+
             <h6>Compro: <?php echo $row_venta_1['nombre'] . " " . "a" . " " . "$" . $ven_1 = $row_venta_1['precio'] ?>-</h6>
             <?php
             $total_ventas = $ven_1 + $ven_2 + $ven_3 + $ven_4 + $ven_5;
-            ?> <h4> <?php $total_ventas ?></h4>
+            ?>
+
         <?php
         }
         ?>
@@ -258,7 +279,7 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
                 <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
                     <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
                     <li>
-                        <label class="mi-label">Abono de <?php echo $abona_x_semana ?> <?php $abono_x_semana ?></label>
+                        <label class="mi-label"><?php echo $abona_x_semana ?> <?php $abono_x_semana ?></label>
                         <input type="text" id="abono_semanal" name="abono_semanal" value="<?php echo $debe_de_semana ?>" readonly>
                     </li>
                     <li>
@@ -294,11 +315,15 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
                         <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
                     </li>
                     <li>
+                        <label for="mi-label">Total a pagar:</label>
+                        <input type="text">
+                    </li>
+                    <li>
                         <label class="mi-label">Gastos administrativos</label>
                         <input type="text" id="gastos" name="gastos" value="<?php echo $tot_a_pagar = $deuda_anterior + $debe_de_semanas + $total_de_viajes + $total_ventas; ?>" readonly>
                     </li>
                     <li>
-                        <label class="mi-label">Recaudado en Voucher</label>
+                        <label class="mi-label">RECAUDADO EN VOUCHER </label>
                         <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>" readonly>
                     </li>
                     <li>
@@ -310,6 +335,8 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
                         <input type="text" id="" name="" value="<?php echo $diez = $total * .1 ?>" readonly>
 
                     </li>
+
+
                     <?php
                     $total_final = $noventa - $tot_a_pagar;
                     if ($total_final > 0) {
@@ -323,10 +350,13 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
                     } else {
                     ?>
                         <li>
-                            <label class="mi-label">El movil debe abonar: </label>
-                            <input type="text" id="paga_mov" name="paga_mov" value="<?php echo $total_final ?>" style="background-color: #FF6600">
+                            <label class="mi-label">Total a abonar</label>
+                            <input type="text" id="" name="" value="<?php echo $total_a_abonar = $deuda_semanas_anteriores + $deuda_anterior + $tot_a_pagar ?>" readonly style="background-color: #FF6600">
                             <input type="text" id="pesos" name="pesos" placeholder="Ingrese dinero" autofocus required>
+
                         </li>
+
+
                     <?php
                     }
                     ?>
@@ -348,6 +378,7 @@ while ($row_voucher = $sql_voucher->fetch_assoc()) {
 
     <br><br><br>
     <?php foot() ?>
+
 </body>
 
 </html>
