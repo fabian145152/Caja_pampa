@@ -7,7 +7,7 @@ $con->set_charset("utf8mb4");
 
 if ($_SESSION['logueado']) {
 
-    echo '<h4>' . "BIENVENIDO "  . $_SESSION['uname'] . '</h4>' . '<br>';
+    echo '<h4>' . "BIENVENIDO "  . $_SESSION['uname'] . '</h4>';
 
     $_SESSION['time'] . '<br>';
 
@@ -45,7 +45,7 @@ if ($_SESSION['logueado']) {
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    <h3>Menu Usuarios</h3>
+                    <h3>MENU USUARIOS</h3>
                     <ul class="list-group">
                         <li><a href="usuario/inicio_usuario.php" class="btn btn-primary btn-block btn-sm">CREAR USUARIOS</a></li>
                         <br>
@@ -53,19 +53,18 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-primary btn-block btn-sm">AYUDA</a></li>
                     </ul>
-                    <h3>Menu Moviles</h3>
+                    <h3>MENU MOVILES</h3>
                     <ul class="list-group">
 
                         <li><a href="ayuda/crear_para_cobrar.php" target="_blank" class="btn btn-info btn-block btn-sm">COMO ARMAR UNA UNIDAD Y COMENZAR A COBRARLE</a></li>
                         <br>
                         <li><a href="admin/crear_no_de_movil/list_no_movil.php" target="_blank" class="btn btn-primary btn-block btn-sm">CREAR NUMERO DE MOVIL</a></li>
                         <br>
-                        <li><a href="admin/tropas/lista_tropas.php" class="btn btn-primary btn-block btn-sm">CREAR NUEVA TROPA</a></li>
+                        <li><a href="admin/tropas/lista_tropas.php" target="_blank" class="btn btn-primary btn-block btn-sm">CREAR NUEVA TROPA</a></li>
                         <br>
-                        <li><a href="admin/movil_nuevo/lista_movil.php" class="btn btn-primary btn-block btn-sm">CREAR EDITAR TITULAR </a></li>
+                        <li><a href="admin/movil_nuevo/lista_movil.php" target="_blank" class="btn btn-primary btn-block btn-sm">CREAR EDITAR TITULAR </a></li>
                         <br>
-                        <li><a href="admin/choferes/list_chofer.php">CREAR EDITAR CHOFERES</a></li>
-                        <br>
+
                         <li><a href="admin/uni_comp/list_uni_comp.php" class="btn btn-primary btn-block btn-sm">EDICION DE UNIDAD COMPLETA</a></li>
                         <br>
                         <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
@@ -73,13 +72,15 @@ if ($_SESSION['logueado']) {
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h3>Menu de Caja</h3>
+                    <h3>MENU DE CAJA</h3>
                     <ul class="list-group">
+                        <li><a href="ayuda/ayuda_voucher.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE CAJA</a></li>
+                        <br>
                         <li> <a href="admin/voucher/inicio_voucher.php" class="btn btn-primary btn-block btn-sm">VOUCHER</a></li>
                         <br>
                         <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP</a></li>
                         <br>
-                        <li><a href="semana/semana.php" class=" btn btn-primary btn-block btn-sm">SEMANA
+                        <li><a href="semana/semana.php" class=" btn btn-primary btn-block btn-sm">SEMANA los lunes solamente...
                                 <p style="margin-top:0; margin-bottom:0;"><small>Una vez, los lunes al empezar.</small></p>
                                 <p style="margin-top:0; margin-bottom:0;"><small>Si lo hacen mas de una vez no difiere.</small></p>
                             </a></li>
@@ -92,15 +93,15 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
                         <br>
+                        <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm">VENTA</a></li>
                     </ul>
                 </div>
-                
-                
+
+
                 <div class="col-md-4">
-                    <h3>Menu de caja</h3>
+                    <h3>MENU CAJA </h3>
                     <ul class="list-group">
-                        <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm">VENTA</a></li>
-                        <br>
+
                         <li><a href="admin/cobros/inicio_cobros.php" class=" btn btn-danger btn-block btn-sm">VAUCHIN</a></li>
                         <br>
                         <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
@@ -115,7 +116,7 @@ if ($_SESSION['logueado']) {
             </div>
         </div>
 
-        <br>
+
         <div id="Power-Contenedor">
             <a href="salir.php" class="btn btn-danger btn-lg ">Salir</a>
         </div>

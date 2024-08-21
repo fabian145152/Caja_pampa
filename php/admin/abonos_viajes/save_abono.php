@@ -7,7 +7,7 @@ $con->set_charset("utf8mb4");
 echo $nombre = $_POST['nombre'];
 echo $importe = $_POST['importe'];
 
-$sql = "INSERT INTO importe_viajes (nombre, importe) VALUES (?,?)";
+$sql = "INSERT INTO abono_viaje (abono, importe) VALUES (?,?)";
 $stmt = $con->prepare($sql);
 $stmt->bind_param("si", $nombre, $importe);
 

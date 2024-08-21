@@ -67,7 +67,7 @@ $con->set_charset("utf8mb4");
                         <input type="text" class="form-control" placeholder="CELULAR" name="cel" id="cel" autofocus>
                     </div>
                     <div class="text-center">
-                        <input type="submit" class="btn btn-success" value="Añadir Numero de movil">
+                        <input type="submit" class="btn btn-success" value="AÑADIR NUEVA TROPA">
                     </div>
                     <br>
                     <div class="text-center">

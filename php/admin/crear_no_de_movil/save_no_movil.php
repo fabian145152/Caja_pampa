@@ -12,18 +12,20 @@ $movil = $_POST['id'];
 
 // id_titu es el numero de movil
 
+$x_semana = 150;
+$x_viaje = 150;
 
 
-
-$sql_movil = "INSERT INTO completa (movil) VALUES (?)";
+$sql_movil = "INSERT INTO completa (movil, x_semana, x_viaje) VALUES (?,?,?)";
 $stmt_movil = $con->prepare($sql_movil);
-$stmt_movil->bind_param("i", $movil);
+$stmt_movil->bind_param("iii", $movil, $x_semana, $x_viaje);
 
 $sql_semana = "INSERT INTO semanas (movil) VALUES (?)";
 $stmt_semana = $con->prepare($sql_semana);
 $stmt_semana->bind_param("i", $movil);
 
-echo $movil;
+
+
 
 //exit();
 

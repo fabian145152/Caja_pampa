@@ -56,8 +56,7 @@ if ($_SESSION['logueado']) {
             </style>
             <div class="btn-group d-flex w-50" role="group">
                 &nbsp; &nbsp; &nbsp;
-                <a href="insert_movil.php" class="btn btn-primary btn-sm">NUEVO TITULAR</a>
-                &nbsp; &nbsp; &nbsp;
+
                 <a href="../../menu.php" class="btn btn-primary btn-sm">VOLVER</a>
 
                 &nbsp; &nbsp; &nbsp;

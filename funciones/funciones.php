@@ -31,7 +31,6 @@ function leerArchivoTXT($rutaArchivo)
 function foot()
 {
 ?>
-
     <style>
         .footer {
             width: 100%;
@@ -60,4 +59,3 @@ function head()
 
 <?php
 }
-

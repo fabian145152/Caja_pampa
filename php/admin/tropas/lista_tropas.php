@@ -70,7 +70,7 @@ $con->set_charset("utf8mb4");
             <tr>
                 <th>Tropa Numero</th>
                 <th>Movil</th>
-                <th>Titular</th>
+                <th>Apellido</th>
                 <th>Nombre</th>
                 <th>Moviles</th>
                 <th></th>
@@ -81,7 +81,7 @@ $con->set_charset("utf8mb4");
             <tr>
 
                 <?php
-                $sql = "SELECT * FROM completa WHERE 1 ORDER BY movil ASC";
+                $sql = "SELECT * FROM completa WHERE 1 ORDER BY tropa ASC";
                 $result = $con->query($sql);
                 while ($row = $result->fetch_assoc()) {
 

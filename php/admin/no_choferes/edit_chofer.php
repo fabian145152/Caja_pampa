@@ -59,7 +59,6 @@ $row = $result->fetch_assoc();
                         <input type="text" class="form-control" id="direccion" name="direccion" value="<?php echo $row['direccion_chof_1']; ?>">
                     </div>
 
-
                     <div class="form-group">
                         <label class="control-label">DNI</label>
                         <input type="text" class="form-control" id="dni" name="dni" value="<?php echo $row['dni_chof_1']; ?>">
