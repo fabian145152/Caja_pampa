@@ -76,7 +76,7 @@ if ($_SESSION['logueado']) {
                     <ul class="list-group">
                         <li><a href="ayuda/ayuda_voucher.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE CAJA</a></li>
                         <br>
-                        <li> <a href="admin/voucher/inicio_voucher.php" class="btn btn-primary btn-block btn-sm">VOUCHER</a></li>
+                        <li> <a href="admin/voucher/inicio_voucher.php" target="_blank" class="btn btn-primary btn-block btn-sm">VOUCHER</a></li>
                         <br>
                         <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP</a></li>
                         <br>
@@ -102,7 +102,7 @@ if ($_SESSION['logueado']) {
                     <h3>MENU CAJA </h3>
                     <ul class="list-group">
 
-                        <li><a href="admin/cobros/inicio_cobros.php" class=" btn btn-danger btn-block btn-sm">VAUCHIN</a></li>
+                        <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-danger btn-block btn-sm">COBRAR A MOVIL</a></li>
                         <br>
                         <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
                         <br>
@@ -115,12 +115,10 @@ if ($_SESSION['logueado']) {
                 </div>
             </div>
         </div>
-
-
         <div id="Power-Contenedor">
             <a href="salir.php" class="btn btn-danger btn-lg ">Salir</a>
         </div>
-        <br><br>
+        <br><br><br>
     <?php
     foot();
 } else {

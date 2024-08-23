@@ -11,7 +11,7 @@ if ($_SESSION['logueado']) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NUEVO MOVIL</title>
+        <title>TITULARES</title>
         <?php head(); ?>
 
         <script src="../../../js/jquery-3.4.1.min.js"></script>

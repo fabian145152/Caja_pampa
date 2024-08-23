@@ -170,14 +170,32 @@ $sql_voucher = $con->query($sql_voucher);
 </head>
 
 <body>
-    <h4>Estado de cuenta del movil <?php echo $movil ?>&nbsp;
-        <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br>
-        <?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h4>
+    <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
+        <div id="contenedor">
+
+            <h4>Estado de cuenta del movil <?php echo $movil ?>&nbsp;
+            <ul>
+
+                <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br>
+                <?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h4>
+            
+            </ul>
+
+            <?php
 
 
+            $observ = $row_comp['obs'];
+            if ($observ <= 0) {
 
+                echo '';
 
-
+                echo "<strong>OBSERVACIONES: </strong>" . $observ;
+            } else {
+                echo "<br>";
+            }
+            ?>
+        </div>
+    </ul>
     <table class="table table-bordered table-sm table-hover flex" style="zoom:80%">
         <thead class="table">
 
@@ -211,10 +229,9 @@ $sql_voucher = $con->query($sql_voucher);
 
 
                         $tot_voucher = $reloj + $peaje + $plus + $adicional + $equipaje;
-                        echo $total += $tot_voucher;
+                        $total += $tot_voucher;
                         ?>
-                        <th class="col-sm-10"><?php echo $total ?></th>
-
+                        <th class="col-sm-12"><?php echo $total ?></th>
 
                     </tr>
                 <?php

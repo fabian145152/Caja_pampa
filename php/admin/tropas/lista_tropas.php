@@ -72,7 +72,7 @@ $con->set_charset("utf8mb4");
                 <th>Movil</th>
                 <th>Apellido</th>
                 <th>Nombre</th>
-                <th>Moviles</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -95,7 +95,7 @@ $con->set_charset("utf8mb4");
                         echo "<td>";
                         echo $row['nombre_titu'] . "</td>";
                         echo "<td>";
-                        echo $row['movil'] . "</td>";
+                        $row['movil'] . "</td>";
                 ?>
 
                         <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>
@@ -104,13 +104,9 @@ $con->set_charset("utf8mb4");
 
                     <?php
 
-
-
-
-
-
                     }
                     ?>
+
 
             </tr>
             </form>

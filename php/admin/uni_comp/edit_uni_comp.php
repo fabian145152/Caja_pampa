@@ -264,7 +264,12 @@ $id_upd = $_GET['q'];
                     </div>
 
                     <br>
+                    <?php
+                    $sql = "SELECT * FROM completa WHERE id=" . $id_upd;
+                    $result = $con->query($sql);
+                    $row = $result->fetch_assoc();
 
+                    ?>
                     <div id="columnas"> <!--  Fechas -->
                         <div class="form-group">
                             <label class="control-label">FECHA DE INGRESO</label>

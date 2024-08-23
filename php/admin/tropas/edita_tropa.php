@@ -10,7 +10,7 @@ $sql_movil = "SELECT * FROM completa WHERE id=" . $movil;
 $result_semana = $con->query($sql_movil);
 $row_semana = $result_semana->fetch_assoc();
 
-echo $row_semana['movil'];
+$row_semana['movil'];
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +45,35 @@ echo $row_semana['movil'];
                         <label class="control-label">MOVIL</label>
                         <input type="text" class="form-control" id="movil" name="movil" value="<?php echo $row_semana['movil']; ?>">
                     </div>
+                    <div class="form-group">
+                        <label class="control-label">NOMBRE</label>
+                        <input type="text" class="form-control" id="nombre_titu" name="nombre_titu" value="<?php echo $row_semana['nombre_titu']; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">APELLIDO</label>
+                        <input type="text" class="form-control" id="apellido_titu" name="apellido_titu" value="<?php echo $row_semana['apellido_titu']; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">DNI</label>
+                        <input type="text" class="form-control" id="dni_titu" name="dni_titu" value="<?php echo $row_semana['dni_titu']; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">DIRECCION</label>
+                        <input type="text" class="form-control" id="direccion_titu" name="direccion_titu" value="<?php echo $row_semana['direccion_titu']; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">CP</label>
+                        <input type="text" class="form-control" id="cp_titu" name="cp_titu" value="<?php echo $row_semana['cp_titu']; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">CELULAR</label>
+                        <input type="text" class="form-control" id="cel_titu" name="cel_titu" value="<?php echo $row_semana['cel_titu']; ?>">
+                    </div>
+
+
 
 
                     <div class="text-center">

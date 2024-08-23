@@ -3,6 +3,17 @@ session_start();
 include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
+
+$sql_contar = "SELECT COUNT(*) AS total FROM completa";
+$stmt_contar = $con->query($sql_contar);
+
+if ($stmt_contar->num_rows > 0) {
+    $row_3 = $stmt_contar->fetch_assoc();
+    $cant_cargas = $row_3['total'];
+} else {
+    echo "0 registros encontrados...";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +22,9 @@ $con->set_charset("utf8mb4");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNIDADES COMPLETAS</title>
+    <title>UNI COMPLETAS</title>
     <?php head(); ?>
-    
+
     <script src="../../../js/jquery-3.4.1.min.js"></script>
     <script src="../../../js/bootstrap.min.js"></script>
     <script src="../../../js/bootbox.min.js"></script>
@@ -52,7 +63,9 @@ $con->set_charset("utf8mb4");
 </head>
 
 <body>
+    <h2>Ver en la parte de edicion de la unidad, no guarda ni graba el abono ni el precio por viaje</h2>
     <h2 class="text-center" style="margin: 5px ; ">LISTADO DE UNIDADES COMPLETAS
+        <?php echo $cant_cargas . " UNIDADES CARGADAS." ?>
         <a href="../../menu.php"> &nbsp;&nbsp;SALIR</a>
         &nbsp;&nbsp;<a href="../../ayuda/ayuda.html" target=" _blank">AYUDA</a>
     </h2>
@@ -77,8 +90,8 @@ $con->set_charset("utf8mb4");
                 <th>Modelo</th>
                 <th>Dominio</th>
                 <th>año</th>
-                <th>x Viaje</th>
-                <TH>abono semanaL</TH>
+                <th>x_Viaje</th>
+                <TH>abono</TH>
                 <th>Deuda_ant</th>
                 <th>Detalles</th>
                 <th>Actualizar</th>

@@ -21,7 +21,7 @@ $row = $result_movil->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ACTUALIZAR MOVIL</title>
+    <title>ACTUALIZAR TITULAR</title>
     <?php head(); ?>
 
 </head>
@@ -32,7 +32,7 @@ $row = $result_movil->fetch_assoc();
 
 
 
-    echo $movil = $row['movil'];
+    $movil = $row['movil'];
     $sql_semana = "SELECT * FROM semanas WHERE movil=" . $movil;
 
     $result_semana = $con->query($sql_semana);
@@ -42,7 +42,7 @@ $row = $result_movil->fetch_assoc();
     ?>
 
     <div class="container">
-        <h3 class="text-center">ACTUALIZAR NUMEROS DE MOVIL</h3>
+        <h3 class="text-center">ACTUALIZAR DATOS DEL TITULAR</h3>
         <div class="row">
 
             <div class="col-md-12">

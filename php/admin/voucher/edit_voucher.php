@@ -84,6 +84,8 @@ $con->set_charset("utf8mb4");
                     </div>
                 </form>
             </div>
+            
+            <a href="inicio_voucher.php" class="btn btn-danger">VOLVER</a>
         </div>
     </div>
 

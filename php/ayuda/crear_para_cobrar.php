@@ -15,12 +15,12 @@ $con->set_charset("utf8mb4");
 </head>
 
 <body>
-
+    <button onclick="cerrarPagina()">CERRAR PAGINA</button>
     <h1>PROCESO DE ARMADO DE UNA UNIDAD PARA COMENZAR A COBRARLE</h1>
     <ul>
 
         <li>
-            <h2>Primer Paso.</h2>
+            <h2>Primer paso.</h2>
             <h2>BOTON <strong>"CREAR NUMERO DE MOVIL"</strong>Del menu principal.<h2>
         </li>
     </ul>
