@@ -44,14 +44,16 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $can_viajes = $row['total_registros'];
 }
+/*
 if ($can_viajes == 0) {
     // exit();
     echo '<script type="text/javascript">';
-    echo 'alert("ESTE MOVIL NO HACE CUENTAS CORRIENTES");';
-    echo 'window.location.href = "vista_sin_voucher.php";'; // Enlace al que quieres redirigir
+    echo 'alert("ESTE MOVIL NO TIENE VOUCHERS CARGADOS");';
+    header("Location:vista_sin_voucher.php?movil=$movil");
+    //echo 'window.location.href = "vista_sin_voucher.php";'; // Enlace al que quieres redirigir
     echo '</script>';
 }
-
+*/
 $total = 0;
 $ven_1 = 0;
 $ven_2 = 0;
@@ -174,27 +176,28 @@ $sql_voucher = $con->query($sql_voucher);
         <div id="contenedor">
 
             <h4>Estado de cuenta del movil <?php echo $movil ?>&nbsp;
-            <ul>
+                <ul>
 
-                <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br>
-                <?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h4>
-            
-            </ul>
+                    <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br>
+                    <?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?>
+            </h4>
 
-            <?php
+    </ul>
+
+    <?php
 
 
-            $observ = $row_comp['obs'];
-            if ($observ <= 0) {
+    $observ = $row_comp['obs'];
+    if ($observ <= 0) {
 
-                echo '';
+        echo '';
 
-                echo "<strong>OBSERVACIONES: </strong>" . $observ;
-            } else {
-                echo "<br>";
-            }
-            ?>
-        </div>
+        echo "<strong>OBSERVACIONES: </strong>" . $observ;
+    } else {
+        echo "<br>";
+    }
+    ?>
+    </div>
     </ul>
     <table class="table table-bordered table-sm table-hover flex" style="zoom:80%">
         <thead class="table">
@@ -289,112 +292,118 @@ $sql_voucher = $con->query($sql_voucher);
         </style>
 
 
-
-        <div id="contenedor">
-            <div>
-
-                <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
-                    <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
-                    <li>
-                        <label class="mi-label"><?php echo $abona_x_semana ?> <?php $abono_x_semana ?></label>
-                        <input type="text" id="abono_semanal" name="abono_semanal" value="<?php echo $debe_de_semana ?>" readonly>
-                    </li>
-                    <li>
-                        <label class="mi-label">Paga x viaje <?php echo $nom_viaje ?><?php $nom_viaje ?></label>
-                        <input type="text" id="paga_x_viaje" name="paga_x_viaje" value="<?php echo $paga_x_viaje ?>" readonly>
-                    </li>
-                    <li>
-                        <label class="mi-label">Cantidad de viajes</label>
-                        <input type="text" id="cant_viajes" name="cant_viajes" value="<?php echo $can_viajes ?>" readonly>
-                    </li>
-                    <li>
-                        <label class="mi-label">Total de viajes</label>
-                        <input type="text" id="" name="" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
-                    </li>
-
-                    <li>
-                        <label class="mi-label">Debe de semanas anteriores</label>
-                        <input type="text" id="debe_ant" name="debe_ant" value="<?php echo $deuda_semanas_anteriores ?>" readonly>
-                    </li>
-
-                    <li>
-                        <label class="mi-label">Productos que compro</label>
-                        <input type="text" id="prod" name="prod" value="<?php echo $total_ventas ?>" readonly>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div>
-                <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
-                    <li>
-                        <label class="mi-label">Deuda anterior</label>
-                        <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
-                    </li>
-                    <li>
-                        <label for="mi-label">Total a pagar:</label>
-                        <input type="text">
-                    </li>
-                    <li>
-                        <label class="mi-label">Gastos administrativos</label>
-                        <input type="text" id="gastos" name="gastos" value="<?php echo $tot_a_pagar = $deuda_anterior + $debe_de_semanas + $total_de_viajes + $total_ventas; ?>" readonly>
-                    </li>
-                    <li>
-                        <label class="mi-label">RECAUDADO EN VOUCHER </label>
-                        <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>" readonly>
-                    </li>
-                    <li>
-                        <label class="mi-label">Para el movil</label>
-                        <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total * .9 ?>" readonly>
-                    </li>
-                    <li>
-                        <label class="mi-label">Comisiones</label>
-                        <input type="text" id="" name="" value="<?php echo $diez = $total * .1 ?>" readonly>
-
-                    </li>
+        <form action="guarda_cobros.php" method="post">
 
 
-                    <?php
-                    $total_final = $noventa - $tot_a_pagar;
-                    if ($total_final > 0) {
-                    ?>
+            <div id="contenedor">
+                <div>
+
+                    <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
+                        <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
                         <li>
-                            <label class="mi-label">Pagarle al movil</label>
-                            <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $total_final ?>" style="background-color: #FFFF00" readonly>
-                            <input type="hidden" id="pesos" name="pesos" value="<?php echo $pesos = 0 ?>">
+                            <label class="mi-label"><?php echo $abona_x_semana ?> <?php $abono_x_semana ?></label>
+                            <input type="text" id="abono_semanal" name="abono_semanal" value="<?php echo $debe_de_semana ?>" readonly>
                         </li>
-                    <?php
-                    } else {
-                    ?>
                         <li>
-                            <label class="mi-label">Total a abonar</label>
-                            <input type="text" id="" name="" value="<?php echo $total_a_abonar = $deuda_semanas_anteriores + $deuda_anterior + $tot_a_pagar ?>" readonly style="background-color: #FF6600">
-                            <input type="text" id="pesos" name="pesos" placeholder="Ingrese dinero" autofocus required>
+                            <label class="mi-label">Paga x viaje <?php echo $nom_viaje ?><?php $nom_viaje ?></label>
+                            <input type="text" id="paga_x_viaje" name="paga_x_viaje" value="<?php echo $paga_x_viaje ?>" readonly>
+                        </li>
+                        <li>
+                            <label class="mi-label">Cantidad de viajes</label>
+                            <input type="text" id="cant_viajes" name="cant_viajes" value="<?php echo $can_viajes ?>" readonly>
+                        </li>
+                        <li>
+                            <label class="mi-label">Total de viajes</label>
+                            <input type="text" id="" name="" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
+                        </li>
+
+                        <li>
+                            <label class="mi-label">Debe de semanas anteriores</label>
+                            <input type="text" id="debe_ant" name="debe_ant" value="<?php echo $deuda_semanas_anteriores ?>" readonly>
+                        </li>
+
+                        <li>
+                            <label class="mi-label">Productos que compro</label>
+                            <input type="text" id="prod" name="prod" value="<?php echo $total_ventas ?>" readonly>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
+                        <li>
+                            <label class="mi-label">Deuda anterior</label>
+                            <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
+                        </li>
+
+                        <li>
+                            <label class="mi-label">Total a pagar:</label>
+                            <input type="text" id="paga_deuda" name="paga_deuda" placeholder="Ingrese monto a pagar:">
+                        </li>
+                        <br>
+                        <li>
+                            <label class="mi-label">Gastos administrativos</label>
+                            <input type="text" id="gastos" name="gastos" value="<?php echo $tot_a_pagar = $deuda_anterior + $debe_de_semanas + $total_de_viajes + $total_ventas; ?>" readonly>
+                        </li>
+                        <li>
+                            <label class="mi-label">RECAUDADO EN VOUCHER </label>
+                            <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>" readonly>
+                        </li>
+                        <li>
+                            <label class="mi-label">Para el movil</label>
+                            <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total * .9 ?>" readonly>
+                        </li>
+                        <li>
+                            <label class="mi-label">Comisiones</label>
+                            <input type="text" id="" name="" value="<?php echo $diez = $total * .1 ?>" readonly>
 
                         </li>
 
 
-                    <?php
-                    }
-                    ?>
-                </ul>
+                        <?php
+                        $total_final = $noventa - $tot_a_pagar;
+                        if ($total_final > 0) {
+                        ?>
+                            <li>
+                                <label class="mi-label">Pagarle al movil</label>
+                                <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $total_final ?>" style="background-color: #FFFF00M; " readonly>
+                                <input type="hidden" id="pesos" name="pesos" value="<?php echo $pesos = 0 ?>">
+                            </li>
+                        <?php
+                        } else {
+                        ?>
+                            <li>
+                                <label class="mi-label">El movil debe pagar:</label>
+                                <input type="text" id="" name="" value="<?php echo "$" . $total_a_abonar = $deuda_semanas_anteriores + $deuda_anterior + $tot_a_pagar . "-" ?>" readonly style="background-color: red; color: #FFFF00; ">
+                                <input type="text" id="pesos" name="pesos" placeholder="Ingrese dinero" autofocus>
+
+                            </li>
+                            <li>
+                                <p>debe cargar algun valor si no no seguira adelante</p>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <li><button type="submit" class="btn btn-danger" target="_blank">GUARDAR no hay vueta atras</button></li>
             </div>
-            <li><button type="submit" class="btn btn-danger" target="_blank">GUARDAR no hay vueta atras</button></li>
-        </div>
 
-    </form>
+        </form>
 
-    <form action="resumen_cobros.php" method="post">
-        <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
-        <li><button type="submit" class="btn btn-info" target="_blank">Resumen</button></li>
-    </form>
+        <form action="resumen_cobros.php" method="post">
+            <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
+            <li><button type="submit" class="btn btn-info" target="_blank">Resumen</button></li>
+        </form>
 
 
 
-    <li><a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
+        <li><a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
 
-    <br><br><br>
-    <?php foot() ?>
+        <br><br><br>
+        <?php foot() ?>
 
 </body>
 

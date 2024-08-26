@@ -53,7 +53,7 @@ session_start();
                             </div>
                             <div class="form-group">
                                 <label class="control-label">MOVIL</label>
-                                <input type="text" class="form-control input-sm" id="movil" name="movil" value="<?php echo  $row['movil']; ?>">
+                                <input type="text" class="form-control input-sm" id="movil" name="movil" value="<?php echo  $row['movil']; ?> " readonly>
                             </div>
 
                             <div class="form-group">
@@ -76,7 +76,7 @@ session_start();
                                     $lee_row = $lee_leido->fetch_assoc();
                                     //echo $lee_row['importe'];
                                     ?>
-                                    <option value="<?php echo $lee_row['id'] ?>"><?php echo $lee_row['abono'] ?></option>
+                                    <option value="<?php echo $lee_row['id'] ?>"><?php echo $lee_row['abono'] ?>&nbsp;&nbsp;&nbsp;<?php echo "$" . $lee_row['importe'] . "-" ?></option>
                                     <?php
                                     $opciones = [];
                                     if ($abono_semana->num_rows > 0) {
@@ -87,7 +87,8 @@ session_start();
                                         echo "0 resultados";
                                     }
                                     foreach ($opciones as $opcion) {
-                                        echo "<option value=\"" . $opcion['id'] . "\" >" . $opcion['abono']  . "</option>";
+                                        echo "<option value=\"" . $opcion['id'] . "\" >" . $opcion['abono'] . "</option>";
+                                        echo $opcion['importe'];
                                     }
                                     ?>
                                 </select>
@@ -102,7 +103,7 @@ session_start();
                                     $lee_row_2 = $lee_leido_2->fetch_assoc();
                                     //echo $lee_reg_2['importe'];
                                     ?>
-                                    <option value="<?php echo $lee_row_2['id'] ?>"><?php echo $lee_row_2['abono'] ?></option>
+                                    <option value="<?php echo $lee_row_2['id'] ?>"><?php echo $lee_row_2['abono'] ?>&nbsp;&nbsp;&nbsp;<?php echo "$" . $lee_row_2['importe'] . "-" ?></option>
                                     <?php
                                     $op = [];
                                     if ($abono_viajes->num_rows > 0) {

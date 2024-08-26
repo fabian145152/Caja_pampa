@@ -56,7 +56,7 @@ if ($_SESSION['logueado']) {
                     <h3>MENU MOVILES</h3>
                     <ul class="list-group">
 
-                        <li><a href="ayuda/crear_para_cobrar.php" target="_blank" class="btn btn-info btn-block btn-sm">COMO ARMAR UNA UNIDAD Y COMENZAR A COBRARLE</a></li>
+                        <li><a href="ayuda/crear_para_cobrar.php" target="_blank" class="btn btn-info btn-block btn-sm">COMO ARMAR UNA UNIDAD</a></li>
                         <br>
                         <li><a href="admin/crear_no_de_movil/list_no_movil.php" target="_blank" class="btn btn-primary btn-block btn-sm">CREAR NUMERO DE MOVIL</a></li>
                         <br>
@@ -64,17 +64,15 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/movil_nuevo/lista_movil.php" target="_blank" class="btn btn-primary btn-block btn-sm">CREAR EDITAR TITULAR </a></li>
                         <br>
+                        <li><a href="admin/uni_comp/list_uni_comp.php" class="btn btn-primary btn-block btn-sm" target="_blank">EDICION DE UNIDAD COMPLETA</a></li>
+                        <br>
 
-                        <li><a href="admin/uni_comp/list_uni_comp.php" class="btn btn-primary btn-block btn-sm">EDICION DE UNIDAD COMPLETA</a></li>
-                        <br>
-                        <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
-                        <br>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h3>MENU DE CAJA</h3>
                     <ul class="list-group">
-                        <li><a href="ayuda/ayuda_voucher.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE CAJA</a></li>
+                        <li><a href="ayuda/ayuda_voucher.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE CARGA DE VOUCHER</a></li>
                         <br>
                         <li> <a href="admin/voucher/inicio_voucher.php" target="_blank" class="btn btn-primary btn-block btn-sm">VOUCHER</a></li>
                         <br>
@@ -85,23 +83,28 @@ if ($_SESSION['logueado']) {
                                 <p style="margin-top:0; margin-bottom:0;"><small>Si lo hacen mas de una vez no difiere.</small></p>
                             </a></li>
                         <br>
+                        <li><a href="ayuda/help.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE COBROS</a></li>
+                        <br>
+                        <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
+                        <br>
                         <li> <a href="admin/genera_deuda/genera_deuda.php" class="btn btn-primary btn-block btn-sm" target="__blank">GENERAR DEUDA ANTERIOR</a></li>
                         <br>
                         <li><a href="admin/venta/venta_prod.php" class=" btn btn-primary btn-block btn-sm">STOCK DE PRODUCTOS PARA LA VENTA</a></li>
                         <br>
+                    </ul>
+                </div>
+                
+                
+                <div class="col-md-4">
+                    <h3>MENU CAJA </h3>
+                    <ul class="list-group">
+                        
                         <li> <a href="admin/abonos_viajes/inicio_abonos.php" class="btn btn-primary btn-block btn-sm" target="__blank">IMPORTE DE LOS VIAJES</a></li>
                         <br>
                         <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
                         <br>
                         <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm">VENTA</a></li>
-                    </ul>
-                </div>
-
-
-                <div class="col-md-4">
-                    <h3>MENU CAJA </h3>
-                    <ul class="list-group">
-
+                        <br>
                         <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-danger btn-block btn-sm">COBRAR A MOVIL</a></li>
                         <br>
                         <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
@@ -115,6 +118,7 @@ if ($_SESSION['logueado']) {
                 </div>
             </div>
         </div>
+        <br>
         <div id="Power-Contenedor">
             <a href="salir.php" class="btn btn-danger btn-lg ">Salir</a>
         </div>

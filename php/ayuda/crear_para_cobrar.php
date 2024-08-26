@@ -16,7 +16,7 @@ $con->set_charset("utf8mb4");
 
 <body>
     <button onclick="cerrarPagina()">CERRAR PAGINA</button>
-    <h1>PROCESO DE ARMADO DE UNA UNIDAD PARA COMENZAR A COBRARLE</h1>
+    <h1>PROCESO DE ARMADO DE UNA UNIDAD</h1>
     <ul>
 
         <li>

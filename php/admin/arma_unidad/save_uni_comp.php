@@ -20,6 +20,8 @@ echo "Abono viaje: " . $abono_viaje = $_POST['abono_viaje'];      //UPDatarlo en
 echo "<br>";
 echo $fecha_fact = $_POST['inicio_fact'];
 
+//exit();
+
 $sql_sem = "SELECT * FROM abono_semanal WHERE id = '$abono_semana'";
 $sql_result = $con->query($sql_sem);
 $row_sem = $sql_result->fetch_assoc();

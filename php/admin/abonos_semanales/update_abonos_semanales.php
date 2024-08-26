@@ -12,9 +12,10 @@ echo $importe = $_POST['importe'];
 echo "<br>";
 
 
-$sql = "UPDATE `abonos` SET `abono` = '$abono', `importe` = '$importe'
+$sql = "UPDATE `abono_semanal` SET `abono` = '$abono', `importe` = '$importe'
 WHERE id=" . $id;
 
 $con->query($sql);
+//exit();
 
 header('Location:inicio_abonos_semanales.php');

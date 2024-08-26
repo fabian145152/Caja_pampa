@@ -20,16 +20,16 @@ if (!isset($pesos)) {
 echo "<br>";
 echo "Debe de semanas anteriores: " . $debe_ant = $_POST['debe_ant'];
 echo "<br>";
-echo "Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'];
+echo "Deuda anterior: " . $deuda_ant = $_POST['paga_deuda'];
 echo "<br>";
 echo "<br>";
 echo "<br>";
 
-echo $deuda_total = 
+echo $deuda_total =
 
 
 
-exit();
+    exit();
 
 echo "<br>";
 $cant_viajes = $_POST['cant_viajes'];
@@ -56,6 +56,8 @@ echo "<br>";
 
 echo "<br>";
 echo "<br>";
+
+//exit();
 
 $sql_caja_movil = "INSERT INTO caja_movil(
                                     movil, 

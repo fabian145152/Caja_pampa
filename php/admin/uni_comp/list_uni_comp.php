@@ -63,7 +63,6 @@ if ($stmt_contar->num_rows > 0) {
 </head>
 
 <body>
-    <h2>Ver en la parte de edicion de la unidad, no guarda ni graba el abono ni el precio por viaje</h2>
     <h2 class="text-center" style="margin: 5px ; ">LISTADO DE UNIDADES COMPLETAS
         <?php echo $cant_cargas . " UNIDADES CARGADAS." ?>
         <a href="../../menu.php"> &nbsp;&nbsp;SALIR</a>

@@ -247,54 +247,54 @@ $id_upd = $_GET['q'];
                             <input type="text" class="form-control" id="año" name="año" value="<?php echo  $row['año']; ?>">
                         </div>
                     </div>
-
+                    <!--
                     <br>
 
                     <div id="columnas"> <!-- abono semanal  -->
-                        <div class="form-group">
-                            <?php
-                            include_once "select_abono_semanal.php";
-                            ?>
-                        </div>
-                        <div class="form-group"> <!-- abono viaje  -->
-                            <?php
-                            include_once "select_abono_viajes.php";
-                            ?>
-                        </div>
-                    </div>
-
-                    <br>
-                    <?php
-                    $sql = "SELECT * FROM completa WHERE id=" . $id_upd;
-                    $result = $con->query($sql);
-                    $row = $result->fetch_assoc();
-
-                    ?>
-                    <div id="columnas"> <!--  Fechas -->
-                        <div class="form-group">
-                            <label class="control-label">FECHA DE INGRESO</label>
-                            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo  $row['fecha_inicio']; ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">INICIO DE FACTURACION</label>
-                            <input type="date" class="form-control" id="fecha_fact" name="fecha_fact" value="<?php echo  $row['fecha_facturacion']; ?>" required>
-                        </div>
-                    </div>
-
-                    <br>
-
                     <div class="form-group">
-
-                        <input type="submit" class="btn btn-primary" value="GUARDAR DATOS">
+                        <?php
+                        //include_once "select_abono_semanal.php";
+                        ?>
                     </div>
-
-
-
-                </form>
-
-
+                    <div class="form-group"> <!-- abono viaje  -->
+                        <?php
+                        //include_once "select_abono_viajes.php";
+                        ?>
+                    </div>
+                    -->
             </div>
+            <br>
+            <?php
+            $sql = "SELECT * FROM completa WHERE id=" . $id_upd;
+            $result = $con->query($sql);
+            $row = $result->fetch_assoc();
+
+            ?>
+            <div id="columnas"> <!--  Fechas -->
+                <div class="form-group">
+                    <label class="control-label">FECHA DE INGRESO</label>
+                    <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo  $row['fecha_inicio']; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">INICIO DE FACTURACION</label>
+                    <input type="date" class="form-control" id="fecha_fact" name="fecha_fact" value="<?php echo  $row['fecha_facturacion']; ?>" required>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group">
+
+                <input type="submit" class="btn btn-primary" value="GUARDAR DATOS">
+            </div>
+
+
+
+            </form>
+
+
         </div>
+    </div>
 
     </div>
     <br><br><br><br><br>

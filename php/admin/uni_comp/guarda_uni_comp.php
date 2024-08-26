@@ -8,15 +8,16 @@ echo $movil = $_POST['movil'];
 echo "<br>";
 echo "ID: " . $id = $_POST['id'];
 echo "<br>";
-echo "Abono semana: " . $options_1 = $_POST['abono_semana'];
+//echo "Abono semana: " . $options_1 = $_POST['abono_semana'];
 echo "<br>";
-echo "Abono viaje: " . $options_2 = $_POST['abono_viaje'];
+//echo "Abono viaje: " . $options_2 = $_POST['abono_viaje'];
 echo "<br>";
 echo "Fecha inicio: " . $options_3 = $_POST['fecha_inicio'];
 echo "<br>";
 echo "Fecha facturacion: " . $options_4 = $_POST['fecha_fact'];
 echo "<br>";
 
+/*
 $sql_abono_semanal = "SELECT * FROM abono_semanal WHERE id = $options_1 ";
 $sql_abono_semanal = $con->query($sql_abono_semanal);
 $sql_abono_semanal = $sql_abono_semanal->fetch_assoc();
@@ -40,33 +41,34 @@ $upd = "UPDATE semanas SET x_semana = $abono_semana WHERE movil = $movil ";
 
 
 if ($options_1 == NULL || $options_2 == NULL || $options_3 == NULL || $options_4 == NULL) {
-
+    
 ?>
     <script>
         function redirectWithConfirmation() {
             // Variable to send
             var variableValue = '$id'; // Reemplaza con el valor de tu variable
-
+            
             // Mostrar cuadro de confirmación
             var userConfirmed = window.confirm("FALTA SEMANAS o VIAJES o FECHAS",
-
-            );
-
-
-            // Si el usuario confirma, redirigir con la variable
-            if (userConfirmed) {
-                window.location.href = "edit_uni_comp.php?q=" + encodeURIComponent(variableValue);
-            }
+            
+        );
+        
+        
+        // Si el usuario confirma, redirigir con la variable
+        if (userConfirmed) {
+            window.location.href = "edit_uni_comp.php?q=" + encodeURIComponent(variableValue);
         }
-
-        // Llamar a la función al cargar la página
-        window.onload = redirectWithConfirmation;
+    }
+    
+    // Llamar a la función al cargar la página
+    window.onload = redirectWithConfirmation;
     </script>
-
+    
 <?php
-    exit();
+exit();
 }
 
+*/
 
 
 $movil = $_POST['movil'];
@@ -94,8 +96,8 @@ $marca = $_POST['marca'];
 $modelo = $_POST['modelo'];
 $dominio = $_POST['dominio'];
 $año = $_POST['año'];
-$abono_x_semana = $_POST['abono_semana'];
-$paga_x_viaje = $_POST['abono_viaje'];
+//$abono_x_semana = $_POST['abono_semana'];
+//$paga_x_viaje = $_POST['abono_viaje'];
 $fecha_ing = $_POST['fecha_inicio'];
 $fecha_fact = $_POST['fecha_fact'];
 
@@ -125,8 +127,9 @@ $sql = "UPDATE completa SET nombre_titu = '$nom_titu',
                             modelo = '$modelo',
                             dominio = '$dominio',
                             año = '$año',
-                            x_semana = '$abono_x_semana', 
+                     /*       x_semana = '$abono_x_semana', 
                             x_viaje = '$paga_x_viaje',
+                    */
                             fecha_inicio = '$fecha_ing',
                             fecha_facturacion = '$fecha_fact'
                             WHERE id =" . $id;

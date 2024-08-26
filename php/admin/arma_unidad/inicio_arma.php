@@ -9,7 +9,7 @@ $con->set_charset("uth8mb4");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNIDAD COMPLETA</title>
+    <title>CONFIGURA UNIDAD</title>
     <script src="../../../js/jquery-3.4.1.min.js"></script>
     <script src="../../../js/bootstrap.min.js"></script>
     <script src="../../../js/bootbox.min.js"></script>
