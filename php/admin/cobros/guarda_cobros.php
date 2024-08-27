@@ -3,56 +3,108 @@ session_start();
 include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
-$dep_efect = 0;
 
 
+$pesos = 0;
+$pago_semanal = 0;
 
-?>
-<h1>Falta guardar pago en efectivo y terminar de revisar los calculos</h1>
-<h2></h2>
-<?php
 
 echo "Movil: " . $movil = $_POST['movil'];
 echo "<br>";
-if (!isset($pesos)) {
-    echo "Deposito: " . $pesos = $_POST['pesos'];
-}
+echo "Total de viajes: " . $viajes = $_POST['viajes'];
 echo "<br>";
-echo "Debe de semanas anteriores: " . $debe_ant = $_POST['debe_ant'];
+echo "Debe de semanas anteriores: " . $debe_sem_ant = $_POST['debe_ant'];
 echo "<br>";
-echo "Deuda anterior: " . $deuda_ant = $_POST['paga_deuda'];
+echo "Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'];
 echo "<br>";
-echo "<br>";
-echo "<br>";
-
-echo $deuda_total =
-
-
-
-    exit();
-
-echo "<br>";
-$cant_viajes = $_POST['cant_viajes'];
-$paga_x_viaje = $_POST['paga_x_viaje'];
-echo "<br>";
-echo "Abono semanal: " . $abono_semanal = $_POST['abono_semanal'];
-echo "<br>";
-echo "Paga por los viajes: " . $paga_de_viajes = $cant_viajes * $paga_x_viaje;
-echo "<br>";
+echo "Deposito x deuda anterior: " . $pesos = $_POST['paga_deuda'];
 echo "<br>";
 echo "Productos comprados: " . $prod = $_POST['prod'];
 echo "<br>";
+echo "Para el movil:" . $apagar = $_POST['para_movil'];
 echo "<br>";
-echo "Suma= " . $suma = $abono_semanal + $paga_de_viajes + $debe_ant + $prod + $deuda_ant;
+echo "Comisiones: " . $comision = $_POST['gastos'];
 echo "<br>";
-echo "Total de los voucher: " . $tot_voucher = $_POST['tot_voucher'];
+echo "Deposito para pagar la semana: " .  $pago_semanal = $_POST['pesos'];
 echo "<br>";
-echo "10% para base: " . $comision_base = $tot_voucher * .1;
 echo "<br>";
-echo "90% para movil " . $para_mov = $tot_voucher * .9;
+echo "Total a cobrarle: " . $total_a_cobrar = $viajes + $debe_sem_ant + $deuda_ant + $prod + $comision;
+echo "<br>";
+echo "<br>";
+echo "Total que deposito: " . $total_depositado = (int)$pesos + (int)$pago_semanal;
+echo "<br>";
+echo "<br>";
+echo "Saldo: " . $cuenta = $total_a_cobrar - $total_depositado;
 echo "<br>";
 echo $fecha = date("Y-m-d");
 echo "<br>";
+echo $dep_pesos = (int)$deuda_ant - (int)$pesos;
+echo "<br>";
+echo "<br>";
+echo "<br>";
+
+$sql_comp = "SELECT * FROM completa WHERE movil=" . $movil;
+$exe_sql_comp = $con->query($sql_comp);
+$row_sql_comp = $exe_sql_comp->fetch_assoc();
+
+$venta_1 = $row_sql_comp['venta_1'];
+$venta_2 = $row_sql_comp['venta_2'];
+$venta_3 = $row_sql_comp['venta_3'];
+$venta_4 = $row_sql_comp['venta_4'];
+$venta_5 = $row_sql_comp['venta_5'];
+
+
+if ($venta_1 != 0) {
+    $sql_venta_1 = "SELECT * FROM productos WHERE id = $venta_1";
+    $res_venta_1 = $con->query($sql_venta_1);
+    $row_venta_1 = $res_venta_1->fetch_assoc();
+    echo $row_venta_1['precio'];
+}
+echo "<br>";
+if ($venta_2 != 0) {
+    $sql_venta_2 = "SELECT * FROM productos WHERE id = $venta_2";
+    $res_venta_2 = $con->query($sql_venta_2);
+    $row_venta_2 = $res_venta_2->fetch_assoc();
+    echo $row_venta_2['precio'];
+}
+echo "<br>";
+if ($venta_3 != 0) {
+    $sql_venta_3 = "SELECT * FROM productos WHERE id = $venta_3";
+    $res_venta_3 = $con->query($sql_venta_3);
+    $row_venta_3 = $res_venta_3->fetch_assoc();
+    echo $row_venta_3['precio'];
+}
+echo "<br>";
+if ($venta_4 != 0) {
+    $sql_venta_4 = "SELECT * FROM productos WHERE id = $venta_4";
+    $res_venta_4 = $con->query($sql_venta_4);
+    $row_venta_4= $res_venta_4->fetch_assoc();
+    echo $row_venta_4['precio'];
+}
+echo "<br>";
+if ($venta_5 != 0) {
+    $sql_venta_5 = "SELECT * FROM productos WHERE id = $venta_5";
+    $res_venta_5 = $con->query($sql_venta_5);
+    $row_venta_5 = $res_venta_5->fetch_assoc();
+    echo $row_venta_5['precio'];
+}
+
+if ($pesos != 0) {
+    // Actualiza la deuda anterior carga la fecha de pago y el monto
+    $sql_deuda_ant = "UPDATE completa SET pago_ant= '$pesos', fe_pago= '$fecha',deuda_anterior= '$dep_pesos' WHERE movil=" . $movil;
+    $con->query($sql_deuda_ant);
+
+    if ($con->query($sql_deuda_ant) === TRUE) {
+        echo "Registro actualizado con exito";
+    } else {
+        echo "Error con actualizacion de registro: " . $con->errno;
+        exit();
+    }
+}
+
+// FIN Actualiza la deuda anterior  garca la fecha de pago y el monto 
+exit();
+
 
 echo "<br>";
 echo "<br>";
