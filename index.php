@@ -20,7 +20,7 @@
     <div id="wrapper">
         <form action="php/login.php" method="POST" accept-charset="UTF-8" class="form-signin">
             <h2 class="text-center form-signin-heading">
-                USUARIOS
+                INGRESO A CAJA
             </h2>
             <input type="text" class="form-control" name="username" placeholder="Usuario ó E-mail" required>
             <br>

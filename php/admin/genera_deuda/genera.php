@@ -61,7 +61,7 @@ $con->set_charset("utf8mb4");
 
     <form class="form" action="guarda_deuda_nueva.php?=q'$movil'" method="POST" name="movil">
         <h1>Ingrese nuevo Monto</h1>
-        <h2>No se sumara al anterior, sumelo Ud.</h2>
+
         <br><br>
 
         <input type="hidden" name="movil" class="gui-input" value="<?php echo $movil ?>">

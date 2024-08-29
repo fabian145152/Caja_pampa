@@ -85,6 +85,8 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE COBROS</a></li>
                         <br>
+                        <li><a href="admin/observaciones/inicio_obs.php" target="_blank" class="btn btn-info btn-block btn-sm">OBSERVACIONES X MOVIL (falta terminar)</a></li>
+                        <br>
                         <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
                         <br>
                         <li> <a href="admin/genera_deuda/genera_deuda.php" class="btn btn-primary btn-block btn-sm" target="__blank">GENERAR DEUDA ANTERIOR</a></li>
@@ -93,12 +95,12 @@ if ($_SESSION['logueado']) {
                         <br>
                     </ul>
                 </div>
-                
-                
+
+
                 <div class="col-md-4">
                     <h3>MENU CAJA </h3>
                     <ul class="list-group">
-                        
+
                         <li> <a href="admin/abonos_viajes/inicio_abonos.php" class="btn btn-primary btn-block btn-sm" target="__blank">IMPORTE DE LOS VIAJES</a></li>
                         <br>
                         <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>

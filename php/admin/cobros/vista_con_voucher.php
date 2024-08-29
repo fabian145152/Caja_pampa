@@ -164,8 +164,16 @@ $sql_voucher = $con->query($sql_voucher);
 
                 <div class="containeraa">
                     <div class="column left-column">
-                        <h6> <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br></h6>
-                        <h6><?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h6>
+                        <?php
+                        if ($apellido_titu === $apellido_chof_1) {
+                            echo "Titular: " . $apellido_titu . " " . $apellido_titu;
+                        } else {
+                        ?>
+                            <h6> <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br></h6>
+                            <h6><?php echo "Chofer: " . $nombre_chof . " " . $apellido_chof_1 ?></h6>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <div class="column left-column">
                         <?php
@@ -192,16 +200,16 @@ $sql_voucher = $con->query($sql_voucher);
     </div>
     </ul>
     <table class="table table-bordered table-sm table-hover flex" style="zoom:80%">
+        <!--
         <thead class="table">
-
             <tr>
-
                 <th>Id</th>
                 <th>cc</th>
                 <th>Viaje No</th>
                 <th>Tot x vouch sumado</th>
-
+            </tr>
         </thead>
+        -->
         <tbody>
 
             <?php
@@ -210,7 +218,8 @@ $sql_voucher = $con->query($sql_voucher);
                 if ($row_voucher['cc'] >= 0) {
 
             ?>
-                    <tr>
+                    <!--
+        <tr>
 
                         <th class="col-sm-2"><?php echo $id = $row_voucher['id'] ?></th>
                         <th class="col-sm-2"><?php echo $cc = $row_voucher['cc'] ?></th>
@@ -228,19 +237,19 @@ $sql_voucher = $con->query($sql_voucher);
 
                         ?>
                         <th class="col-sm-12"><?php echo "Total" . $total ?></th>
-
                     </tr>
                 <?php
                 }
                 ?>
         </tbody>
-
-    <?php
+            -->
+                <?php
             }
-
-    ?>
+                ?>
     </table>
-    <form action="guarda_cobros.php" method="post">
+    <h3><?php echo $can_viajes ?> Voucher x <?php echo "$" . $total . "-" ?></h3>
+
+    <form action="guarda_cobros.php" method="post" target="_blank">
 
 
         <?php
@@ -305,28 +314,23 @@ $sql_voucher = $con->query($sql_voucher);
                             <input type="text" id="" name="" value="<?php echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] ?>" readonly>
                         </li>
 
-
+                        <!--
 
                         <li>
                             <label class="mi-label">Total de viajes</label>
                             <input type="text" id="visjes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
                         </li>
-
+                        -->
                         <li>
                             <label class="mi-label">Debe de semanas anteriores</label>
                             <input type="text" id="debe_ant" name="debe_ant" value="<?php echo $deuda_semanas_anteriores ?>" readonly>
                         </li>
 
                         <li>
-                            <label class="mi-label">Productos que compro</label>
-                            <input type="text" id="prod" name="prod" value="<?php echo $total_ventas ?>" readonly>
-                        </li>
-                        <li>
-                            <label class="mi-label">Total de la deuda</label>
-                            <input type="text" value="<?php
-                                                        echo $total_deuda = $deuda_anterior + $total_de_viajes + $deuda_semanas_anteriores + $total_ventas;
-                                                        ?>" readonly>
-
+                            <label class="mi-label">Productos que compro</l-->
+                                <input type="text" value="<?php
+                                                            echo $total_deuda = $deuda_anterior + $total_de_viajes + $deuda_semanas_anteriores + $total_ventas;
+                                                            ?>" readonly>
                         </li>
 
                         <li>
@@ -349,6 +353,10 @@ $sql_voucher = $con->query($sql_voucher);
                         <li>
                             <label class="mi-label">Cantidad de viajes</label>
                             <input type="text" id="cant_viajes" name="cant_viajes" value="<?php echo $can_viajes ?>" readonly>
+                        </li>
+                        <li>
+                            <label class="mi-label">Total de viajes</label>
+                            <input type="text" id="visjes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
                         </li>
                         <li>
                             <label class="mi-label">Gastos administrativos</label>
