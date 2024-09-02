@@ -4,7 +4,7 @@ include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
 
-echo $movil = $_POST['movil'];
+$movil = $_POST['movil'];
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ echo $movil = $_POST['movil'];
 </head>
 
 <body>
-    <button onclick="cerrarPagina()">CERRAR PAGINA</button>
+
     <?php
     $sql_obs = "SELECT * FROM completa WHERE movil=" . $movil;
 
@@ -30,7 +30,12 @@ echo $movil = $_POST['movil'];
 
 
     <head>
+
         <h1>Editor de observaciones del movil o del titular</h1>
+
+        <br>
+        <button onclick="cerrarPagina()">CERRAR PAGINA</button>
+        <br><br><br><br>
 
         <form action="guarda_obs.php" method="POST">
             <!-- Campo de texto -->
@@ -42,7 +47,9 @@ echo $movil = $_POST['movil'];
             <textarea id="comentarios" name="comentarios" rows="15" cols="70"><?php echo $observaciones ?></textarea><br><br>
 
             <input type="submit" value="Enviar">
+
         </form>
+
 
         <script>
             // When the user scrolls the page, execute myFunction 

@@ -5,51 +5,26 @@ $con = conexion();
 $con->set_charset("utf8mb4");
 
 
-$pesos = 0;
-$pago_semanal = 0;
 
 
 echo "Movil: " . $movil = $_POST['movil'];
-echo "<br>";
-echo "Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'];
-echo "<br>";
-echo "Total de viajes: " . $viajes = $_POST['viajes'];
-echo "<br>";
-echo "Productos comprados: " . $prod = $_POST['prod'];
-echo "<br>";
-echo "Debe de semanas anteriores: " . $debe_sem_ant = $_POST['debe_ant'];
-echo "<br>";
-echo "Deposito x deuda anterior: " . $pesos = $_POST['paga_deuda'];
-echo "<br>";
-echo "Comisiones: " . $comision = $_POST['gastos'];
-echo "<br>";
-echo "Para el movil:" . $apagar = $_POST['para_movil'];
-echo "<br>";
-echo "Deposito para pagar la semana: " .  $pago_semanal = $_POST['pesos'];
-echo "<br>";
-echo "<br>";
-echo "Total a cobrarle: " . $total_a_cobrar = $viajes + $debe_sem_ant + $deuda_ant + $prod + $comision;
-echo "<br>";
-echo "<br>";
-echo "Total que deposito: " . $total_depositado = (int)$pesos + (int)$pago_semanal;
-echo "<br>";
-echo "<br>";
-echo "Saldo: " . $cuenta = $total_a_cobrar - $total_depositado;
-echo "<br>";
-echo $fecha = date("Y-m-d");
-echo "<br>";
-echo $dep_pesos = (int)$deuda_ant - (int)$pesos;
-echo "<br>";
-echo "<br>";
-echo "<br>";
 
-echo "SALDO FINAL DEL MOVIL: " . $saldo_final = $deuda_ant + $viajes + $prod + $debe_sem_ant + $comision;
+echo "<h3>Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'] . "</h3>";
+
+if (!isset($_POST['dep_ft']) == FALSE) {
+    echo "<h3>Deposito en FT: " . $deposito_en_pesos = $_POST['dep_ft'] . "</h3>";
+}
+echo "<h3>Total de Viajes: " . $total_de_viajes = $_POST['viajes'] . "</h3>";
+echo "<h3>Total en Voucher: " . $tot_voucher = $_POST['tot_voucher'] . "</h3>";
+echo "<h3>Para el movil: " . $para_el_movil = $_POST['para_movil'] . "</h3>";
+echo "<h3>Comisiones: " . $comisiones = $_POST['comi'] . "</h3>";
+echo "<h3>Productos vendidos: " . $productos_vendidos = $_POST['prod'] . "</h3>";
 echo "<br>";
-echo "TOTAL DE PAGOS DEL MOVIL: " . $total_depositado;
+echo $fecha = date("d-m-Y");
 echo "<br>";
-echo "SALDO FINAL DE BASE: " . $total_a_cobrar;
-echo "<br>";
-echo "<br>";
+echo "<strong>Ya tengo todos los datos: </strong>";
+
+
 echo "<br>";
 echo "<br>";
 
@@ -57,47 +32,22 @@ $sql_comp = "SELECT * FROM completa WHERE movil=" . $movil;
 $exe_sql_comp = $con->query($sql_comp);
 $row_sql_comp = $exe_sql_comp->fetch_assoc();
 
-$venta_1 = $row_sql_comp['venta_1'];
-$venta_2 = $row_sql_comp['venta_2'];
-$venta_3 = $row_sql_comp['venta_3'];
-$venta_4 = $row_sql_comp['venta_4'];
-$venta_5 = $row_sql_comp['venta_5'];
+echo $deuda_ant = $row_sql_comp['deuda_anterior'];
 
+echo "<br>";
 
-if ($venta_1 != 0) {
-    $sql_venta_1 = "SELECT * FROM productos WHERE id = $venta_1";
-    $res_venta_1 = $con->query($sql_venta_1);
-    $row_venta_1 = $res_venta_1->fetch_assoc();
-    $row_venta_1['precio'];
+if ($deposito_en_pesos <= $deuda_ant) {
+    echo "Le alcanza para pagar!!!";
+    echo "<br>";
+    $actualiza_deuda = $deposito_en_pesos - $deuda_ant;
+    echo $actualiza_deuda;
+} else {
+    echo "No le alcanza!!!";
 }
 
-if ($venta_2 != 0) {
-    $sql_venta_2 = "SELECT * FROM productos WHERE id = $venta_2";
-    $res_venta_2 = $con->query($sql_venta_2);
-    $row_venta_2 = $res_venta_2->fetch_assoc();
-    $row_venta_2['precio'];
-}
 
-if ($venta_3 != 0) {
-    $sql_venta_3 = "SELECT * FROM productos WHERE id = $venta_3";
-    $res_venta_3 = $con->query($sql_venta_3);
-    $row_venta_3 = $res_venta_3->fetch_assoc();
-    $row_venta_3['precio'];
-}
 
-if ($venta_4 != 0) {
-    $sql_venta_4 = "SELECT * FROM productos WHERE id = $venta_4";
-    $res_venta_4 = $con->query($sql_venta_4);
-    $row_venta_4 = $res_venta_4->fetch_assoc();
-    $row_venta_4['precio'];
-}
-
-if ($venta_5 != 0) {
-    $sql_venta_5 = "SELECT * FROM productos WHERE id = $venta_5";
-    $res_venta_5 = $con->query($sql_venta_5);
-    $row_venta_5 = $res_venta_5->fetch_assoc();
-    $row_venta_5['precio'];
-}
+exit();
 
 if ($pesos != 0) {
     // Actualiza la deuda anterior carga la fecha de pago y el monto
@@ -114,12 +64,6 @@ if ($pesos != 0) {
 
 // FIN Actualiza la deuda anterior  garca la fecha de pago y el monto 
 
-exit();
-
-//Lo siguiente ya esta solo falta calcular el saldo actual y agregarselo a la tabla
-
-echo "<br>";
-echo "<br>";
 
 //exit();
 
@@ -195,6 +139,10 @@ echo "<br>";
 
 echo "Saldo Movil: " . $saldo_movil = $deuda_movil + $pesos;
 echo "<br>";
+
+
+
+
 
 exit();
 

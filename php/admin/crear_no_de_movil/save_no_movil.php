@@ -14,11 +14,12 @@ $movil = $_POST['id'];
 
 $x_semana = 150;
 $x_viaje = 150;
+$tropa = 50;
 
 
-$sql_movil = "INSERT INTO completa (movil, x_semana, x_viaje) VALUES (?,?,?)";
+$sql_movil = "INSERT INTO completa (movil, x_semana, x_viaje, tropa) VALUES (?,?,?,?)";
 $stmt_movil = $con->prepare($sql_movil);
-$stmt_movil->bind_param("iii", $movil, $x_semana, $x_viaje);
+$stmt_movil->bind_param("iiii", $movil, $x_semana, $x_viaje, $tropa);
 
 $sql_semana = "INSERT INTO semanas (movil) VALUES (?)";
 $stmt_semana = $con->prepare($sql_semana);
