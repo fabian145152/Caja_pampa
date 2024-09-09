@@ -23,11 +23,12 @@ $con->set_charset("utf8mb4");
         <button type="submit">Sigue</button>
     </form>
     <br><br><br>
-    <a href="../../menu.php">SALIR</a>
-    <?php
-
-
-    ?>
+    <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
     <?php foot(); ?>
 </body>
 

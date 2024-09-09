@@ -65,7 +65,7 @@ if ($stmt_contar->num_rows > 0) {
 <body>
     <h2 class="text-center" style="margin: 5px ; ">LISTADO DE UNIDADES COMPLETAS
         <?php echo $cant_cargas . " UNIDADES CARGADAS." ?>
-        <a href="../../menu.php"> &nbsp;&nbsp;SALIR</a>
+        <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
         &nbsp;&nbsp;<a href="../../ayuda/ayuda.html" target=" _blank">AYUDA</a>
     </h2>
 
@@ -140,6 +140,11 @@ if ($stmt_contar->num_rows > 0) {
         </tr>
     </table>
     <br><br>
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
     <?php foot() ?>
 </body>
 

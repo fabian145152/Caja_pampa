@@ -89,8 +89,8 @@ if ($reg_remi > 0) {
         <form>
             <a href="vacia_tabla_voucher.php" class="btn btn-success btn-sm">Limpiar tabla</a>
             &nbsp; &nbsp;
-            <a href="../../menu.php" class="btn btn-success btn-sm">SALIR</a>
         </form>
+        <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
     </div>
 
     <?php
@@ -165,8 +165,13 @@ if ($reg_remi > 0) {
             // Muestra un mensaje de alerta
             alert('¡Va a borrar todos los vouher!.....');
         });
+
+        function cerrarPagina() {
+            window.close();
+        }
     </script>
     <br><br>
+
     <?php foot(); ?>
 </body>
 

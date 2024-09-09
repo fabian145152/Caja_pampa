@@ -1,6 +1,6 @@
-<?php session_start(); 
+<?php session_start();
 include "../../../funciones/funciones.php";
-$con=conexion();
+$con = conexion();
 $con->set_charset("utf8mb4");
 ?>
 
@@ -11,11 +11,7 @@ $con->set_charset("utf8mb4");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODUCTOS</title>
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/columnas.css">
-    <script src="../../../js/jquery-3.4.1.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
-    <script src="../../../js/bootbox.min.js"></script>
+    <?php head() ?>
     <script>
         function deleteProd(cod_titular) {
 
@@ -34,7 +30,7 @@ $con->set_charset("utf8mb4");
 
 <body>
     <?php
-    
+
     if ($con->connect_error) {
         die("Error de conexión a la primera base de datos: " . $con->connect_error);
     }
@@ -46,7 +42,9 @@ $con->set_charset("utf8mb4");
     <br>
     <a href="new_prod.php" class="btn btn-success btn-sm">Nuevo Producto</a>
     <br>
-    <a href="../../menu.php">SALIR</a>
+    <br>
+    <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+
     <br>
     <table class="table table-bordered table-sm table-hover">
         <thead class="thead-dark">
@@ -84,8 +82,12 @@ $con->set_charset("utf8mb4");
     </table>
 
     <br><br><br>
-
-
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
+    <?php foot() ?>
 </body>
 
 </html>

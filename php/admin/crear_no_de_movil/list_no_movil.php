@@ -10,7 +10,6 @@ $con->set_charset("utf8mb4");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUMERO DE MOVIL</title>
-
     <?php head() ?>
     <style>
         body {
@@ -53,7 +52,10 @@ $con->set_charset("utf8mb4");
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <a href="insert_no_movil.php" class="btn btn-primary btn-sm">NUEVO NUMERO DE MOVIL</a>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="../../menu.php" class="btn btn-primary btn-sm">SALIR</a>
+
+            <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+
+
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <!-- <a href="ListaContacto.php" class="btn btn-primary btn-sm">LISTAR MOVILES</a>  -->
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -66,6 +68,7 @@ $con->set_charset("utf8mb4");
         <thead class="thead-dark">
             <tr>
                 <th>Movil</th>
+
                 <th>Actualizar</th>
                 <th>Eliminar</th>
             </tr>
@@ -74,11 +77,26 @@ $con->set_charset("utf8mb4");
             <?php
             $sql = "SELECT * FROM completa WHERE 1 ORDER BY movil ASC";
             $result = $con->query($sql);
-            while ($row = $result->fetch_assoc()) {
+            $variable1 = $result->num_rows;
+
+            $sql_semana = "SELECT * FROM semanas WHERE 1";
+            $res = $con->query($sql_semana);
+            $variable2 = $res->num_rows;
+
+            $sql_caja = "SELECT * FROM caja_movil WHERE 1";
+            $res_caja = $con->query($sql_caja);
+            $variable3 = $res_caja->num_rows;
+
+            if ($variable1 !== $variable2 || $variable1 !== $variable3 || $variable2 !== $variable3) {
+                echo "Las variables no son iguales. Deteniendo el programa.";
+                exit; // Detener el programa
+            }
+            while ($row_movil = $result->fetch_assoc()) {
             ?>
                 <tr>
-                    <?php $id = $row['id'] ?>
-                    <td><?php $numero_de_movil = $row['movil'];
+
+                    <?php $id = $row_movil['id'] ?>
+                    <td><?php $numero_de_movil = $row_movil['movil'];
                         if ($numero_de_movil > 0 && $numero_de_movil <= 9) {
                             echo $numero_de_movil = "000" . $numero_de_movil;
                         }
@@ -93,8 +111,9 @@ $con->set_charset("utf8mb4");
                         }
                         ?>
                     </td>
-                    <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>
-                    <td> <a class="btn btn-danger btn-sm" href="delete_no_movil.php?q= <?php echo $id ?>">Eliminar</td>
+
+                    <td> <a class="btn btn-primary btn-sm" href="edit_no_movil.php?q= <?php echo $id ?>">Actualizar</td>
+                    <td> <a class=" btn btn-danger btn-sm" href="delete_no_movil.php?q= <?php echo $id ?>">Eliminar</td>
                 </tr>
                 <p></p>
             <?php
@@ -103,6 +122,11 @@ $con->set_charset("utf8mb4");
         </tbody>
     </table>
     <br><br><br>
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
     <?php foot() ?>
 </body>
 

@@ -10,7 +10,7 @@ $con->set_charset("utf8mb4");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <?php head() ?>
 </head>
 
 <body>
@@ -70,11 +70,16 @@ $con->set_charset("utf8mb4");
         <br><br>
         <input type="submit" value="GUARDAR" class=" btn btn-primary">
     </form>
+<br>
 
+    <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
 
-    <a href="../../menu.php">SALIR</a>
-
-
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
+    <?php foot() ?>
 </body>
 
 </html>

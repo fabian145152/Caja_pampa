@@ -54,7 +54,7 @@ $con->set_charset("utf8mb4");
 
     <div class="btn-group d-flex w-50">
 
-        <a href="../../menu.php" class="btn btn-primary btn-sm">SALIR</a>
+        <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
         &nbsp; &nbsp; &nbsp; &nbsp;
         <a href="nuevos_abonos_semanales.php" class="btn btn-primary btn-sm">NUEVO</a>
     </div>
@@ -82,6 +82,11 @@ $con->set_charset("utf8mb4");
 
 
     <br><br>
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
     <?php foot(); ?>
 </body>
 

@@ -36,10 +36,15 @@ $semana_actual = date("W");
     <br><br><br>
 
     <div id="Power-Contenedor">
-        <a href="../../menu.php" id="Anyadir-Rutina-btn" class="btn btn-primary">SALIR</a>
+        <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+
     </div>
 
-
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
 
     <?php foot(); ?>
 </body>

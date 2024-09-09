@@ -36,13 +36,20 @@ $con->set_charset("uth8mb4");
         <input type="text" id="movil" name="movil" required autofocus>
         <input type="submit" value="Buscar">
         <br><br><br><br>
-        <a href="../../menu.php" text-center>VOLVER AL MENU PRINCIPAL</a>
+        <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+
     </form>
 
 
 
     <br><br>
+
     <?php foot(); ?>
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
 </body>
 
 </html>

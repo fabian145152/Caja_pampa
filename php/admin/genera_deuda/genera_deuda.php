@@ -10,6 +10,7 @@ include_once "../../../funciones/funciones.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <?php head() ?>
 
 
 </head>
@@ -25,6 +26,14 @@ include_once "../../../funciones/funciones.php";
             <input type="submit" value="BUSCAR" class=" btn btn-primary">
         </form>
     </div>
+    <br><br><br>
+    <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
+    <?php foot() ?>
 </body>
 
 </html>

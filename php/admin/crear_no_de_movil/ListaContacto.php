@@ -65,7 +65,7 @@ include_once('db.php');
 								<div class="pull-right">
 
 									<a href="GenerarExcel.php"><button type='button' class='btn btn-sm btn-primary'>Generar Excel</button></a>
-									<a href="list_no_movil.php" <button type='button' class='btn btn-sm btn-primary'>Salir</button></a>
+									<a href="list_no_movil.php"></a> <button type='button' class='btn btn-sm btn-primary'>Salir</button></a>
 								</div>
 							</div>
 							<div class="row">

@@ -31,7 +31,12 @@ if ($row_comp['movil'] == 0) {
     echo 'window.location.href = "inicio_cobros.php";'; // Enlace al que quieres redirigir
     echo '</script>';
 }
-
+/*
+//Consulta si tiene algo en cuotas
+$sql_cuotas = "SELECT * FROM caja_movil WHERE movil = $movil";
+$res_cuotas = $con->query($sql_cuotas);
+$row_cuotas = $res_cuotas->fetch_assoc();
+*/
 
 //---------------------------------------------------------------------
 // Verifica si tiene voucher, sino salta a vista_sin_voucher.php
@@ -314,10 +319,6 @@ $sql_voucher = $con->query($sql_voucher);
                             <input type="text" id="" name="" value="<?php echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] ?>" readonly>
                         </li>
 
-                        <li>
-                            <label class="mi-label">Ventas de productos</label>
-                            <input type="text" id="ventas" name="ventas" value="<?php echo $total_ventas ?>">
-                        </li>
 
                         <li>
                             <label class="mi-label">Debe de semanas anteriores</label>
@@ -331,8 +332,35 @@ $sql_voucher = $con->query($sql_voucher);
                                                                             ?>" readonly>
                         </li>
                         <li>
-                            <label class="mi-label">Debe</label>
-                            <input type="text" id="" name="" value="<?php echo $debe_deuda = $total_ventas + $deuda_semanas_anteriores ?>" readonly>
+                            <label class="mi-label">Debe sumado</label>
+                            <input type="text" id="" name="" value="<?php echo $debe_deuda = $total_ventas + $deuda_semanas_anteriores + $deuda_anterior ?>" readonly>
+                            <?php
+                            /*
+                            $cuotas = $row_cuotas['cuotas'];
+                            if ($cuotas == 0) {
+                            ?>
+                                <label for="opciones">Elige Cuotas:</label>
+                                <select id="opciones" name="opciones">
+                                    <option value="0_cuotas">0</option>
+                                    <option value="2_cuotas">2</option>
+                                    <option value="3_cuotas">3</option>
+                                    <option value="4_cuotas">4</option>
+                                    <option value="5_cuotas">5</option>
+                                    <option value="6_cuotas">6</option>
+                                    <option value="7_cuotas">7</option>
+                                    <option value="8_cuotas">8</option>
+                                    <option value="9_cuotas">9</option>
+                                    <option value="10_cuotas">10</option>
+                                    <option value="11_cuotas">11</option>
+                                    <option value="12_cuotas">12</option>
+                                </select>
+                            <?php
+                            } else {
+                                echo "No paga en cuotas!!";
+                            }
+                                */
+                            ?>
+
                         </li>
 
                     </ul>
@@ -370,14 +398,19 @@ $sql_voucher = $con->query($sql_voucher);
                             <input type="text" id="comi" name="comi" value="<?php echo $suma_viaje_mas_diez = $diez + $total_de_viajes ?>">
                         </li>
                         <li>
-                            <label class="mi-label">Para el movil</label>
+                            <label class="mi-label">Para el movil 90%</label>
                             <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total - $suma_viaje_mas_diez ?>" readonly>
+                        </li>
+
+                        <li>
+                            <label class="mi-label">Debe sumado</label>
+                            <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>" readonly>
                         </li>
 
 
 
                         <?php
-                        $total_a_pagar = $noventa - $deuda_anterior - $total_ventas;
+                        $total_a_pagar = $total - $suma_viaje_mas_diez - $debe_deuda;
                         if ($total_a_pagar > 0) {
                         ?>
                             <li>
@@ -393,7 +426,7 @@ $sql_voucher = $con->query($sql_voucher);
                                 <input type="text" id="" name="" value="<?php echo $total_a_abonar = $total_a_pagar - $total_ventas
                                                                         ?>" readonly style="background-color: red; color: #FFFF00; ">
                                 <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus>
-
+                               
                             </li>
                             <li>
                                 <p>debe cargar algun valor si no no seguira adelante</p>

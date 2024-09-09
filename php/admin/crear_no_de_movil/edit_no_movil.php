@@ -8,10 +8,23 @@ $id_upd = $_GET['q'];
 //echo $id_upd;
 
 
-
 $sql_movil = "SELECT * FROM completa WHERE id=" . $id_upd;
 $result_movil = $con->query($sql_movil);
-$row = $result_movil->fetch_assoc();
+$row_movil = $result_movil->fetch_assoc();
+echo $movil = $row_movil['movil'];
+echo "<br>";
+
+$sql_semana = "SELECT * FROM semanas WHERE movil=" . $movil;
+$result_semana = $con->query($sql_semana);
+$row_semana = $result_semana->fetch_assoc();
+echo $movil_semana = $row_semana['movil'];
+echo "<br>";
+
+$sql_caja = "SELECT * FROM caja_movil WHERE movil=" . $movil;
+$result_caja = $con->query($sql_caja);
+$row_caja = $result_caja->fetch_assoc();
+echo $movil_caja = $row_caja['movil'];
+
 
 ?>
 
@@ -33,13 +46,6 @@ $row = $result_movil->fetch_assoc();
 
 
 
-    $movil = $row['movil'];
-    $sql_semana = "SELECT * FROM semanas WHERE movil=" . $movil;
-
-    $result_semana = $con->query($sql_semana);
-    $row_semana = $result_semana->fetch_assoc();
-
-
     ?>
 
     <div class="container">
@@ -54,7 +60,7 @@ $row = $result_movil->fetch_assoc();
                     </div>
                     <div class="form-group">
                         <label class="control-label">movil</label>
-                        <input type="text" class="form-control" id="movil" name="movil" value="<?php echo $row['movil']; ?>">
+                        <input type="text" class="form-control" id="movil" name="movil" value="<?php echo $row_movil['movil']; ?>">
                     </div>
 
                     <div class="form-group">

@@ -57,7 +57,7 @@ if ($_SESSION['logueado']) {
             <div class="btn-group d-flex w-50" role="group">
                 &nbsp; &nbsp; &nbsp;
 
-                <a href="../../menu.php" class="btn btn-primary btn-sm">VOLVER</a>
+                <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
 
                 &nbsp; &nbsp; &nbsp;
                 <a href="../../ayuda/ayuda.html" target=" _blank" class="btn btn-primary btn-sm">AYUDA</a>
@@ -137,6 +137,11 @@ if ($_SESSION['logueado']) {
                     </form>
 
                     <p></p>
+                    <script>
+                        function cerrarPagina() {
+                            window.close();
+                        }
+                    </script>
                 <?php
                 }
                 foot();

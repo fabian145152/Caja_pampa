@@ -80,18 +80,18 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="semana/semana.php" class=" btn btn-primary btn-block btn-sm">SEMANA los lunes solamente...
                                 <p style="margin-top:0; margin-bottom:0;"><small>Una vez, los lunes al empezar.</small></p>
-                                <p style="margin-top:0; margin-bottom:0;"><small>Si lo hacen mas de una vez no difiere.</small></p>
+
                             </a></li>
                         <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE COBROS</a></li>
                         <br>
-                        <li><a href="admin/observaciones/inicio_obs.php" target="_blank" class="btn btn-info btn-block btn-sm">OBSERVACIONES X MOVIL (falta terminar)</a></li>
+                        <li><a href="admin/observaciones/inicio_obs.php" target="_blank" class="btn btn-primary btn-block btn-sm">OBSERVACIONES X MOVIL.</a></li>
                         <br>
                         <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
                         <br>
                         <li> <a href="admin/genera_deuda/genera_deuda.php" class="btn btn-primary btn-block btn-sm" target="__blank">GENERAR DEUDA ANTERIOR</a></li>
                         <br>
-                        <li><a href="admin/venta/venta_prod.php" class=" btn btn-primary btn-block btn-sm">STOCK DE PRODUCTOS PARA LA VENTA</a></li>
+                        <li><a href="admin/venta/venta_prod.php" class=" btn btn-primary btn-block btn-sm" target="__blank">STOCK DE PRODUCTOS PARA LA VENTA</a></li>
                         <br>
                     </ul>
                 </div>
@@ -105,7 +105,7 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
                         <br>
-                        <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm">VENTA</a></li>
+                        <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm" target="__blank">VENTA</a></li>
                         <br>
                         <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-danger btn-block btn-sm">COBRAR A MOVIL</a></li>
                         <br>

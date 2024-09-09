@@ -58,7 +58,12 @@ $con->set_charset("utf8mb4");
             &nbsp; &nbsp; &nbsp;
             <a href="insert_tropa.php" class="btn btn-primary btn-sm">NUEVA TROPA</a>
             &nbsp; &nbsp; &nbsp;
-            <a href="../../menu.php" class="btn btn-primary btn-sm">VOLVER</a>
+
+
+            <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+
+
+
             &nbsp; &nbsp; &nbsp;
             <a href="../../ayuda/ayuda.html" target=" _blank" class="btn btn-primary btn-sm">AYUDA</a>
         </div>
@@ -113,6 +118,11 @@ $con->set_charset("utf8mb4");
         </tbody>
 
     <?php } ?>
+    <script>
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
     <?php foot(); ?>
 </body>
 

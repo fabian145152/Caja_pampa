@@ -4,50 +4,175 @@ include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
 
+$deposito_en_pesos = 0;
+
+$movil = $_POST['movil'];
+
+// CONSULTAS
 
 
+// Lee la deuda anterior de la tabla completa
+$sql_comple = "SELECT * FROM completa WHERE movil=" . $movil;
+$con_co = $con->query($sql_comple);
+$row_comp = $con_co->fetch_assoc();
 
-echo "Movil: " . $movil = $_POST['movil'];
+$sql_caja_mov = "SELECT * FROM caja_movil WHERE movil =" . $movil;
+$con_caja_m = $con->query($sql_caja_mov);
+$row_caja_movil = $con_caja_m->fetch_assoc();
 
-echo "<h3>Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'] . "</h3>";
+$sql_semana = "SELECT * FROM semanas WHERE movil =" . $movil;
+$con_sem = $con->query($sql_semana);
+$row_semanas = $con_sem->fetch_assoc();
 
-if (!isset($_POST['dep_ft']) == FALSE) {
-    echo "<h3>Deposito en FT: " . $deposito_en_pesos = $_POST['dep_ft'] . "</h3>";
+$deuda_anterior = $row_comp['deuda_anterior'];
+
+$deuda_ant = $_POST['deuda_ant'];
+
+if (!isset($_POST['dep_ft']) === FALSE) {
+    $deposito_en_pesos = $_POST['dep_ft'];
 }
-echo "<h3>Total de Viajes: " . $total_de_viajes = $_POST['viajes'] . "</h3>";
-echo "<h3>Total en Voucher: " . $tot_voucher = $_POST['tot_voucher'] . "</h3>";
-echo "<h3>Para el movil: " . $para_el_movil = $_POST['para_movil'] . "</h3>";
-echo "<h3>Comisiones: " . $comisiones = $_POST['comi'] . "</h3>";
-echo "<h3>Productos vendidos: " . $productos_vendidos = $_POST['prod'] . "</h3>";
+
+
+
+
+
+$total_de_viajes = $_POST['viajes'];
+$tot_voucher = $_POST['tot_voucher'];
+$para_el_movil = $_POST['para_movil'];
+$comisiones = $_POST['comi'];
+$productos_vendidos = $_POST['prod'];
+$debe_sem_ant = $_POST['debe_ant'];
+
+
+
+$total_de_viajes = intval($total_de_viajes);
+$tot_voucher = intval($tot_voucher);
+$para_el_movil = intval($para_el_movil);
+$comisiones = intval($comisiones);
+$productos_vendidos = intval($productos_vendidos);
+$deuda_ant = intval($deuda_ant);
+$deposito_en_pesos = intval($deposito_en_pesos);
+
+$deu_total = $deuda_ant + $comisiones + $productos_vendidos + $debe_sem_ant;
+
 echo "<br>";
-echo $fecha = date("d-m-Y");
+echo "Movil:" . $movil;
 echo "<br>";
-echo "<strong>Ya tengo todos los datos: </strong>";
-
-
+echo $fecha = date('Y-m-d H:i:s');
+echo "<br>";
+echo "Comision a cobrarle: " . $comisiones;
+echo "<br>";
+echo "Deuda_anterior: " . $deuda_anterior;
+echo "<br>";
+echo "Debe de semanas anteriores: " . $debe_sem_ant;
+echo "<br>";
+echo "Productos que compro:" . $productos_vendidos;
+echo "<br>";
+echo "Calculo de deuda: " . $deu_total;
+echo "<br>";
+echo "Total en voucher: " . $tot_voucher;
+echo "<br>";
+echo "Deposito en pesos: " . $deposito_en_pesos;
+echo "<br>";
+echo "Depositarle al movil: " . $depositarle = $tot_voucher - $deu_total;
+echo "<br>";
+echo "Voucher en caja: " . $voucher_en_caja = $tot_voucher - $depositarle;
+echo "<br>";
+echo "Fe en caja: " . $deposito_en_pesos;
 echo "<br>";
 echo "<br>";
 
-$sql_comp = "SELECT * FROM completa WHERE movil=" . $movil;
-$exe_sql_comp = $con->query($sql_comp);
-$row_sql_comp = $exe_sql_comp->fetch_assoc();
 
-echo $deuda_ant = $row_sql_comp['deuda_anterior'];
 
+
+echo $row_caja_movil['comisiones'];
 echo "<br>";
 
-if ($deposito_en_pesos <= $deuda_ant) {
-    echo "Le alcanza para pagar!!!";
+$stmt_caja_movil = $con->prepare("INSERT INTO caja_movil 
+                                        (movil,    
+                                        comisiones, 
+                                        deuda_anterior,
+                                        debe_sem_ant,
+                                        prod_vendidos,
+                                        calculo_deuda,
+                                        deposito_voucher,
+                                        dep_ft,
+                                        para_el_movil,
+                                        voucher_en_caja,
+                                        ft_en_caja,
+                                        fecha
+                                        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+
+if ($stmt_caja_movil === false) {
+    die('Error al preparar la consulta: ' . $con->error);
+}
+
+$stmt_caja_movil->bind_param(
+    "iiiiiiiiiiis",
+    $movil,
+    $comisiones,
+    $deuda_anterior,
+    $debe_sem_ant,
+    $productos_vendidos,
+    $deu_total,
+    $tot_voucher,
+    $deposito_en_pesos,
+    $depositarle,
+    $voucher_en_caja,
+    $deposito_en_pesos,
+    $fecha
+);
+
+if ($stmt_caja_movil->execute()) {
+    echo "Nuevo registro creado exitosamente";
     echo "<br>";
-    $actualiza_deuda = $deposito_en_pesos - $deuda_ant;
-    echo $actualiza_deuda;
 } else {
-    echo "No le alcanza!!!";
+    echo "Error al ejecutar la consulta: " . $stmt->error;
+    exit;
 }
 
+//Borra deuda anterior
+$sql_borra_deuda_ant = "UPDATE `completa` SET `deuda_anterior` = 0 WHERE movil =" . $movil;
+
+if ($con->query($sql_borra_deuda_ant) === TRUE) {
+    echo "Deuda anterior editada correctamente";
+    echo "<br>";
+} else {
+    echo "Error deuda anterior...";
+    exit();
+}
+
+echo $row_semanas['total'];
+echo "<br>";
+if ($row_semanas['total'] > 0) {
+    $sql_sem = "UPDATE 'semanas' SET 'total' = 0 WHERE movil =" . $movil;
+    if ($con->query($sql_sem) === TRUE) {
+        echo "Deuda de semanas anteriores borrada";
+        echo "<br>";
+    } else {
+        echo "Error semanas...";
+        
+        ?>
+<h1>Ver el error que hay borrando la deuda de las semanas</h1>
+<?php
+
+exit();
+}
+}
+
+$row_semanas['total'];
+
+//$sql_sem "UPDATE 'semanas' SET 'total' = "
 
 
 exit();
+
+
+
+
+
+
+
 
 if ($pesos != 0) {
     // Actualiza la deuda anterior carga la fecha de pago y el monto
