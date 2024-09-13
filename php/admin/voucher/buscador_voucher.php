@@ -65,7 +65,7 @@ $con->set_charset("utf8mb4");
     $regis = $con->query($sql);
     $registros = $regis->num_rows;
 
-    if($registros == 0){
+    if ($registros == 0) {
         echo "<h2>No hay Voucher de esta unidad</h2>";
     }
 
@@ -107,53 +107,53 @@ $con->set_charset("utf8mb4");
 
 
         while ($d = $regis->fetch_assoc()) {
-
+            if ($d['cc'] > 1) {
         ?>
-            <tr>
-                <td><?php echo $d['id']; ?></td>
-                <td><?php echo $d['viaje_no']; ?></td>
-                <td><?php echo $fecha = $d['completado']; ?></td>
-                <td><?php echo $d['nom_pasaj']; ?></td>
-                <td><?php echo $d['movil']; ?></td>
-                <td><?php echo $d['cc']; ?></td>
-                <td><?php echo $d['reloj']; ?></td>
-                <td><?php echo $d['peaje']; ?></td>
-                <td><?php echo $d['equipaje']; ?></td>
-                <td><?php echo $d['adicional']; ?></td>
-                <td><?php echo $d['plus']; ?></td>
-                <td><?php echo $d['total'] ?></td>
-                <td><a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
-                <td><a class="btn btn-warning btn-sm" href="#" onclick="validarProduct(<?php echo $d['id']; ?>)">Validar</td>
-                <td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
-
+                <tr>
+                    <td><?php echo $d['id']; ?></td>
+                    <td><?php echo $d['viaje_no']; ?></td>
+                    <td><?php echo $fecha = $d['completado']; ?></td>
+                    <td><?php echo $d['nom_pasaj']; ?></td>
+                    <td><?php echo $d['movil']; ?></td>
+                    <td><?php echo $d['cc']; ?></td>
+                    <td><?php echo $d['reloj']; ?></td>
+                    <td><?php echo $d['peaje']; ?></td>
+                    <td><?php echo $d['equipaje']; ?></td>
+                    <td><?php echo $d['adicional']; ?></td>
+                    <td><?php echo $d['plus']; ?></td>
+                    <td><?php echo $d['total'] ?></td>
+                    <td><a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
+                    <td><a class="btn btn-warning btn-sm" href="#" onclick="validarProduct(<?php echo $d['id']; ?>)">Validar</td>
+                    <td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 
                 <?php
+            }
 
-                for ($i = $registros; $i >= 0; $i--) {
-                    $i;
-                    $id = $d['id'];
-                    $movil = $d['movil'];
-                    $fecha = $d['completado'];
-                    $viaje_no = $d['viaje_no'];
-                    $cc = $d['cc'];
-                    $reloj = $d['reloj'];
-                    $peaje = $d['peaje'];
-                    $equipaje = $d['equipaje'];
-                    $adicional = $d['adicional'];
-                    $plus = $d['plus'];
+            for ($i = $registros; $i >= 0; $i--) {
+                $i;
+                $id = $d['id'];
+                $movil = $d['movil'];
+                $fecha = $d['completado'];
+                $viaje_no = $d['viaje_no'];
+                $cc = $d['cc'];
+                $reloj = $d['reloj'];
+                $peaje = $d['peaje'];
+                $equipaje = $d['equipaje'];
+                $adicional = $d['adicional'];
+                $plus = $d['plus'];
 
 
-                    $guarda = "INSERT INTO voucher_temporales 
+                $guarda = "INSERT INTO voucher_temporales 
                                         VALUES (?,?,?,?,?,?,?,?,?,?)";
-                    $stmt = $con->prepare($guarda);
-                    $stmt->bind_param("issddddddd", $id, $movil, $fecha, $viaje_no, $cc, $reloj, $peaje, $equipaje, $adicional, $plus);
-                    $stmt->execute();
-                }
+                $stmt = $con->prepare($guarda);
+                $stmt->bind_param("issddddddd", $id, $movil, $fecha, $viaje_no, $cc, $reloj, $peaje, $equipaje, $adicional, $plus);
+                $stmt->execute();
+            }
                 ?>
-            </tr>
-        <?php
+                </tr>
+            <?php
         }
-        ?>
+            ?>
     </table>
 
 

@@ -224,7 +224,7 @@ $sql_voucher = $con->query($sql_voucher);
 
             ?>
                     <!--
-        <tr>
+                    <tr>
 
                         <th class="col-sm-2"><?php echo $id = $row_voucher['id'] ?></th>
                         <th class="col-sm-2"><?php echo $cc = $row_voucher['cc'] ?></th>
@@ -407,9 +407,8 @@ $sql_voucher = $con->query($sql_voucher);
                             <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>" readonly>
                         </li>
 
-
-
                         <?php
+
                         $total_a_pagar = $total - $suma_viaje_mas_diez - $debe_deuda;
                         if ($total_a_pagar > 0) {
                         ?>
@@ -423,10 +422,9 @@ $sql_voucher = $con->query($sql_voucher);
                         ?>
                             <li>
                                 <label class="mi-label">El movil debe pagar:</label>
-                                <input type="text" id="" name="" value="<?php echo $total_a_abonar = $total_a_pagar - $total_ventas
-                                                                        ?>" readonly style="background-color: red; color: #FFFF00; ">
-                                <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus>
-                               
+                                <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $total_a_abonar = $total_a_pagar - $total_ventas
+                                                                                                ?>" readonly style="background-color: red; color: #FFFF00; ">
+                                <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus required>
                             </li>
                             <li>
                                 <p>debe cargar algun valor si no no seguira adelante</p>
@@ -434,21 +432,17 @@ $sql_voucher = $con->query($sql_voucher);
 
                         <?php
                         }
+
                         ?>
                     </ul>
                 </div>
                 <li><button type="submit" class="btn btn-danger" target="_blank">GUARDAR no hay vueta atras</button></li>
             </div>
-
         </form>
-
         <form action="resumen_cobros.php" method="post">
             <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
             <li><button type="submit" class="btn btn-info" target="_blank">Resumen</button></li>
         </form>
-
-
-
         <li><a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
 
         <br><br><br>
