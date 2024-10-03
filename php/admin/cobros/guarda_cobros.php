@@ -129,9 +129,8 @@ if (!isset($_POST['dep_ft']) === FALSE) {
         </script>
     <?php
     }
-    ?>
 
-    <?php
+    //exit;
 
     $stmt_caja_movil = $con->prepare("INSERT INTO caja_movil 
                                         (movil,    
@@ -192,8 +191,7 @@ if (!isset($_POST['dep_ft']) === FALSE) {
     if ($falta >= 0) {
 
         //echo "Falta depositar: " . $falta;
-        $sql_actualiza_deuda = "UPDATE completa SET deuda_anterior = '$falta', fe_pago = '$fecha' WHERE movil =" . $movil;
-        ;
+        $sql_actualiza_deuda = "UPDATE completa SET deuda_anterior = '$falta', fe_pago = '$fecha' WHERE movil =" . $movil;;
         if ($con->query($sql_actualiza_deuda) === TRUE) {
             echo "Nueva deuda anterior cargada ";
             echo "<br>";
@@ -213,7 +211,7 @@ if (!isset($_POST['dep_ft']) === FALSE) {
             exit;
         }
     }
-    exit;
+    //exit;
     echo $row_semanas['total'];
     echo "<br>";
     if ($row_semanas['total'] > 0) {
@@ -284,6 +282,8 @@ if (!isset($_POST['dep_ft']) === FALSE) {
             exit;
         }
     }
+
+    header('Location: inicio_cobros.php');
 
     ?>
 
