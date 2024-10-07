@@ -128,25 +128,27 @@ if ($reg_remi > 0) {
         <?php
 
         while ($d = $datos->fetch_assoc()) {
+            if ($d['cc'] > 1) {
 
         ?>
-            <tr>
-                <td><?php echo $d['id']; ?></td>
-                <td><?php echo $d['viaje_no']; ?></td>
-                <td><?php echo $d['completado']; ?></td>
-                <td><?php echo $d['nom_pasaj']; ?></td>
-                <td><?php echo $d['movil']; ?></td>
-                <td><?php echo $d['cc']; ?></td>
-                <td><?php echo $d['reloj']; ?></td>
-                <td><?php echo $d['peaje']; ?></td>
-                <td><?php echo $d['equipaje']; ?></td>
-                <td><?php echo $d['adicional']; ?></td>
-                <td><?php echo $d['plus']; ?></td>
-                <td><?php echo $d['total'] ?></td>
+                <tr>
+                    <td><?php echo $d['id']; ?></td>
+                    <td><?php echo $d['viaje_no']; ?></td>
+                    <td><?php echo $d['completado']; ?></td>
+                    <td><?php echo $d['nom_pasaj']; ?></td>
+                    <td><?php echo $d['movil']; ?></td>
+                    <td><?php echo $d['cc']; ?></td>
+                    <td><?php echo $d['reloj']; ?></td>
+                    <td><?php echo $d['peaje']; ?></td>
+                    <td><?php echo $d['equipaje']; ?></td>
+                    <td><?php echo $d['adicional']; ?></td>
+                    <td><?php echo $d['plus']; ?></td>
+                    <td><?php echo $d['total'] ?></td>
 
-                <td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
-            </tr>
+                    <td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
+                </tr>
         <?php
+            }
         }
         $sql_borra = "TRUNCATE TABLE vauchin";
         $result = $con->query($sql_borra);

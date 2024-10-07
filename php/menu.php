@@ -107,6 +107,7 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm" target="__blank">VENTA</a></li>
                         <br>
+
                         <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-danger btn-block btn-sm">COBRAR A MOVIL</a></li>
                         <br>
                         <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>

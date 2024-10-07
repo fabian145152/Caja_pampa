@@ -22,7 +22,8 @@ $semana_actual = date("W");
 
 <body>
 
-    <h4 style="text-align: center; ">SEMANA: <?php echo $semana_actual ?></h4>
+    <h4 style="text-align: center; ">SEMANA ACTUAL: <?php echo $semana_actual . " " ?>SE ESTA COBRANDO LA <?php echo $semana_actual - 1 ?></h4>
+    <br><br><br><br><br>
     <form style=" text-align:center;" method="post" action="vista_con_voucher.php">
         Ingrese Movil:
         <input type="text" id="movil" name="movil" autofocus>
