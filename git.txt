@@ -92,3 +92,6 @@ en git
 luego hago 
 git push -u origin main	3 y sube todo a el repo remoto
 
+ir a commit anterior
+							git log    									** me lista los hash por fecha
+							git reset --hard 	<hash del commit>		** vuenve a ese haxy y no hay vuelta atras 
