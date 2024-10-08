@@ -252,7 +252,7 @@ $sql_voucher = $con->query($sql_voucher);
     </table>
     <h3><?php echo $can_viajes ?> Voucher x <?php echo "$" . $total . "-" ?></h3>
 
-    <form action="guarda_cobros.php" method="post" target="_blank">
+    <form action="guarda_cobros_con_voucher.php" method="post" target="_blank">
 
 
         <?php
@@ -298,7 +298,7 @@ $sql_voucher = $con->query($sql_voucher);
         </style>
 
 
-        <form action="guarda_cobros.php" method="post">
+        <form action="guarda_cobros_con_voucher.php" method="post">
 
 
             <div id="contenedor">
@@ -385,35 +385,34 @@ $sql_voucher = $con->query($sql_voucher);
                         <?php
                         } else {
                         ?>
+
                             <li>
                                 <label class="mi-label">El movil debe pagar:</label>
                                 <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $total_a_abonar = $total_a_pagar - $total_ventas
                                                                                                 ?>" readonly style="background-color: red; color: #FFFF00; ">
                                 <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus required>
                             </li>
+
                             <li>
                                 <p>debe cargar algun valor si no no seguira adelante</p>
                             </li>
-
-                        <?php
-                        }
-
-                        ?>
                     </ul>
-                </div>
-            </div>
-            <li><a href="genera_recibo.php" class="btn btn-danger">GENERAR RECIBO</a></li>
-            <li><button type="submit" class="btn btn-danger" target="_blank">GUARDAR no hay vueta atras</button></li>
-        </form>
 
-        <form action="resumen_cobros.php" method="post">
-            <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
-            <li><button type="submit" class="btn btn-info" target="_blank">Resumen</button></li>
-        </form>
-        <li><a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
+                    <a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
+                    <button type="submit" class="btn btn-danger">GUARDAR</button>
 
-        <br><br><br>
-        <?php foot() ?>
+        </form>
+    <?php  }  ?>
+    </div>
+    </div>
+
+
+
+
+
+
+    <br><br><br>
+    <?php foot() ?>
 
 </body>
 

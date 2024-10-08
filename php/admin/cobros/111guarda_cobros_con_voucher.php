@@ -6,40 +6,16 @@ $con->set_charset("utf8mb4");
 
 $deposito_en_pesos = 0;
 
-$movil = $_POST['movil'];
-
-$falta = 0;
-$sobra = 0;
-
-// CONSULTAS
-
-$sql_voucher = "SELECT * FROM voucher_validado WHERE movil=" . $movil;
-$con_vou = $con->query($sql_voucher);
-
-
-
-
-
-// Lee la deuda anterior de la tabla completa
-$sql_comple = "SELECT * FROM completa WHERE movil=" . $movil;
-$con_co = $con->query($sql_comple);
-$row_comp = $con_co->fetch_assoc();
-
-$sql_caja_mov = "SELECT * FROM caja_movil WHERE movil =" . $movil;
-$con_caja_m = $con->query($sql_caja_mov);
-$row_caja_movil = $con_caja_m->fetch_assoc();
-
-$sql_semana = "SELECT * FROM semanas WHERE movil =" . $movil;
-$con_sem = $con->query($sql_semana);
-$row_semanas = $con_sem->fetch_assoc();
-
-$deuda_anterior = $row_comp['deuda_anterior'];
-
-$deuda_ant = $_POST['deuda_ant'];
-
-if (!isset($_POST['dep_ft']) === FALSE) {
-    $deposito_en_pesos = $_POST['dep_ft'];
+if (isset($_GET['movil'])) {
+    $movil = $_GET['movil'];
+    echo "El valor recibido es: " . htmlspecialchars($movil);
 }
+
+//$deuda_ant = $_POST['deuda_ant'];
+
+echo $dep_ft = $_POST['dep_ft'];
+
+exit();
 
 ?>
 <!DOCTYPE html>
