@@ -3,6 +3,11 @@ session_start();
 include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
+
+
+// Obtener la variable desde la sesión
+$movul = $_SESSION['variable'];
+$movil = substr($movul, 1);
 $total_ventas = 0;
 $deuda_anterior = 0;
 $venta_1 = 0;
@@ -14,23 +19,23 @@ $venta_5 = 0;
 if (isset($_GET['movil'])) {
     $movil = $_GET['movil'];
     htmlspecialchars($movil, ENT_QUOTES, 'UTF-8');
-} else {
-
-    $movil = $_POST['movil'];
 }
-$amovil = "A" . $movil;
-
 //Veridica si existe movil
 $sql_comp = "SELECT * FROM completa WHERE movil = $movil";
 $res_comp = $con->query($sql_comp);
 $row_comp = $res_comp->fetch_assoc();
+$row_comp['movil'];
+//echo "<br>";
+
 
 if ($row_comp['movil'] == 0) {
-    echo '<script type="text/javascript">';
-    echo 'alert("ESE MOVIL NO EXISTE");';
-    echo 'window.location.href = "inicio_cobros.php";'; // Enlace al que quieres redirigir
-    echo '</script>';
+    echo "El movil no existe...";
+    exit;
 }
+
+$amovil = "A" . $movil;
+
+
 /*
 //Consulta si tiene algo en cuotas
 $sql_cuotas = "SELECT * FROM caja_movil WHERE movil = $movil";
@@ -140,6 +145,8 @@ $paga_x_semana = $row_debe_semanas['x_semana'];
 $debe_de_semanas =  $row_debe_semanas['total'];
 
 //$amovil;
+
+
 
 ## Voucher validads
 $sql_voucher = "SELECT * FROM voucher_validado WHERE movil = '$amovil'";
@@ -395,8 +402,8 @@ $sql_voucher = $con->query($sql_voucher);
                     </ul>
                 </div>
             </div>
-                    <li><a href="genera_recibo.php" class="btn btn-danger">GENERAR RECIBO</a></li>
-                <li><button type="submit" class="btn btn-danger" target="_blank">GUARDAR no hay vueta atras</button></li>
+            <li><a href="genera_recibo.php" class="btn btn-danger">GENERAR RECIBO</a></li>
+            <li><button type="submit" class="btn btn-danger" target="_blank">GUARDAR no hay vueta atras</button></li>
         </form>
 
         <form action="resumen_cobros.php" method="post">

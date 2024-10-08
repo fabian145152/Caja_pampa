@@ -13,6 +13,12 @@ $sobra = 0;
 
 // CONSULTAS
 
+$sql_voucher = "SELECT * FROM voucher_validado WHERE movil=" . $movil;
+$con_vou = $con->query($sql_voucher);
+
+
+
+
 
 // Lee la deuda anterior de la tabla completa
 $sql_comple = "SELECT * FROM completa WHERE movil=" . $movil;
