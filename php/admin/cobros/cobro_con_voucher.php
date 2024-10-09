@@ -305,6 +305,7 @@ $sql_voucher = $con->query($sql_voucher);
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
                         <li>
+                            <h2>Abonos</h2>
                             <label class="mi-label">Paga x semana <?php echo $abona_x_semana ?> <?php $abono_x_semana ?></label>
                             <input type="text" id="abono_semanal" name="abono_semanal" value="<?php echo $debe_de_semana ?>" readonly>
                         </li>
@@ -340,40 +341,38 @@ $sql_voucher = $con->query($sql_voucher);
 
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
-
                         <li>
-                            <label class="mi-label">Cantidad de viajes</label>
-                            <input type="text" id="cant_viajes" name="cant_viajes" value="<?php echo $can_viajes ?>" readonly>
+                            <label class="mi-label">Paga por viajes realizados</label>
+                            <input type="text" id="viajes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
                         </li>
+                        <li>
+                            <label class="mi-label">Debe sumado</label>
+                            <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>" readonly>
+                        </li>
+
                         <li>
                             <label class="mi-label">RECAUDADO EN VOUCHER </label>
                             <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>" readonly>
                         </li>
                         <li>
-                            <label class="mi-label">Total de viajes</label>
-                            <input type="text" id="viajes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
-                        </li>
-
-                        <li>
-                            <label class="mi-label">Comisiones</label>
-                            <input type="text" id="comi" name="comi" value="<?php echo $diez = $total * .1 ?>" readonly>
+                            <!--  <label class="mi-label">Comisiones</label>  -->
+                            <input type="hidden" id="comi" name="comi" value="<?php echo $diez = $total * .1 ?>" readonly>
                         </li>
                         <li>
                             <label class="mi-label">Suma comisiones</label>
                             <input type="text" id="comi" name="comi" value="<?php echo $suma_viaje_mas_diez = $diez + $total_de_viajes ?>">
                         </li>
                         <li>
-                            <label class="mi-label">Para el movil 90%</label>
+                            <label class="mi-label">Poscentaje para el movil</label>
                             <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total - $suma_viaje_mas_diez ?>" readonly>
                         </li>
 
-                        <li>
-                            <label class="mi-label">Debe sumado</label>
-                            <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>" readonly>
-                        </li>
+
 
                         <?php
 
+                        "Cuenta final: " . $cuenta = $debe_deuda + $suma_viaje_mas_diez - $noventa;
+                        echo "<br>";
                         $total_a_pagar = $total - $suma_viaje_mas_diez - $debe_deuda;
                         if ($total_a_pagar > 0) {
                         ?>
@@ -388,7 +387,7 @@ $sql_voucher = $con->query($sql_voucher);
 
                             <li>
                                 <label class="mi-label">El movil debe pagar:</label>
-                                <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $total_a_abonar = $total_a_pagar - $total_ventas
+                                <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $cuenta
                                                                                                 ?>" readonly style="background-color: red; color: #FFFF00; ">
                                 <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus required>
                             </li>
