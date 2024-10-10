@@ -5,6 +5,8 @@ $con = conexion();
 $con->set_charset("utf8mb4");
 
 echo "Movil: " . $movil = $_POST['movil'];
+$deposito_en_ft = 0;
+$dep_mercado = 0;
 
 
 ## CONSULTA PARA LA DEUDA ANTERIOR DE LA TABLA COMPETA
@@ -24,10 +26,14 @@ echo "<br>";
 $semanas = $row_semanas['total'];
 echo "Debe de semanas anteriores: " . $semanas;
 
+$deposito_en_ft = 0;
+$dep_mercado = 0;
 
 
 echo "<br>";
 echo "Deposiyo en efectivo: " . $deposito_en_ft = $_POST['dep_ft'];
+echo "<br>";
+echo "Deposito de MP: " . $dep_mercado = $_POST['dep_mp'];
 echo "<br>";
 echo "Total de viajes: " . $total_de_viajes = $_POST['viajes'];
 echo "<br>";
@@ -36,7 +42,6 @@ echo "<br>";
 echo "Porcentaje para el movil: " . $para_el_movil = $_POST['para_movil'];
 echo "<br>";
 echo "Porcentaje para base mas cant de vajes: " . $comisiones = $_POST['comi'];
-
 echo "<br>";
 echo "Productos vendidos: " . $productos_vendidos = $_POST['prod'];
 echo "<br>";
@@ -44,9 +49,7 @@ echo "Debe de semanas anteriores: " . $debe_sem_ant = $_POST['debe_ant'];
 echo "<br>";
 echo "Debe abonar: " . $debe_abonar = $_POST['debe_abonar'];
 echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
+
 echo "Calculo de deuda: " . $calc_deuda = $deuda_anterior + $semanas + $productos_vendidos;
 echo "<br>";
 $vuelto_con_decimales =  $debe_abonar - $deposito_en_ft;
@@ -54,7 +57,22 @@ $vuelto_neg = round($vuelto_con_decimales, 2);
 $vuelto = abs($vuelto_neg);
 echo "Vuelto en efectivo: " . $vuelto;
 echo "<br>";
-echo "<br>";
+
+if ($deposito_en_ft == 0) {
+    $vuel = $dep_mercado - $debe_abonar;
+    echo "Vuelto en FT: " . $vuel;
+    $vueltos = round($vuel, 2);
+    echo "<br>";
+}
+if ($dep_mercado == 0) {
+    $vuel = $deposito_en_ft - $debe_abonar;
+    echo "Vuelto de Mp: " . $vuel;
+    $vueltos = round($vuel, 2);
+    echo "<br>";
+}
+
+
+
 
 
 echo $fecha = date("Y-m-d H:i:s");
@@ -72,14 +90,15 @@ $sql_insert_caja_movil = "INSERT INTO caja_movil (movil,
                                                 dep_ft,
                                                 para_el_movil,
                                                 ft_en_caja,
+                                                dep_mp,
                                                 pesos_a_favor,
                                                 fecha
                                                 ) 
-                                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 $stmt_insert_caja_movil = $con->prepare($sql_insert_caja_movil);
 
 $stmt_insert_caja_movil->bind_param(
-    "iiiiiiiiiids",
+    "iddddddddddds",
     $movil,
     $comisiones,
     $deuda_anterior,
@@ -90,6 +109,7 @@ $stmt_insert_caja_movil->bind_param(
     $deposito_en_ft,
     $para_el_movil,
     $deposito_en_ft,
+    $dep_mercado,
     $vuelto,
     $fecha
 );
@@ -97,12 +117,9 @@ $stmt_insert_caja_movil->bind_param(
 
 
 if ($stmt_insert_caja_movil->execute() === TRUE) {
-    echo "<br>";
-    echo "<br>";
+
     echo "<br>";
     echo "Registro creado con exito...";
-    echo "<br>";
-    echo "<br>";
     echo "<br>";
 }
 
@@ -132,16 +149,54 @@ echo "Leido de la tabla caja_movil: " . $row_caja_movil['movil'];
         <li><?php echo "Productos vendidos: " . $row_caja_movil['prod_vendidos'] ?></li>
         <li><?php echo "Calculo de deuda anterior: " . $calculo_deuda_ant = $row_caja_movil['calculo_deuda'] ?></li>
         <li><?php echo "Deposito en voucher: " . $row_caja_movil['deposito_voucher'] ?></li>
-        <li><?php echo "Deposito en efectivo: " . $row_caja_movil['dep_ft'] ?></li>
         <li><?php echo "Porcentaje para movil: " . $depositarle = $row_caja_movil['para_el_movil'] ?></li>
-        <li><?php echo "Efectivo en caja: " . $row_caja_movil['ft_en_caja'] ?></li>
-        <li><?php echo "Vuelto a favor: " . $row_caja_movil['pesos_a_favor'] ?></li>
+        <li><?php echo "Efectivo en caja: " . $ft_en_caja = $row_caja_movil['ft_en_caja'] ?></li>
+        <li><?php echo "Deposito en efectivo: " . $efectivo = $row_caja_movil['dep_ft'] ?></li>
         <li><?php echo "Fecha del deposito" . $row_caja_movil['fecha'] ?></li>
+
+        <li><?php echo "Deposito en MP: " . $mp = $row_caja_movil['dep_mp'] ?></li>
+        <li><?php echo "Vuelto a favor: " . $vuel = $row_caja_movil['pesos_a_favor'] ?></li>
     </ul>
     <?php
 
 
 
+    $observaciones = " ";
+    if ($dep_mercado <= 0) {
+        $observaciones = "Deposito en FT del móvil: " . $movil;
+        echo $observaciones;
+    } else {
+        $observaciones = "Deposito en MP del móvil: " . $movil;
+        echo "$observaciones";
+    }
+
+    $sql_caja_final = "INSERT INTO caja_final (ft, vueltos, dep_mp, fecha, observaciones) VALUES (?,?,?,?,?)";
+    $stmt_caja_final = $con->prepare($sql_caja_final);
+
+    $stmt_caja_final->bind_param("dddss", $deposito_en_ft, $vueltos, $dep_mercado, $fecha, $observaciones);
+
+
+    if ($stmt_caja_final->execute() === TRUE) {
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "Registro creado con exito...";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+    }
+
+
+    $sql = "DELETE FROM caja_movil WHERE movil='$movil' ORDER BY id ASC LIMIT 1";
+
+    // Ejecutar la consulta
+    if ($con->query($sql) === TRUE) {
+        echo "Registro eliminado correctamente.";
+    } else {
+        echo "Error al eliminar el registro: " . $con->error;
+    }
+
+    header("Location:inicio_cobros.php");
 
     ?>
 </body>

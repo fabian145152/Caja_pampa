@@ -390,19 +390,21 @@ $sql_voucher = $con->query($sql_voucher);
                                 <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $cuenta
                                                                                                 ?>" readonly style="background-color: red; color: #FFFF00; ">
                                 <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus required>
+                                <label class="mi-label">El movil debe pagar:</label>
+                                <input type="text" id="dep_mp" name="dep_mp" placeholder="Ingrese Mercado Pago" autofocus required>
                             </li>
 
                             <li>
                                 <p>debe cargar algun valor si no no seguira adelante</p>
                             </li>
                     </ul>
-
-                    <a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
+                    &nbsp&nbsp&nbsp&nbsp
                     <button type="submit" class="btn btn-danger">GUARDAR</button>
 
         </form>
     <?php  }  ?>
     </div>
+    <a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
     </div>
 
 
