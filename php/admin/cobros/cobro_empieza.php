@@ -11,10 +11,10 @@ echo "<br>";
 
 
 // 3. Preparar la consulta SQL
-$sql = "SELECT COUNT(*) AS total FROM voucher_validado WHERE movil = ?";
+$sql_voucher_validado = "SELECT COUNT(*) AS total FROM voucher_validado WHERE movil = ?";
 
 // 4. Usar consultas preparadas para evitar inyecciones SQL
-$stmt = $con->prepare($sql);
+$stmt = $con->prepare($sql_voucher_validado);
 $stmt->bind_param("s", $movil);
 
 // 5. Ejecutar la consulta
@@ -30,6 +30,7 @@ echo "Total de registros que coinciden: " . $hay_voucher;
 if ($hay_voucher <= 0) {
     echo "<br>";
     echo "No tiene voucher...";
+    include_once "cobro_sin_voucher.php";
     exit;
 } else {
     echo "Tiene";
@@ -38,5 +39,5 @@ if ($hay_voucher <= 0) {
 
     // Redireccionar
     header("Location: cobro_con_voucher.php");
-    exit();
+    //    exit();
 }

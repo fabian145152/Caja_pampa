@@ -14,6 +14,9 @@ if ($stmt_contar->num_rows > 0) {
     echo "0 registros encontrados...";
 }
 
+$sql_activo = "SELECT * FROM semanas WHERE 1";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -74,6 +77,7 @@ if ($stmt_contar->num_rows > 0) {
             <tr>
 
                 <th>Movil</th>
+                <th>Activo</th>
                 <th>Nom Titular</th>
                 <th>Ape Titu</th>
                 <th>Cel titu</th>
@@ -101,6 +105,7 @@ if ($stmt_contar->num_rows > 0) {
 
         $sql_comp = "SELECT * FROM `completa` WHERE 1 ORDER BY movil";
         $res_comp = $con->query($sql_comp);
+        $sel_res_activo = $con->query($sql_activo);
         ?>
         <?php
         while ($row = $res_comp->fetch_assoc()) {
@@ -109,6 +114,7 @@ if ($stmt_contar->num_rows > 0) {
                 <tr>
                     <!-- <th><?php echo $id = $row['id'] ?></th> -->
                     <th><?php echo $movil = $row['movil']; ?></th>
+                    <th>agregar acvivo</th>
                     <th><?php echo $row['nombre_titu'] ?></th>
                     <th><?php echo $row['apellido_titu'] ?></th>
                     <th><?php echo $row['cel_titu'] ?></th>

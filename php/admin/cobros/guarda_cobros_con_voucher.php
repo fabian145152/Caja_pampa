@@ -16,6 +16,9 @@ $row_completa = $res_completa->fetch_assoc();
 $deuda_anterior = $row_completa['deuda_anterior'];
 echo "<br>";
 
+
+
+
 //echo "Deuda anterior leido de la ddbb: " . $deuda_anterior;
 
 ## CONSULTA PARA LA DEUDA DE SEMANAS DE LA TABLA SEMANAS
@@ -31,7 +34,7 @@ $dep_mercado = 0;
 
 
 echo "<br>";
-echo "Deposiyo en efectivo: " . $deposito_en_ft = $_POST['dep_ft'];
+echo "Deposito en efectivo: " . $deposito_en_ft = $_POST['dep_ft'];
 echo "<br>";
 echo "Deposito de MP: " . $dep_mercado = $_POST['dep_mp'];
 echo "<br>";
@@ -57,6 +60,7 @@ $vuelto_neg = round($vuelto_con_decimales, 2);
 $vuelto = abs($vuelto_neg);
 echo "Vuelto en efectivo: " . $vuelto;
 echo "<br>";
+
 
 if ($deposito_en_ft == 0) {
     $vuel = $dep_mercado - $debe_abonar;
@@ -128,7 +132,7 @@ $sql_caja_movil = "SELECT * FROM caja_movil WHERE movil= $movil LIMIT 1";
 $res_caja_movil = $con->query($sql_caja_movil);
 $row_caja_movil = $res_caja_movil->fetch_assoc();
 echo "<br>";
-echo "Leido de la tabla caja_movil: " . $row_caja_movil['movil'];
+$row_caja_movil['movil'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -138,6 +142,55 @@ echo "Leido de la tabla caja_movil: " . $row_caja_movil['movil'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+<?php
+
+
+if ($deposito_en_ft < $deuda_anterior) {
+    echo "Deposite un minimo de  <strong>" . $calculo_deuda . "</strong> Para cancelar la deuda anterior: ";
+?>
+    <br>
+    <a href="cobro_con_voucher.php" class="btn btn-danger">VOLVER</a>
+<?php
+    exit;
+}
+
+echo $deuda_anterior_generada = $deuda_anterior - $deposito_en_ft;
+$sql_deuda_ant = "UPDATE completa SET deuda_anterior = $deuda_anterior_generada WHERE movil =" . $movil;
+
+
+if ($con->query($sql_deuda_ant) == FALSE) {
+    echo "Error al editar registro..." . $con->error;
+    exit;
+}
+
+##------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------
+
+echo "<br>";
+echo $nueva_deuda_anterior = $debe_sem_ant + $productos_vendidos;
+$sql_nueva_deuda_ant = "UPDATE completa SET deuda_anterior = $nueva_deuda_anterior,
+                                            venta_1 = 0,
+                                            venta_2 = 0,
+                                            venta_3 = 0,
+                                            venta_4 = 0,
+                                            venta_5 = 0
+WHERE movil =" . $movil;
+
+if ($con->query($sql_nueva_deuda_ant) == FALSE) {
+    echo "Error al editar registro..." . $con->error;
+    exit;
+}
+
+$sql_semanas_ant = "UPDATE semanas SET total = 0 WHERE movil =" . $movil;
+
+
+if ($con->query($sql_semanas_ant) == FALSE) {
+    echo "Error al editar registro..." . $con->error;
+    exit;
+}
+
+?>
 
 <body>
     <ul>
@@ -195,6 +248,26 @@ echo "Leido de la tabla caja_movil: " . $row_caja_movil['movil'];
     } else {
         echo "Error al eliminar el registro: " . $con->error;
     }
+
+    ?>
+    <h1>Falta borrar los voucher y esta terminado el cobro con voucher</h1>
+    <?php
+
+    $movil_con_a = "A" . $movil;
+
+    //-------------------------------habilitar esta parte que borra los voucher validados
+
+    //$borra_voucher = "DELETE FROM `voucher_validado` WHERE movil= '$movil_con_a'";
+
+    // Ejecutar la consulta
+    if ($con->query($borra_voucher) === TRUE) {
+        echo "Voucher eliminado correctamente.";
+    } else {
+        echo "Error al eliminar los Voucher: " . $con->error;
+        exit;
+    }
+
+
 
     header("Location:inicio_cobros.php");
 

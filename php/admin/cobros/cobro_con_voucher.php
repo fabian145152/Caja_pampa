@@ -408,10 +408,6 @@ $sql_voucher = $con->query($sql_voucher);
     </div>
 
 
-
-
-
-
     <br><br><br>
     <?php foot() ?>
 

@@ -41,11 +41,12 @@ $semana_actual = date("W");
 
 
     <br><br><br><br>
-
+    <!--
     <form method="post" style=" text-align:center;">BORRAR TABLA
         <input type="submit" name="vaciar_tabla" value="vaciar_tabla">
     </form>
     <?php
+    /*
     if ($con->connect_error) {
         die("Conexión fallida: " . $con->connect_error);
     }
@@ -60,7 +61,9 @@ $semana_actual = date("W");
             echo "Error vaciando la tabla: " . $con->error;
         }
     }
+        */
     ?>
+    -->
     <?php foot(); ?>
     <script>
         function cerrarPagina() {
