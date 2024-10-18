@@ -4,17 +4,39 @@ include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
 
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
+
 echo "Movil: " . $movil = $_POST['movil'];
-$deposito_en_ft = 0;
-$dep_mercado = 0;
-
-
-## CONSULTA PARA LA DEUDA ANTERIOR DE LA TABLA COMPETA
-$sql_completa = "SELECT * FROM completa WHERE movil=" . $movil;
-$res_completa = $con->query($sql_completa);
-$row_completa = $res_completa->fetch_assoc();
-$deuda_anterior = $row_completa['deuda_anterior'];
 echo "<br>";
+
+
+
+
+echo "<br>";
+echo "Depositarle al movil: " . $depositarle = $_POST['depo_mov'];
+echo "<br>";
+echo "Porcentaje para base mas cant de vajes: " . $comisiones = $_POST['comi'];
+echo "<br>";
+echo "Total de voucher: " . $tot_voucher = $_POST['tot_voucher'];
+echo "<br>";
+echo "Deposito en efectivo: " . $deposito_en_ft = $_POST['dep_ft'];
+echo "<br>";
+echo "Deposito de MP: " . $dep_mercado = $_POST['dep_mp'];
+echo "<br>";
+
+
+exit;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -34,9 +56,7 @@ $dep_mercado = 0;
 
 
 echo "<br>";
-echo "Deposito en efectivo: " . $deposito_en_ft = $_POST['dep_ft'];
 echo "<br>";
-echo "Deposito de MP: " . $dep_mercado = $_POST['dep_mp'];
 echo "<br>";
 echo "Total de viajes: " . $total_de_viajes = $_POST['viajes'];
 echo "<br>";
@@ -44,8 +64,7 @@ echo "Total de voucher: " . $tot_voucher = $_POST['tot_voucher'];
 echo "<br>";
 echo "Porcentaje para el movil: " . $para_el_movil = $_POST['para_movil'];
 echo "<br>";
-echo "Porcentaje para base mas cant de vajes: " . $comisiones = $_POST['comi'];
-echo "<br>";
+
 echo "Productos vendidos: " . $productos_vendidos = $_POST['prod'];
 echo "<br>";
 echo "Debe de semanas anteriores: " . $debe_sem_ant = $_POST['debe_ant'];
@@ -60,6 +79,7 @@ $vuelto_neg = round($vuelto_con_decimales, 2);
 $vuelto = abs($vuelto_neg);
 echo "Vuelto en efectivo: " . $vuelto;
 echo "<br>";
+
 
 
 if ($deposito_en_ft == 0) {
@@ -223,7 +243,7 @@ if ($con->query($sql_semanas_ant) == FALSE) {
         echo "$observaciones";
     }
 
-    $sql_caja_final = "INSERT INTO caja_final (ft, vueltos, dep_mp, fecha, observaciones) VALUES (?,?,?,?,?)";
+    $sql_caja_final = "INSERT INTO caja_final (ft, vueltos, dep__mp, fecha, observaciones) VALUES (?,?,?,?,?)";
     $stmt_caja_final = $con->prepare($sql_caja_final);
 
     $stmt_caja_final->bind_param("dddss", $deposito_en_ft, $vueltos, $dep_mercado, $fecha, $observaciones);

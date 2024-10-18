@@ -381,6 +381,9 @@ $sql_voucher = $con->query($sql_voucher);
                                 <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $total_a_pagar ?>" style="background-color: #FFFF00M; " readonly>
                                 <input type="hidden" id="pesos" name="pesos" value="<?php echo $pesos = 0 ?>">
                             </li>
+                            &nbsp&nbsp&nbsp&nbsp
+                            <button type="submit" class="btn btn-danger">GUARDAR</button>
+
                         <?php
                         } else {
                         ?>
