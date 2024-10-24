@@ -250,6 +250,11 @@ $sql_voucher = $con->query($sql_voucher);
             }
                 ?>
     </table>
+    <?php
+    if ($can_viajes == 0) {
+        header("Location: instancia_2.php");
+    }
+    ?>
     <h3><?php echo $can_viajes ?> Voucher x <?php echo "$" . $total . "-" ?></h3>
 
     <form action="guarda_cobros_con_voucher.php" method="post" target="_blank">
