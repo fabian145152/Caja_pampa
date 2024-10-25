@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
@@ -290,6 +290,8 @@ $sql_voucher = $con->query($sql_voucher);
             $total_ventas = $ven_1 + $ven_2 + $ven_3 + $ven_4 + $ven_5;
             ?>
 
+
+
         <?php
         }
         ?>
@@ -305,7 +307,7 @@ $sql_voucher = $con->query($sql_voucher);
 
         <form action="guarda_cobros_con_voucher.php" method="post">
 
-
+        
             <div id="contenedor">
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">

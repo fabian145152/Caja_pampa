@@ -66,8 +66,8 @@ echo "<br>";
 if ($hay_voucher > 0) {
     echo "<br>";
     echo "Tiene Voucher...";
-    exit;
-    //include_once "cobro_sin_voucher.php";
+    //exit;
+    include_once "cobro_con_voucher.php";
 } elseif ($deuda_ant > 0) {
     echo "<br>";
     echo "Tiene deuda anterior: ";
