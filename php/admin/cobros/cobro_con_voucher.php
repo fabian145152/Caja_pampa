@@ -178,7 +178,7 @@ $sql_voucher = $con->query($sql_voucher);
                     <div class="column left-column">
                         <?php
                         if ($apellido_titu === $apellido_chof_1) {
-                            echo "Titular: " . $apellido_titu . " " . $apellido_titu;
+                            echo "Titular: " . $nombre_titu . " " . $apellido_titu;
                         } else {
                         ?>
                             <h6> <?php echo "Titular: " . $nombre_titu . " " . $apellido_titu ?>&nbsp;<br></h6>

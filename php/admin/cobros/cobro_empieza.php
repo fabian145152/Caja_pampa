@@ -1,5 +1,8 @@
 <?php
 session_start();
+echo "BIENVENIDO: "  . $_SESSION['uname'] . '<br>';
+echo "Hora de conección :" . $_SESSION['time'] . '<br>';
+
 include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
@@ -58,39 +61,60 @@ echo "Tiene deuda anterior: " . $deuda_ant;
 echo "<br>";
 
 
-
+echo "ACA ESTOY RESOLVIENDO LAS INSTANCIAS";
+echo "<br>";
+echo "PROBAR CON VOUCHER";
+echo "<br>";
+echo "SIN VOUCHER";
+echo "<br>";
+echo "pasea carteles";
+echo "<br>";
 
 ## aca se hacen las 3 instancias de cobro
 ## --------------------------------------
 
 if ($hay_voucher > 0) {
     echo "<br>";
+    echo "<br>";
+    echo "INSTANCIA 1...";
+    echo "<br>";
+    echo "<br>";
     echo "Tiene Voucher...";
-    //exit;
+    echo "<br>";
+    $_SESSION['variable'] = $movil;
     include_once "cobro_con_voucher.php";
 } elseif ($deuda_ant > 0) {
     echo "<br>";
+    echo "<br>";
+    echo "INSTANCIA 2...";
+    echo "<br>";
+    echo "<br>";
     echo "Tiene deuda anterior: ";
-    exit;
+    echo "<br>";
+    $_SESSION['variable'] = $movil;
+    include_once "cobro_sin_voucher.php";
+} elseif ($hay_ventas > 0) {
+    echo "<br>";
+    echo "<br>";
+    echo "INSTANCIA 3...";
+    echo "<br>";
+    echo "<br>";
+    echo "Tiene Solo semana y venta: ";
+    echo "<br>";
+    $_SESSION['variable'] = $movil;
+    include_once "cobro_con_ventas.php";
 } else {
-    echo "Pasea Carteles: ";
-    exit;
+    echo "<br>";
+    echo "<br>";
+
+    echo "INSTANCIA 4...";
+    echo "<br>";
+    echo "Tiene Solo semana: ";
+    echo "<br>";
+    $_SESSION['variable'] = $movil;
+    include_once "cobro_solo_semanas.php";
 }
-exit;
 ## --------------- FIN ------------------
 ## --------------------------------------
 
-if ($hay_voucher <= 0) {
-    echo "<br>";
-    echo "No tiene voucher...";
-    include_once "cobro_sin_voucher.php";
-    exit;
-} else {
-    echo "Tiene";
-    // Definir la variable en la sesión
-    $_SESSION['variable'] = $movil;
-
-    // Redireccionar
-    header("Location: cobro_con_voucher.php");
-    //    exit();
-}
+header("Location:inicio_cobros.php");

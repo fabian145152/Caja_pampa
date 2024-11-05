@@ -46,11 +46,10 @@ $stmt_mov_movil = $con->prepare("INSERT INTO caja_movil (movil,
                                                                 prod_vendidos,
                                                                 calculo_deuda,
                                                                 deposito_voucher,
-                                                                dep_ft,
-                                                                para_el_movil
-                                                                ) VALUES (?,?,?,?,?,?,?,?,?)");
+                                                                dep_ft
+                                                                ) VALUES (?,?,?,?,?,?,?,?)");
 $stmt_mov_movil->bind_param(
-    "iddiidddd",
+    "iddiiddd",
     $movil,
     $comisiones,
     $deuda_ant,
@@ -58,8 +57,7 @@ $stmt_mov_movil->bind_param(
     $ventas,
     $deuda_total,
     $tot_voucher,
-    $deposito_en_ft,
-    $depositarle
+    $deposito_en_ft
 );
 
 if ($stmt_mov_movil->execute() === FALSE) {
