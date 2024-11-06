@@ -145,8 +145,7 @@ $paga_x_semana = $row_debe_semanas['x_semana'];
 $debe_de_semanas =  $row_debe_semanas['total'];
 
 //$amovil;
-
-
+//exit;
 
 ## Voucher validads
 $sql_voucher = "SELECT * FROM voucher_validado WHERE movil = '$amovil'";
@@ -251,9 +250,11 @@ $sql_voucher = $con->query($sql_voucher);
                 ?>
     </table>
     <?php
+    /*
     if ($can_viajes == 0) {
         header("Location: instancia_2.php");
     }
+        */
     ?>
     <h3><?php echo $can_viajes ?> Voucher x <?php echo "$" . $total . "-" ?></h3>
 
@@ -307,7 +308,7 @@ $sql_voucher = $con->query($sql_voucher);
 
         <form action="guarda_cobros_con_voucher.php" method="post">
 
-        
+
             <div id="contenedor">
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
@@ -326,12 +327,10 @@ $sql_voucher = $con->query($sql_voucher);
                             <label class="mi-label">Deuda anterior</label>
                             <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
                         </li>
-                       <!--
                         <li>
                             <label class="mi-label">Ultimo pago deuda:</label>
-                            <input type="text" id="" name="" value="<?php //echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] ?>" readonly>
+                            <input type="text" id="" name="" value="<?php echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] ?>" readonly>
                         </li>
-        -->
                         <li>
                             <label class="mi-label">Debe de semanas anteriores</label>
                             <input type="text" id="debe_ant" name="debe_ant" value="<?php echo $deuda_semanas_anteriores ?>" readonly>
@@ -380,6 +379,8 @@ $sql_voucher = $con->query($sql_voucher);
 
                         <?php
 
+
+
                         "Cuenta final: " . $cuenta = $debe_deuda + $suma_viaje_mas_diez - $noventa;
                         echo "<br>";
                         $total_a_pagar = $total - $suma_viaje_mas_diez - $debe_deuda;
@@ -398,11 +399,11 @@ $sql_voucher = $con->query($sql_voucher);
                         ?>
 
                             <li>
-                                <label class="mi-label">Deposito FT:</label>
+                                <label class="mi-label">El movil debe pagar:</label>
                                 <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $cuenta
                                                                                                 ?>" readonly style="background-color: red; color: #FFFF00; ">
                                 <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus required>
-                                <label class="mi-label">Deposito MP:</label>
+                                <label class="mi-label">El movil debe pagar:</label>
                                 <input type="text" id="dep_mp" name="dep_mp" placeholder="Ingrese Mercado Pago" autofocus required>
                             </li>
 
@@ -421,7 +422,7 @@ $sql_voucher = $con->query($sql_voucher);
 
 
     <br><br><br>
-    <?php foot() ?>
+    <?php  foot() ?>
 
 </body>
 

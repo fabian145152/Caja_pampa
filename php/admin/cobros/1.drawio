@@ -44,7 +44,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="26" value="TIENE DEUDA ANTERIOR&lt;br&gt;?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="465" y="135.5" width="110" height="111" as="geometry"/>
+                    <mxGeometry x="465" y="136.5" width="110" height="111" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" value="SI" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="470" y="231" width="60" height="30" as="geometry"/>
@@ -186,11 +186,11 @@
                 <mxCell id="128" value="SI" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="430" y="770" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="131" value="INSTANCIA&amp;nbsp; 1&lt;br&gt;COBRA CON VOUCHER DEUDA ANTERIOR&lt;br&gt;SEMANAS&lt;br&gt;VENTAS" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="21" width="60" height="131" as="geometry"/>
+                <mxCell id="131" value="INSTANCIA 1&lt;br&gt;COBRA CON VOUCHER DEUDA ANTERIOR&lt;br&gt;SEMANAS&lt;br&gt;VENTAS" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="20" width="60" height="131" as="geometry"/>
                 </mxCell>
-                <mxCell id="132" value="INSTANCIA 2&lt;br&gt;COBRA SIN VOUCHER CON VENTAS SEMANAS&lt;br&gt;CON DEUDA ANTERIOR" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="485" y="-80" width="70" height="180" as="geometry"/>
+                <mxCell id="132" value="INSTANCIA 2&lt;br&gt;COBRA SIN VOUCHER CON&amp;nbsp;&lt;br&gt;DEUDA ANTERIOR&lt;br&gt;SEMANAS&lt;br&gt;VENTAS" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="485" y="-40" width="70" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="133" value="INSTANCIA 3&lt;br&gt;COBRA SOLO SEMANA&lt;br&gt;Y VENTA" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="750" y="-40" width="60" height="100" as="geometry"/>
