@@ -1,5 +1,5 @@
 <?php
-//session_start();
+
 include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
@@ -257,7 +257,8 @@ $sql_voucher = $con->query($sql_voucher);
     ?>
     <h3><?php echo $can_viajes ?> Voucher x <?php echo "$" . $total . "-" ?></h3>
 
-    <form action="guarda_cobros_con_voucher.php" method="post" target="_blank">
+    <!-- EN ESTA LINEA VA EL target="_blank" PARA QUE ABRA EN OTRA SOLAPA-->
+    <form action="guarda_cobros_con_voucher.php" method="post">
 
 
         <?php
@@ -307,7 +308,7 @@ $sql_voucher = $con->query($sql_voucher);
 
         <form action="guarda_cobros_con_voucher.php" method="post">
 
-        
+
             <div id="contenedor">
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
@@ -326,12 +327,13 @@ $sql_voucher = $con->query($sql_voucher);
                             <label class="mi-label">Deuda anterior</label>
                             <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
                         </li>
-                       <!--
+                        <!--
                         <li>
                             <label class="mi-label">Ultimo pago deuda:</label>
-                            <input type="text" id="" name="" value="<?php //echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] ?>" readonly>
+                            <input type="text" id="" name="" value="<?php //echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] 
+                                                                    ?>" readonly>
                         </li>
-        -->
+                         -->
                         <li>
                             <label class="mi-label">Debe de semanas anteriores</label>
                             <input type="text" id="debe_ant" name="debe_ant" value="<?php echo $deuda_semanas_anteriores ?>" readonly>

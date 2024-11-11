@@ -52,6 +52,12 @@ $linea = $resu->fetch_assoc();
 $hay_ventas = $linea['venta_1'];
 $deuda_ant = $linea['deuda_anterior'];
 
+$sql_sem = "SELECT * FROM semanas WHERE movil = " . $mov;
+$sql_res = $con->query($sql_sem);
+$tiene_semanas = $sql_res->fetch_assoc();
+$debe_semanas = $tiene_semanas['total'];
+
+
 /*
 echo "Cantidad de Voucher:  " . $hay_voucher;
 echo "<br>";
@@ -63,6 +69,12 @@ echo "<br>";
 
 ## aca se hacen las 3 instancias de cobro
 ## --------------------------------------
+
+##  INSTANCIA 1
+##  COBRA CON VOUCHER - DEUDA ANTERIOR - SEMANAS ANTERIORES - PRODUCTOS VENDIDOS 
+
+
+
 
 if ($hay_voucher > 0) {
 
@@ -76,11 +88,13 @@ if ($hay_voucher > 0) {
     echo "<br>";
     echo "COBRA CON VENTAS...";
     echo "<br>";
-
+    //exit;
     $_SESSION['variable'] = $movil;
     include_once "cobro_con_voucher.php";
 
-    ## Tiene voucher 
+    ##  INSTANCIA 2
+    ##  COBRA SIN VOUCHER - DEUDA ANTERIOR - SEMANAS ANTERIORES - PRODUCTOS VENDIDOS 
+
 
 } elseif ($deuda_ant > 0) {
     echo "INSTANCIA 2...";
@@ -93,6 +107,7 @@ if ($hay_voucher > 0) {
     echo "<br>";
     echo "COBRA CON VENTAS...";
     echo "<br>";
+    //exit;
     $_SESSION['variable'] = $movil;
 
     $sql_tiene_voucher = "SELECT * FROM voucher_validados WHERE movil=" . $movil;
@@ -107,30 +122,22 @@ if ($hay_voucher > 0) {
 
     ## aca hay que hacer una consulta para saber si hay voucher validado
 
+    ##  INSTANCIA 3
+    ##  COBRA SEMANAS ANTERIORES - PRODUCTOS VENDIDOS 
 
-} elseif ($hay_ventas > 0) {
+
+} elseif ($hay_ventas > 0 || $debe_semanas > 0) {
     echo "INSTANCIA 3...";
     echo "<br>";
     echo "COBRA CON SEMANAS...";
     echo "<br>";
     echo "COBRA CON VENTAS...";
-    exit;
     echo "<br>";
+    //exit;
     $_SESSION['variable'] = $movil;
     include_once "cobro_con_ventas.php";
-} else {
-
-    exit;
-
-    echo "INSTANCIA 4...";
-    echo "<br>";
-    echo "COBRA SOLO SEMANAS...";
-    echo "<br>";
-    echo "PASEA CARTELES...";
-    $_SESSION['variable'] = $movil;
-    exit;
-    include_once "cobro_solo_semanas.php";
 }
+
 ## --------------- FIN ------------------
 ## --------------------------------------
 

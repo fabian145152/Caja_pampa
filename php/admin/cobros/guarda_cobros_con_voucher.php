@@ -8,6 +8,9 @@ echo "BIENVENIDO: "  . $_SESSION['uname'] . '<br>';
 echo "Hora de conección :" . $_SESSION['time'] . '<br>';
 $usuario = $_SESSION['uname'];
 
+
+## MUESTRA TODOS LOS POST QUE LLEGAN
+
 echo '<pre>';
 print_r($_POST);
 echo '</pre>';
