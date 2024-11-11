@@ -1,31 +1,39 @@
 <?php
 session_start();
 include_once "../../../funciones/funciones.php";
+
 $con = conexion();
 $con->set_charset("utf8mb4");
 
-echo "BIENVENIDO: "  . $_SESSION['uname'] . '<br>';
-echo "Hora de conección :" . $_SESSION['time'] . '<br>';
-$usuario = $_SESSION['uname'];
 
 
 ## MUESTRA TODOS LOS POST QUE LLEGAN
-
+/*
 echo '<pre>';
 print_r($_POST);
 echo '</pre>';
+*/
 
+echo "EVENTO REALIZADO POR: "  . $_SESSION['uname'] . '<br>';
+$_SESSION['time'] . '<br>';
+echo date("d-m-Y");
+$usuario = $_SESSION['uname'];
+echo "<br>";
 echo "Movil: " . $movil = $_POST['movil'];
 echo "<br>";
 
-$depositarle = 0;
 
+echo "Total de voucher: " . $tot_voucher = $_POST['tot_voucher'];
 echo "<br>";
 echo "Depositarle al movil: " . $depositarle = $_POST['depo_mov'];
 echo "<br>";
 echo "Porcentaje para base mas cant de vajes: " . $comisiones = $_POST['comi'];
 echo "<br>";
-echo "Total de voucher: " . $tot_voucher = $_POST['tot_voucher'];
+echo "<br>";
+echo "<br>";
+echo "<br>";
+
+echo "<br>";
 echo "<br>";
 echo "Deposito en efectivo: " . $dep_ft = $_POST['dep_ft'];
 echo "<br>";
@@ -176,14 +184,14 @@ if ($stmt_voucher->execute()) {
 }
 
 
-
-
-
+include_once "recibo.php";
 
 exit;
+
 header("Location:inicio_cobros.php");
 
 ?>
+
 </body>
 
 

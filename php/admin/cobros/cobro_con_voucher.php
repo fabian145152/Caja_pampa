@@ -162,11 +162,10 @@ $sql_voucher = $con->query($sql_voucher);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VISTA CUENTA</title>
     <?php head() ?>
-
     <link rel="stylesheet" href="../../../css/vista_con_voucher.css">
-    <style>
 
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </head>
 
 <body>
@@ -306,7 +305,7 @@ $sql_voucher = $con->query($sql_voucher);
         </style>
 
 
-        <form action="guarda_cobros_con_voucher.php" method="post">
+        <form action="guarda_cobros_con_voucher.php" method="post" id="formulario">
 
 
             <div id="contenedor">
@@ -413,18 +412,19 @@ $sql_voucher = $con->query($sql_voucher);
                             </li>
                     </ul>
                     &nbsp&nbsp&nbsp&nbsp
+
                     <button type="submit" class="btn btn-danger">GUARDAR</button>
 
         </form>
     <?php  }  ?>
     </div>
-    <a href="inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
+    <a href=" inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
     </div>
 
 
     <br><br><br>
     <?php foot() ?>
-
+  
 </body>
 
 </html>

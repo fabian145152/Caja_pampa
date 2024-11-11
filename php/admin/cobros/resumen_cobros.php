@@ -1,53 +1,96 @@
 <?php
 session_start();
-include_once "../../../funciones/funciones.php";
-$con = conexion();
-$movil = $_POST['movil'];
+if ($_SESSION['logueado']) {
+
+    echo "BIENVENIDO ,"  . $_SESSION['uname'] . '<br>';
+
+    echo "Hora de conexión :" . $_SESSION['time'] . '<br>';
+
+    include_once "../../../funciones/funciones.php";
+
+    $con = conexion();
+
+    $con->set_charset("utf8mb4");
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RESUMEN</title>
-    <?php head() ?>
-</head>
 
-<body>
-    <h3>Resumen de cuenta Movil: <?php echo $movil ?></h3>
-    <table class="table table-bordered table-sm table-hover flex col-sm-4" style="zoom:80%">
-        <thead class="table">
-            <tr>
-                <th></th>
-                <th>Movil</th>
-                <th>Deuda anterior</th>
-                <th>Venta de productos</th>
-                
-                <th>Saldo Movil</th>
-                <th>Saldo a favor</th>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RESUMEN</title>
+        <?php head(); ?>
+    </head>
 
-            </tr>
-            <?php
-            $sql_res = "SELECT * FROM caja_movil WHERE movil=" . $movil;
-            $sql_resumen = $con->query($sql_res);
-
-            while ($res = $sql_resumen->fetch_assoc()) {
-            ?>
+    <body>
+        <?php
+        $sql = "SELECT * FROM caja_movil WHERE 1";
+        $listar = $con->query($sql);
+        ?>
+        <table class="table table-bordered table-sm table-hover">
+            <thead class="thead-dark">
                 <tr>
-                    <th></th>
-                    <th><?php echo $movil = $res['movil'];  ?></th>
-                    <th><?php echo $res['deuda_ant'] ?></th>
-                    <th><?php echo $res['venta_de_productos'] ?></th>
-                    
-                    <th><?php echo $res['dep_efectivo'] ?></th>
-                    <th><?php echo $res['saldo_movil'] ?></th>
-                </tr>
-        </thead>
-    <?php
-            }
-    ?>
-    <a href="vista_cobros.php?movil=<?php echo urlencode($movil); ?>">VOLVER</a>
-</body>
 
-</html>
+                    <th>Id</th>
+                    <th>Movil</th>
+                    <th>Comisiones</th>                                                  
+                    <th>Calcula deuda</th>
+                    <th>Dep en Voucher</th>
+                    <th>Dep efectivo</th>
+                    <th>Porcentaje Movil</th>
+                    <th>Efectivo</th>
+                    <th>MP</th>
+                    <th>$ a favor</th>
+                    <th>Fecha</th>
+                    <th>Usuario</th>
+                </tr>
+            </thead>
+
+            <div>
+                <thead>
+                    <?php
+
+                    while ($ver = $listar->fetch_assoc()) {
+                    ?>
+                        <form action="delete_usuario.php" method="get">
+
+                            <tr>
+
+                                <th><?php echo $ver['id'] ?></th>
+                                <th><?php echo $ver['movil'] ?></th>
+                                <th><?php echo $ver['comisiones'] ?></th>                                                            
+                             
+                                <th><?php echo $ver['calculo_deuda'] ?></th>
+                                <th><?php echo $ver['deposito_voucher'] ?></th>
+                                <th><?php echo $ver['dep_ft'] ?></th>
+                                <th><?php echo $ver['para_el_movil'] ?></th>
+                                <th><?php echo $ver['ft_en_caja'] ?></th>
+                                <th><?php echo $ver['dep_mp'] ?></th>
+                                <th><?php echo $ver['pesos_a_favor'] ?></th>
+                                <th><?php echo $ver['fecha'] ?></th>
+                                <th><?php echo $ver['usuario'] ?></th>
+
+
+                                
+                            </tr>
+
+                            </tr>
+
+                        </form>
+                    <?php
+                    }
+                    ?>
+                    <a href="../../salir.php">SALIR</a>
+                </thead>
+            </div>
+        </table>
+        <?php foot();
+        ?>
+    </body>
+
+    </html>
+<?php
+}
+?>

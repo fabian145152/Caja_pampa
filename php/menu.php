@@ -107,11 +107,11 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm" target="__blank">VENTA</a></li>
                         <br>
-                        <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-danger btn-block btn-sm">COBRAR A MOVIL</a></li>
+                        <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-primary btn-block btn-sm">COBRAR A MOVIL</a></li>
+                        <br>
+                        <li><a href="admin/cobros/resumen_cobros.php" target="_blank" class=" btn btn-danger btn-block btn-sm">RESUMEN DE CAJA</a></li>
                         <br>
                         <li><a href="" target="_blank" class=" btn btn-danger btn-block btn-sm">DEPOSITOS A REALIZAR PARA LOS CHOFERES</a></li>
-                        <br>
-                        <li><a href="#" class=" btn btn-primary btn-block btn-sm">RESUMEN DE CAJA</a></li>
                         <br>
                         <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
                         <br>

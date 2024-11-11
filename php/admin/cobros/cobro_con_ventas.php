@@ -415,6 +415,7 @@ $sql_voucher = $con->query($sql_voucher);
                                 <p>debe cargar algun valor si no no seguira adelante</p>
                             </li>
                     </ul>
+                  
                     &nbsp&nbsp&nbsp&nbsp
                     <button type="submit" class="btn btn-danger">GUARDAR</button>
 
