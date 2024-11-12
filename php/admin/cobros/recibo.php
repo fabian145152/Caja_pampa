@@ -67,12 +67,22 @@ if ($dep_ft > 0) {
     $pdf->MultiCell(0, 10, "Deposito en FT: $dep_ft");
 }
 
+$falta = $total_a_depositar + $dep_ft + $dep_mercado;
+$fal = "$" . $falta . "-";
+//$pdf->MultiCell(0, 10, "Faltan: $falta");
 
-if ($total_a_depositar > 0) {
-    $pdf->MultiCell(0, 10, "Total a depositar: $total_a_depositar");
-} else {
-    $pdf->MultiCell(0, 10, "Debe abonar: ");
+
+//$pdf->MultiCell(0, 10, "Falta:  $falta   Lo muestra siempre");
+
+if ($falta < 0) {
+    $pdf->MultiCell(0, 10, "Queda debiendo:  $fal ");
+} elseif ($falta > 0) {
+    $pdf->MultiCell(0, 10, "Saldo a favor:  $fal ");
+} elseif ($falta == 0) {
+    $pdf->MultiCell(0, 10, "Deuda cero... ");
 }
+
+
 
 
 //$pdf->MultiCell(0, 10, 'Este es un archivo generado automaticamente con los datos de su pago.');
@@ -88,6 +98,7 @@ echo "<br>";
 echo "<br>";
 $directorio = "recibos/";
 
+
 //exit;
 // Definir la ruta donde guardar el PDF
 $nombreArchivo = $movil . '_' . date("d-m-Y") . '.pdf';
@@ -99,3 +110,40 @@ $pathArchivo = $directorioDestino . $nombreArchivo;
 $pdf->Output('F', $pathArchivo);
 
 echo "PDF generado y guardado en: " . $pathArchivo;
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+
+$sql_caja_final = "SELECT * FROM caja_final ORDER BY id DESC LIMIT 1";
+$sql_caja = $con->query($sql_caja_final);
+$sql_row = $sql_caja->fetch_assoc();
+
+echo $sql_row['dep_ft'];
+echo "<br>";
+echo $sql_row['dep_ant_ft'];
+echo "<br>";
+echo $sql_row['ft_actual'];
+echo "<br>";
+echo $sql_row['extra_ft'];
+echo "<br>";
+echo $sql_row['deposito_ft'];
+echo "<br>";
+echo $sql_row['dep_mp'];
+echo "<br>";
+echo $sql_row['dep_ant_mp'];
+echo "<br>";
+echo $sql_row['mp_actual'];
+echo "<br>";
+echo $sql_row['extra_mp'];
+echo "<br>";
+echo $sql_row['deposito_mp'];
+echo "<br>";
+echo $sql_row['fecha'];
+echo "<br>";
+echo $sql_row['nombre'];
+echo "<br>";
+echo $sql_row['observaciones'];
+echo "<br>";
+
