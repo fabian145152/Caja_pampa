@@ -355,6 +355,7 @@ $sql_voucher = $con->query($sql_voucher);
                             <label class="mi-label">Paga por viajes realizados</label>
                             <input type="text" id="viajes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
                         </li>
+                        <input type="hidden" id="can_viajes" name="can_viajes" value="<?php echo $can_viajes ?>">
                         <li>
                             <label class="mi-label">Debe sumado</label>
                             <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>" readonly>
@@ -424,7 +425,7 @@ $sql_voucher = $con->query($sql_voucher);
 
     <br><br><br>
     <?php foot() ?>
-  
+
 </body>
 
 </html>
