@@ -114,7 +114,7 @@ $sql_activo = "SELECT * FROM semanas WHERE 1";
                 <tr>
                     <!-- <th><?php echo $id = $row['id'] ?></th> -->
                     <th><?php echo $movil = $row['movil']; ?></th>
-                    <th>agregar acvivo</th>
+                    <th>agregar acvtivo</th>
                     <th><?php echo $row['nombre_titu'] ?></th>
                     <th><?php echo $row['apellido_titu'] ?></th>
                     <th><?php echo $row['cel_titu'] ?></th>

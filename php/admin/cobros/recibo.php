@@ -7,7 +7,7 @@ require "../../../funciones/fpdf/fpdf.php";
 $width = 200;
 $height = 150;
 
-
+$user = $_SESSION['uname'];
 
 $dia = date("d-m-Y");
 $voucher = "$" . $tot_voucher . "-";
@@ -83,19 +83,20 @@ if ($falta < 0) {
 }
 
 
+$pdf->MultiCell(0, 10, "Operador: $user");
 
 
 //$pdf->MultiCell(0, 10, 'Este es un archivo generado automaticamente con los datos de su pago.');
 //Nombre del archivo a guardar
 
-echo "Movil" . $movil;
-echo "<br>";
-echo "Fecha y hora" . $fecha;
-echo "<br>";
+//echo "Movil" . $movil;
+//echo "<br>";
+//echo "Fecha y hora" . $fecha;
+//echo "<br>";
 $nombre = $movil . "_" . $fecha;
-echo "<br>";
-echo "<br>";
-echo "<br>";
+//echo "<br>";
+//echo "<br>";
+//echo "<br>";
 $directorio = "recibos/";
 
 
@@ -111,39 +112,96 @@ $pdf->Output('F', $pathArchivo);
 
 echo "PDF generado y guardado en: " . $pathArchivo;
 echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
+
+
+
+
+
 
 $sql_caja_final = "SELECT * FROM caja_final ORDER BY id DESC LIMIT 1";
 $sql_caja = $con->query($sql_caja_final);
 $sql_row = $sql_caja->fetch_assoc();
 
-echo $sql_row['dep_ft'];
+
+echo "Deposito en FT hoy: " . $dep_ft;
 echo "<br>";
-echo $sql_row['dep_ant_ft'];
+echo "Deposito de hoy en MP: " . $dep_mercado;
 echo "<br>";
-echo $sql_row['ft_actual'];
+echo "Deposito anterior en FT: " . $deposito_ant_ft_ant = $sql_row['dep_ant_ft'];
 echo "<br>";
-echo $sql_row['extra_ft'];
-echo "<br>";
-echo $sql_row['deposito_ft'];
-echo "<br>";
-echo $sql_row['dep_mp'];
-echo "<br>";
-echo $sql_row['dep_ant_mp'];
-echo "<br>";
-echo $sql_row['mp_actual'];
-echo "<br>";
-echo $sql_row['extra_mp'];
-echo "<br>";
-echo $sql_row['deposito_mp'];
-echo "<br>";
-echo $sql_row['fecha'];
-echo "<br>";
-echo $sql_row['nombre'];
-echo "<br>";
-echo $sql_row['observaciones'];
+echo "Deposito anterior en MP: " . $deposito_ant_mp_ant = $sql_row['dep_ant_mp'];
+
 echo "<br>";
 
+$ft_actual_ant = $sql_row['ft_actual'];
+$extra_ft_ant = $sql_row['extra_ft'];
+$deposito_ft_ant = $sql_row['deposito_ft'];
+$dep_ant_mp_ant = $sql_row['dep_ant_mp'];
+$mp_actual_ant = $sql_row['mp_actual'];
+$extra_mp_ant = $sql_row['extra_mp'];
+$deposito_mp_ant = $sql_row['deposito_mp'];
+$fecha_mov_ant = $sql_row['fecha'];
+$operador_ant = $sql_row['nombre'];
+$obs_ant = $sql_row['observaciones'];
+
+echo "aca";
+echo "<br>";
+echo "Saldo actual ft; " . $saldo_actual_ft = $deposito_ant_ft_ant + $dep_ft;
+echo "<br>";
+echo "Saldo actual mp:" . $saldo_actual_mp = $deposito_ant_mp_ant + $dep_mercado;
+echo "<br>";
+
+
+//exit;
+
+// Verificar la conexión
+if ($con->connect_error) {
+    die("Conexión fallida: " . $con->connect_error);
+    exit;
+}
+
+
+$stmt = $con->prepare("INSERT INTO caja_final(
+                                        
+                                        dep_ft_hoy, 
+                                        dep_ant_ft,
+
+                                        ft_actual, 
+                                        extra_ft, 
+                                        deposito_ft, 
+                                        
+                                        dep_mp_hoy, 
+                                        dep_ant_mp, 
+
+                                        mp_actual,
+                                        extra_mp,
+                                        deposito_mp,
+                                        fecha,
+                                        nombre) 
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+$stmt->bind_param(
+    "ddddddddddss",
+    $dep_ft,
+    $saldo_actual_ft,
+
+    $ft_actual,
+    $extra_ft,
+    $extra_ft,
+
+    $dep_mercado,
+    $saldo_actual_mp,
+
+    $mp_actual,
+    $extra_mp,
+    $deposito_mp,
+    $fecha,
+    $user
+);
+
+// Ejecutar la consulta
+if ($stmt->execute()) {
+    echo "Registro creado exitosamente";
+} else {
+    echo "Error de creacion de registro: " . $stmt->error;
+    exit;
+}

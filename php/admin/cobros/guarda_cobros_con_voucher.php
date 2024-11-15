@@ -38,10 +38,11 @@ echo "<br>";
 echo "Deuda anterior: " . $deuda_ant = $_POST['deuda_ant'];
 echo "<br>";
 
+echo "-------------------------------";
 echo "<br>";
 echo "Deposito en efectivo: " . $dep_ft = $_POST['dep_ft'];
 echo "<br>";
-echo "Deposito de MP: " . $dep_mercado = $_POST['dep_mp'];
+echo "Deposito en MP: " . $dep_mercado = $_POST['dep_mp'];
 echo "<br>";
 echo "Total ventas: " . $otal_ventas = $_POST['prod'];
 echo "<br>";
@@ -188,7 +189,7 @@ if ($stmt_voucher->execute()) {
 
 include_once "recibo.php";
 
-exit;
+//exit;
 
 header("Location:inicio_cobros.php");
 

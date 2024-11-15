@@ -44,8 +44,8 @@ if ($_SESSION['logueado']) {
         <h4>SEMANA: <?php echo $semana_actual ?></h4>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-4">
-                    <h3>MENU USUARIOS</h3>
+                <div class="col-md-3">
+                    <h3>USUARIOS</h3>
                     <ul class="list-group">
                         <li><a href="usuario/inicio_usuario.php" class="btn btn-primary btn-block btn-sm">CREAR USUARIOS</a></li>
                         <br>
@@ -53,7 +53,7 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-primary btn-block btn-sm">AYUDA</a></li>
                     </ul>
-                    <h3>MENU MOVILES</h3>
+                    <h3>MOVILES</h3>
                     <ul class="list-group">
 
                         <li><a href="ayuda/crear_para_cobrar.php" target="_blank" class="btn btn-info btn-block btn-sm">COMO ARMAR UNA UNIDAD</a></li>
@@ -66,10 +66,11 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/uni_comp/list_uni_comp.php" class="btn btn-primary btn-block btn-sm" target="_blank">EDICION DE UNIDAD COMPLETA</a></li>
                         <br>
-
+                        <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
+                        <br>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <h3>MENU DE CAJA</h3>
                     <ul class="list-group">
                         <li><a href="ayuda/ayuda_voucher.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE CARGA DE VOUCHER</a></li>
@@ -91,16 +92,16 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li> <a href="admin/genera_deuda/genera_deuda.php" class="btn btn-primary btn-block btn-sm" target="__blank">GENERAR DEUDA ANTERIOR</a></li>
                         <br>
-                        <li><a href="admin/venta/venta_prod.php" class=" btn btn-primary btn-block btn-sm" target="__blank">STOCK DE PRODUCTOS PARA LA VENTA</a></li>
-                        <br>
+
                     </ul>
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <h3>MENU CAJA </h3>
                     <ul class="list-group">
-
+                        <li><a href="admin/venta/venta_prod.php" class=" btn btn-primary btn-block btn-sm" target="__blank">STOCK DE PRODUCTOS PARA LA VENTA</a></li>
+                        <br>
                         <li> <a href="admin/abonos_viajes/inicio_abonos.php" class="btn btn-primary btn-block btn-sm" target="__blank">IMPORTE DE LOS VIAJES</a></li>
                         <br>
                         <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
@@ -109,17 +110,22 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-primary btn-block btn-sm">COBRAR A MOVIL</a></li>
                         <br>
-                        <li><a href="admin/cobros/resumen_cobros.php" target="_blank" class=" btn btn-danger btn-block btn-sm">RESUMEN DE CAJA</a></li>
+                        <li><a href="admin/cobros/resumen_cobros.php" target="_blank" class=" btn btn-primary btn-block btn-sm">RESUMEN DE DEPOSITOS DE MOVIL</a></li>
                         <br>
-                        <li><a href="admin/cobros/recibos" target="_blank" class=" btn btn-danger btn-block btn-sm">RECIBOS</a></li>
+                        <li><a href="admin/cobros/recibos" target="_blank" class=" btn btn-primary btn-block btn-sm">RECIBOS</a></li>
                         <br>
+
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>MENU CAJA </h3>
+                    <ul class="list-group">
+                        <li><a href="admin/moviminetos_de_caja/inicio_movimientos.php" target="_blank" class=" btn btn-primary btn-block btn-sm">EXTRACCIONES</a></li>
+                        <br>
+                        <br><br><br>
                         <li><a href="" target="_blank" class=" btn btn-danger btn-block btn-sm">DEPOSITOS A REALIZAR PARA LOS CHOFERES</a></li>
                         <br>
-                        <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
-                        <br>
                         <li><a href="#" class=" btn btn-INFO btn-block btn-sm">INGRESOS</a></li>
-                        <br>
-                        <li><a href="#" class=" btn btn-INFO btn-block btn-sm">EXTRACCIONES</a></li>
                         <br>
                         <li><a href="admin/envia_mail_desde_BBDD/inicio_email.php btn-sm" class="btn btn-info btn-block">F-MAILER</a></li>
                     </ul>
