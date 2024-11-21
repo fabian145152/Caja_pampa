@@ -8,3 +8,6 @@
 # azules terminados
 # celestes en proceso
 
+## Correcciones a revisar.
+
+1_ Cuando creo los numeros de movil, me da alerta de movil duplicado siempre

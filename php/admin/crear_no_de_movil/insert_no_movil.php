@@ -38,7 +38,7 @@ $con->set_charset("utf8mb4");
                     </div>
                     <br>
                     <div class="text-center">
-                        <a href="list_no_movil.php" class="btn btn-success" value="SALIR">SALIR</a>
+                        <a href="../../menu.php" class="btn btn-success" value="SALIR">SALIR</a>
 
                     </div>
 

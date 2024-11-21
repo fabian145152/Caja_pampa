@@ -11,6 +11,11 @@ $con->set_charset("utf8mb4");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUMERO DE MOVIL</title>
     <?php head() ?>
+    
+    <script src="../../../js/jquery-3.4.1.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/bootbox.min.js"></script>
+
     <style>
         body {
             margin: 0px 150px;
@@ -59,7 +64,6 @@ $con->set_charset("utf8mb4");
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <!-- <a href="ListaContacto.php" class="btn btn-primary btn-sm">LISTAR MOVILES</a>  -->
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="../../ayuda/ayuda.html" target=" _blank" class="btn btn-primary btn-sm">AYUDA</a>
         </div>
 
     </div>

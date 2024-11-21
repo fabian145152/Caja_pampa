@@ -40,6 +40,21 @@ $sql_activo = "SELECT * FROM semanas WHERE 1";
         * {
             font-size: 12px;
         }
+
+        a {
+            margin-right: 10px;
+            /* Separación entre enlaces */
+            text-decoration: none;
+            /* Sin subrayado */
+            color: blue;
+            /* Color del texto */
+            font-size: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            /* Subrayado al pasar el mouse */
+        }
     </style>
     <script>
         function deleteProduct(cod_titular) {
@@ -70,6 +85,16 @@ $sql_activo = "SELECT * FROM semanas WHERE 1";
         <?php echo $cant_cargas . " UNIDADES CARGADAS." ?>
         <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
         &nbsp;&nbsp;<a href="../../ayuda/ayuda.html" target=" _blank">AYUDA</a>
+        <div>
+            <a href="estado/abogado.php" style="color: red" target="_blank">ABOGADO</a>
+            <a href="estado/aldia.php" style="color: cyan" target="_blank">AL DIA</a>
+            <a href="#link3" style="color: burlywood;" target="_blank">CARTA</a>
+            <a href="#link4" style="color: blue;" target="_blank">DEUDA PENDIENTE</a>
+            <a href="#link5" style="color:aqua" target="_blank">MURIO</a>
+            <a href="#link6" style="color: gray;" target="_blank">PARA ABOGADO</a>
+            <a href="#link7" style="color: greenyellow;" target="_blank">VER</a>
+        </div>
+
     </h2>
 
     <table class=" table table-bordered table-sm table-hover">
@@ -77,7 +102,6 @@ $sql_activo = "SELECT * FROM semanas WHERE 1";
             <tr>
 
                 <th>Movil</th>
-                <th>Activo</th>
                 <th>Nom Titular</th>
                 <th>Ape Titu</th>
                 <th>Cel titu</th>
@@ -114,7 +138,7 @@ $sql_activo = "SELECT * FROM semanas WHERE 1";
                 <tr>
                     <!-- <th><?php echo $id = $row['id'] ?></th> -->
                     <th><?php echo $movil = $row['movil']; ?></th>
-                    <th>agregar acvtivo</th>
+
                     <th><?php echo $row['nombre_titu'] ?></th>
                     <th><?php echo $row['apellido_titu'] ?></th>
                     <th><?php echo $row['cel_titu'] ?></th>

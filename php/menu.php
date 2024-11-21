@@ -45,16 +45,16 @@ if ($_SESSION['logueado']) {
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-3">
-                    <h3>USUARIOS</h3>
                     <ul class="list-group">
+                        <h3>USUARIOS</h3>
                         <li><a href="usuario/inicio_usuario.php" class="btn btn-primary btn-block btn-sm">CREAR USUARIOS</a></li>
                         <br>
-                        <li><a href="administrador/logeados/logeos.php" class="btn btn-info btn-block btn-sm">SESIONES en proceso</a></li>
-                        <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-primary btn-block btn-sm">AYUDA</a></li>
+                        <h3>BACKUP</h3>
+                        <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP</a></li>
                     </ul>
-                    <h3>MOVILES</h3>
                     <ul class="list-group">
+                        <h3>UNIDADES</h3>
 
                         <li><a href="ayuda/crear_para_cobrar.php" target="_blank" class="btn btn-info btn-block btn-sm">COMO ARMAR UNA UNIDAD</a></li>
                         <br>
@@ -66,47 +66,46 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/uni_comp/list_uni_comp.php" class="btn btn-primary btn-block btn-sm" target="_blank">EDICION DE UNIDAD COMPLETA</a></li>
                         <br>
-                        <li><a href="admin/listados/lista_numeros.php" class=" btn btn-primary btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
-                        <br>
+                        <li><a href="admin/observaciones/inicio_obs.php" target="_blank" class="btn btn-primary btn-block btn-sm">OBSERVACIONES X MOVIL.</a></li>
+
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h3>MENU DE CAJA</h3>
                     <ul class="list-group">
-                        <li><a href="ayuda/ayuda_voucher.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE CARGA DE VOUCHER</a></li>
-                        <br>
-                        <li> <a href="admin/voucher/inicio_voucher.php" target="_blank" class="btn btn-primary btn-block btn-sm">VOUCHER</a></li>
-                        <br>
-                        <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP</a></li>
-                        <br>
+                        <h3>SEMANAS</h3>
+
                         <li><a href="semana/semana.php" class=" btn btn-primary btn-block btn-sm">SEMANA los lunes solamente...
                                 <p style="margin-top:0; margin-bottom:0;"><small>Una vez, los lunes al empezar.</small></p>
 
                             </a></li>
                         <br>
-                        <li><a href="ayuda/help.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE COBROS</a></li>
+                        <h3>VOUCHER</h3>
+                        <li><a href="ayuda/ayuda_voucher.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE CARGA DE VOUCHER</a></li>
                         <br>
-                        <li><a href="admin/observaciones/inicio_obs.php" target="_blank" class="btn btn-primary btn-block btn-sm">OBSERVACIONES X MOVIL.</a></li>
+                        <li><a href="http://taxicorp.rtportenio.com/Web/Account/Login" target="_blank" class="btn btn-secondary btn-block btn-sm">APP SATELITAL</a></li>
                         <br>
+                        <li> <a href="admin/voucher/inicio_voucher.php" target="_blank" class="btn btn-primary btn-block btn-sm">VOUCHER DE CAJA</a></li>
+                        <h3>VENTAS</h3>
+                        <li><a href="admin/venta/venta_prod.php" class=" btn btn-primary btn-block btn-sm" target="__blank">STOCK DE PRODUCTOS</a></li>
+                        <br>
+                        <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm" target="__blank">VENTA</a></li>
+                        <h3>TARIFAS</h3>
                         <li> <a href="admin/arma_unidad/inicio_arma.php" class="btn btn-primary btn-block btn-sm" target="__blank">CONFIGURA UNIDAD PARA COBRAR</a></li>
                         <br>
-                        <li> <a href="admin/genera_deuda/genera_deuda.php" class="btn btn-primary btn-block btn-sm" target="__blank">GENERAR DEUDA ANTERIOR</a></li>
+                        <li> <a href="admin/abonos_viajes/inicio_abonos.php" class="btn btn-primary btn-block btn-sm" target="__blank">IMPORTE DE LOS VIAJES</a></li>
                         <br>
-
+                        <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
                     </ul>
                 </div>
 
 
                 <div class="col-md-3">
-                    <h3>MENU CAJA </h3>
                     <ul class="list-group">
-                        <li><a href="admin/venta/venta_prod.php" class=" btn btn-primary btn-block btn-sm" target="__blank">STOCK DE PRODUCTOS PARA LA VENTA</a></li>
+                        <h3>MENU CAJA </h3>
+
+                        <li><a href="ayuda/help.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE COBROS</a></li>
                         <br>
-                        <li> <a href="admin/abonos_viajes/inicio_abonos.php" class="btn btn-primary btn-block btn-sm" target="__blank">IMPORTE DE LOS VIAJES</a></li>
-                        <br>
-                        <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
-                        <br>
-                        <li><a href="admin/ventas/inicio_ventas.php" class=" btn btn-primary btn-block btn-sm" target="__blank">VENTA</a></li>
+                        <li> <a href="admin/genera_deuda/genera_deuda.php" class="btn btn-primary btn-block btn-sm" target="__blank">GENERAR DEUDA ANTERIOR</a></li>
                         <br>
                         <li><a href="admin/cobros/inicio_cobros.php" target="_blank" class=" btn btn-primary btn-block btn-sm">COBRAR A MOVIL</a></li>
                         <br>
@@ -114,22 +113,45 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/cobros/recibos" target="_blank" class=" btn btn-primary btn-block btn-sm">RECIBOS</a></li>
                         <br>
+                        <li><a href="admin/moviminetos_de_caja/inicio_movimientos.php" target="_blank" class=" btn btn-primary btn-block btn-sm">EXTRACCIONES</a></li>
+                        <br>
+                        <h3>SIN TERMINAR</h3>
+                        <h3>ESTADOS </h3>
+                        <li><a href="" target="_blank" class=" btn btn-danger btn-block btn-sm">ABOGADO</a></li>
+                        <br>
+                        <li><a href="admin/uni_comp/estado/al_dia.php" target="_blank" class=" btn btn-success btn-block btn-sm">AL DIA</a></li>
+                        <br>
+                        <li><a href="" target="_blank" class=" btn btn-secondary btn-block btn-sm">CARTA</a></li>
+                        <br>
+                        <li><a href="" target="_blank" class=" btn btn-primary btn-block btn-sm">DEUDA PENDIENTE</a></li>
+                        <br>
+                        <li><a href="" target="_blank" class=" btn btn-ligth btn-block btn-sm">QRT</a></li>
+                        <br>
+                        <li><a href="admin/uni_comp/estado/abogado.php" target="_blank" class=" btn btn-dark btn-block btn-sm">PARA ABOGADO</a></li>
+                        <br>
+                        <li><a href="" target="_blank" class=" btn btn-warning btn-block btn-sm">VER</a></li>
+                        <br>
 
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h3>MENU CAJA </h3>
                     <ul class="list-group">
-                        <li><a href="admin/moviminetos_de_caja/inicio_movimientos.php" target="_blank" class=" btn btn-primary btn-block btn-sm">EXTRACCIONES</a></li>
-                        <br>
-                        <br><br><br>
-                        <li><a href="" target="_blank" class=" btn btn-danger btn-block btn-sm">DEPOSITOS A REALIZAR PARA LOS CHOFERES</a></li>
+                        <h3>SIN TERMINAR</h3>
+                        <li><a href="" target="_blank" class=" btn btn-info btn-block btn-sm">DEPOSITOS A REALIZAR PARA LOS CHOFERES</a></li>
                         <br>
                         <li><a href="#" class=" btn btn-INFO btn-block btn-sm">INGRESOS</a></li>
                         <br>
-                        <li><a href="admin/envia_mail_desde_BBDD/inicio_email.php btn-sm" class="btn btn-info btn-block">F-MAILER</a></li>
+                        <li><a href="#" class="btn btn-info btn-block">F-MAILER</a></li>
+                        <br>
+                        <li><a href="administrador/logeados/logeos.php" class="btn btn-info btn-block btn-sm">SESIONES en proceso</a></li>
+                        <br>
+                        <li><a href="admin/listados/lista_numeros.php" class=" btn btn-info btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
+                        <br>
+
+
                     </ul>
                 </div>
+
             </div>
         </div>
         <br>
@@ -140,7 +162,7 @@ if ($_SESSION['logueado']) {
     <?php
     foot();
 } else {
-    //header("location:../index.php");
+    header("location:../index.php");
 }
     ?>
     </body>
