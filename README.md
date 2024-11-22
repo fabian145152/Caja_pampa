@@ -11,3 +11,5 @@
 ## Correcciones a revisar.
 
 1_ Cuando creo los numeros de movil, me da alerta de movil duplicado siempre
+2_ Cuando entro a crear numeros de movil me dice las variables no son iguales detenio el programa
+

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
+        * {
+            background-color: burlywood;
+        }
+
         a {
             text-align: center;
         }
@@ -17,11 +21,9 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <form action="php/login.php" method="POST" accept-charset="UTF-8" class="form-signin">
-            <h2 class="text-center form-signin-heading">
-                INGRESO A CAJA
-            </h2>
+    <div id="wrapper" style="background-color: burlywood;">
+        <form action="php/login.php" method="POST" accept-charset="UTF-8" class="form-signin" style="background-color: burlywood;">
+            <h2 class="text-center form-signin-heading">INGRESO A CAJA</h2>
             <input type="text" class="form-control" name="username" placeholder="Usuario ó E-mail" required>
             <br>
             <input type="password" class="form-control" name="password" placeholder="contraseña" required>
@@ -29,8 +31,17 @@
             <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
             <!-- No borrar la linea siguiente es para salir a menu principal desde el serv de porte -->
             <br>
-            <a href="../menu.php" class="btn btn-lg btn-info btn-block">SALIR</a>
+            <a href="http://google.com" class="btn btn-lg btn-info btn-block">SALIR</a>
         </form>
+        <ul>
+            <li>Fabian <strong> Superusuario</strong></li>
+            <li>Roberto<strong>Administrador</strong></li>
+            <li>Ricardo <strong> Acceso total</strong></li>
+            <li>Carlos <strong> Edita Unidades</strong></li>
+            <li>Jorge <strong> Solo Cobra</strong></li>
+            <li>Marcelo <strong> Actualiza Cobros</strong></li>
+            <li></li>
+        </ul>
     </div>
 
     <script src="js/jquery-3.4.1.min.js"></script>

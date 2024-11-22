@@ -55,11 +55,11 @@ if ($_SESSION['logueado']) {
                             <label class="control-label">Permisos</label>
                             <select name="permiso" id="permiso" class="form-control">
                                 <option value="elija">Elija</option>
-                                <option value="super">Acceso Total</option>
+                                <option value="admin">Administrador</option>
+                                <option value="total">Acceso Total</option>
                                 <option value="cobro">Cobros</option>
+                                <option value="actualiza">Actualiza precios</option>
                                 <option value="nuevo">Moviles nuevos</option>
-                                <option value="chofer">Choferes nuevos</option>
-                                <option value="solo">Solo lectura</option>
                             </select>
                         </div>
                         <br>

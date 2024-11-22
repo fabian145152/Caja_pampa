@@ -11,25 +11,23 @@ $con->set_charset("utf8mb4");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NUMERO DE MOVIL</title>
     <?php head() ?>
-    
     <script src="../../../js/jquery-3.4.1.min.js"></script>
     <script src="../../../js/bootstrap.min.js"></script>
     <script src="../../../js/bootbox.min.js"></script>
 
-    <style>
-        body {
-            margin: 0px 150px;
-        }
-    </style>
     <script>
+        function cerrarPagina() {
+            window.close();
+        }
+
         function deleteProduct(cod_titular) {
 
             bootbox.confirm("Desea Eliminar?" + cod_titular, function(result) {
-                /*  si la funcion no tiene nombre es una funcion anonima function() o function = nombre()  */
+                /* si la funcion no tiene nombre es una funcion anonima function() o function = nombre() */
                 if (result) {
                     window.location = "delete_no_movil.php?q=" + cod_titular;
                 }
-                /*  La ?q es como si fuera el metodo $_GET */
+                /* La ?q es como si fuera el metodo $_GET */
             });
         }
 
@@ -54,14 +52,11 @@ $con->set_charset("utf8mb4");
             }
         </style>
         <div class="btn-group d-flex w-50" role="group">
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; 
             <a href="insert_no_movil.php" class="btn btn-primary btn-sm">NUEVO NUMERO DE MOVIL</a>
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
-            <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
-
-
-            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; 
+                <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+            &nbsp; &nbsp; &nbsp; 
             <!-- <a href="ListaContacto.php" class="btn btn-primary btn-sm">LISTAR MOVILES</a>  -->
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         </div>

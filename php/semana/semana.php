@@ -1,8 +1,6 @@
 <?php
 
 include_once "../../funciones/funciones.php";
-
-
 $con = conexion();
 $con->set_charset("utf8mb4");
 
@@ -16,6 +14,33 @@ echo "archivo: " . $archivo = "semana.txt";
 echo "<br>";
 // Obtener el número de la semana actual
 $semana_actual = date('W');
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <?php head() ?>
+    <style>
+        #Power-Contenedor {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+
+<?php
+
 
 // Verificar si el archivo existe
 if (file_exists($archivo)) {
@@ -55,12 +80,11 @@ if (file_exists($archivo)) {
             $con->query($inc_semana);
         }
     } else {
-      
+
         echo $variable = file_get_contents("semana.txt");
-     
-    
+
+
         echo "Variable actual: " . $variable;
-    
     }
 }
 

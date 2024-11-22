@@ -45,14 +45,7 @@ if ($_SESSION['logueado']) {
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-3">
-                    <ul class="list-group">
-                        <h3>USUARIOS</h3>
-                        <li><a href="usuario/inicio_usuario.php" class="btn btn-primary btn-block btn-sm">CREAR USUARIOS</a></li>
-                        <br>
-                        <li><a href="ayuda/help.php" target="_blank" class="btn btn-primary btn-block btn-sm">AYUDA</a></li>
-                        <h3>BACKUP</h3>
-                        <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP</a></li>
-                    </ul>
+
                     <ul class="list-group">
                         <h3>UNIDADES</h3>
 
@@ -94,15 +87,16 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li> <a href="admin/abonos_viajes/inicio_abonos.php" class="btn btn-primary btn-block btn-sm" target="__blank">IMPORTE DE LOS VIAJES</a></li>
                         <br>
-                        <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
                     </ul>
                 </div>
 
 
                 <div class="col-md-3">
                     <ul class="list-group">
-                        <h3>MENU CAJA </h3>
 
+                        <h3>MENU CAJA</h3>
+                        <li> <a href="admin/abonos_semanales/inicio_abonos_semanales.php" class="btn btn-primary btn-block btn-sm" target="__blank">ABONOS SEMANALES</a></li>
+                        <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-info btn-block btn-sm">AYUDA DE COBROS</a></li>
                         <br>
                         <li> <a href="admin/genera_deuda/genera_deuda.php" class="btn btn-primary btn-block btn-sm" target="__blank">GENERAR DEUDA ANTERIOR</a></li>
@@ -115,42 +109,10 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/moviminetos_de_caja/inicio_movimientos.php" target="_blank" class=" btn btn-primary btn-block btn-sm">EXTRACCIONES</a></li>
                         <br>
-                        <h3>SIN TERMINAR</h3>
-                        <h3>ESTADOS </h3>
-                        <li><a href="" target="_blank" class=" btn btn-danger btn-block btn-sm">ABOGADO</a></li>
-                        <br>
-                        <li><a href="admin/uni_comp/estado/al_dia.php" target="_blank" class=" btn btn-success btn-block btn-sm">AL DIA</a></li>
-                        <br>
-                        <li><a href="" target="_blank" class=" btn btn-secondary btn-block btn-sm">CARTA</a></li>
-                        <br>
-                        <li><a href="" target="_blank" class=" btn btn-primary btn-block btn-sm">DEUDA PENDIENTE</a></li>
-                        <br>
-                        <li><a href="" target="_blank" class=" btn btn-ligth btn-block btn-sm">QRT</a></li>
-                        <br>
-                        <li><a href="admin/uni_comp/estado/abogado.php" target="_blank" class=" btn btn-dark btn-block btn-sm">PARA ABOGADO</a></li>
-                        <br>
-                        <li><a href="" target="_blank" class=" btn btn-warning btn-block btn-sm">VER</a></li>
-                        <br>
 
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <ul class="list-group">
-                        <h3>SIN TERMINAR</h3>
-                        <li><a href="" target="_blank" class=" btn btn-info btn-block btn-sm">DEPOSITOS A REALIZAR PARA LOS CHOFERES</a></li>
-                        <br>
-                        <li><a href="#" class=" btn btn-INFO btn-block btn-sm">INGRESOS</a></li>
-                        <br>
-                        <li><a href="#" class="btn btn-info btn-block">F-MAILER</a></li>
-                        <br>
-                        <li><a href="administrador/logeados/logeos.php" class="btn btn-info btn-block btn-sm">SESIONES en proceso</a></li>
-                        <br>
-                        <li><a href="admin/listados/lista_numeros.php" class=" btn btn-info btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
-                        <br>
 
-
-                    </ul>
-                </div>
 
             </div>
         </div>

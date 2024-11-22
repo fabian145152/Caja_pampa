@@ -7,7 +7,7 @@ $con->set_charset("utf8mb4");
 
 if ($_SESSION['logueado']) {
 
-    echo '<h4>' . "BIENVENIDO "  . $_SESSION['uname'] . " Superusuario..." . '</h4>';
+    echo '<h4>' . "BIENVENIDO "  . $_SESSION['uname'] . " Administrador..." . '</h4>';
 
     $_SESSION['time'] . '<br>';
 
@@ -115,6 +115,12 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/moviminetos_de_caja/inicio_movimientos.php" target="_blank" class=" btn btn-primary btn-block btn-sm">EXTRACCIONES</a></li>
                         <br>
+
+
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="list-group">
                         <h3>SIN TERMINAR</h3>
                         <h3>ESTADOS </h3>
                         <li><a href="" target="_blank" class=" btn btn-danger btn-block btn-sm">ABOGADO</a></li>
@@ -131,27 +137,8 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="" target="_blank" class=" btn btn-warning btn-block btn-sm">VER</a></li>
                         <br>
-
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <ul class="list-group">
-                        <h3>SIN TERMINAR</h3>
-                        <li><a href="" target="_blank" class=" btn btn-info btn-block btn-sm">DEPOSITOS A REALIZAR PARA LOS CHOFERES</a></li>
-                        <br>
-                        <li><a href="#" class=" btn btn-INFO btn-block btn-sm">INGRESOS</a></li>
-                        <br>
-                        <li><a href="#" class="btn btn-info btn-block">F-MAILER</a></li>
-                        <br>
-                        <li><a href="administrador/logeados/logeos.php" class="btn btn-info btn-block btn-sm">SESIONES en proceso</a></li>
-                        <br>
-                        <li><a href="admin/listados/lista_numeros.php" class=" btn btn-info btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
-                        <br>
-
-
-                    </ul>
-                </div>
-
             </div>
         </div>
         <br>
