@@ -43,7 +43,7 @@ function foot()
         }
     </style>
 
-    <div class="footer">Ver 1.0</div>
+    <div class="footer">Ver 1.2</div>
 <?php
 }
 

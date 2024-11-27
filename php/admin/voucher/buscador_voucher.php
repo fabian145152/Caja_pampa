@@ -53,8 +53,8 @@ $con->set_charset("utf8mb4");
         $movil = $_GET['movil'];
     } else {
         #esta linea viene de listar y tre ael valor del movil
-        $mo = $_POST['movil'];
-        $movil = "A" . $mo;
+        $movil = $_POST['movil'];
+        //$movil = "A" . $mo;
     }
 
 

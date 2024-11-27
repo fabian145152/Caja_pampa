@@ -5,6 +5,8 @@ $con = conexion();
 
 $con->set_charset("utf8mb4");
 
+set_time_limit(0);
+
 $sql_borra = "DELETE FROM `voucher_nuevos` WHERE movil >= 'A3000';";
 $datos = $con->query($sql_borra);
 
@@ -34,8 +36,23 @@ if ($reg_remi > 0) {
         function deleteProduct(cod_voucher) {
             window.location = "borrar_voucher.php?q=" + cod_voucher;
         }
-    </script>
 
+        // Selecciona el enlace por su ID
+        var enlace = document.getElementById('miEnlace');
+
+        // Añade un evento de clic al enlace
+        enlace.addEventListener('click', function(event) {
+            // Evita el comportamiento predeterminado del enlace (navegación)
+            event.preventDefault();
+
+            // Muestra un mensaje de alerta
+            alert('¡Va a borrar todos los vouher!.....');
+        });
+
+        function cerrarPagina() {
+            window.close();
+        }
+    </script>
 </head>
 
 <body>
@@ -155,23 +172,7 @@ if ($reg_remi > 0) {
         ?>
 
     </table>
-    <script>
-        // Selecciona el enlace por su ID
-        var enlace = document.getElementById('miEnlace');
 
-        // Añade un evento de clic al enlace
-        enlace.addEventListener('click', function(event) {
-            // Evita el comportamiento predeterminado del enlace (navegación)
-            event.preventDefault();
-
-            // Muestra un mensaje de alerta
-            alert('¡Va a borrar todos los vouher!.....');
-        });
-
-        function cerrarPagina() {
-            window.close();
-        }
-    </script>
     <br><br>
 
     <?php foot(); ?>

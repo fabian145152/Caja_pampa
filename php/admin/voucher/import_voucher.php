@@ -1,7 +1,10 @@
 <?php
+session_start();
 include_once "../../../funciones/funciones.php";
-include "class.upload.php";
 $con = conexion();
+$con->set_charset("utf8mb4");
+include "class.upload.php";
+
 
 if (isset($_FILES["name"])) {
     $up = new Upload($_FILES["name"]);
@@ -34,12 +37,7 @@ if (isset($_FILES["name"])) {
                 $x_traslado = $sheet->getCell("N" . $row)->getValue();
                 $x_siniestro = $sheet->getCell("O" . $row)->getValue();
                 $x_solicitado = $sheet->getCell("P" . $row)->getValue();
-
-
                 $x_completado = $sheet->getCell("Q" . $row)->getValue();
-
-
-
                 $x_destino = $sheet->getCell("R" . $row)->getValue();
                 $x_reloj = $sheet->getCell("S" . $row)->getValue();
                 $x_peaje = $sheet->getCell("T" . $row)->getValue();
@@ -52,6 +50,18 @@ if (isset($_FILES["name"])) {
                 $x_obs_oper = $sheet->getCell("AA" . $row)->getValue();
                 $x_obs_chof = $sheet->getCell("AB" . $row)->getValue();
 
+                $x_movil . "<br>";
+
+                //$string = "A3000";
+
+                // Extraer el número de la cadena
+                preg_match('/\d+/', $x_movil, $matches);
+
+                // Convertir el resultado a un entero
+                $integer = intval($matches[0]);
+                //echo $integer; // Salida: 3000
+
+                //exit();
 
                 $sql = "insert into voucher_nuevos (
                                             viaje_no, 
@@ -90,7 +100,7 @@ if (isset($_FILES["name"])) {
                         \"$x_estado\",
                         \"$x_nom_pasaj\",
                         \"$x_tel_pasaj\",
-                        \"$x_movil\",
+                        \"$integer\",
                         \"$x_chof\",
                         \"$x_dni\",
                         \"$x_marca\",                        
@@ -113,7 +123,6 @@ if (isset($_FILES["name"])) {
                         \"$x_autorizante\",
                         \"$x_obs_oper\",
                         \"$x_obs_chof\",
-
                         NOW())";
                 $con->query($sql);
             }
