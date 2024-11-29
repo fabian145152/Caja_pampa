@@ -33,32 +33,33 @@ if ($_SESSION['logueado']) {
 
                         <div class="from-group">
                             <label class="control-label" for="username">Nombre de Usuario</label>
-                            <input type="text" class="form-control" name="username" id="username">
+                            <input type="text" class="form-control" name="username" id="username" required>
                         </div>
 
                         <div class="from-group">
                             <label class="control-label" for="pass_1">Password</label>
-                            <input type="password" class="form-control" name="pass_1" id="pass_1">
+                            <input type="password" class="form-control" name="pass_1" id="pass_1" required>
                         </div>
 
                         <div class="from-group">
                             <label class="control-label" for="pass">Repita Password</label>
-                            <input type="password" class="form-control" name="pass_2" id="pass_2">
+                            <input type="password" class="form-control" name="pass_2" id="pass_2" required>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">E-mail</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
                         <div class="from-group">
                             <label class="control-label">Permisos</label>
                             <select name="permiso" id="permiso" class="form-control">
                                 <option value="elija">Elija</option>
+                                <option value="cobro">Solo Cobra</option>
+                                <option value="edita">Crea y edita Unidades</option>
+                                <option value="actualiza">Actualiza precios</option>
                                 <option value="admin">Administrador</option>
                                 <option value="total">Acceso Total</option>
-                                <option value="cobro">Cobros</option>
-                                <option value="actualiza">Actualiza precios</option>
                                 <option value="nuevo">Moviles nuevos</option>
                             </select>
                         </div>

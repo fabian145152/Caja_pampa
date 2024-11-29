@@ -8,6 +8,7 @@ $usr = $_POST['username'];
 $pass = md5($_POST['password']);
 
 
+
 $con->set_charset("utf-8");
 $sql = "SELECT * FROM users WHERE (username='$usr' or email='$usr') and (password='$pass')";
 $result = $con->query($sql);
@@ -71,7 +72,7 @@ if ($permiso === 'super') {
         $_SESSION['time'] = date('H i s');
         header("location:menu_actualiza.php");
     }
-} else if ($permiso === 'total'){
+} else if ($permiso === 'total') {
 
     if ($row == 0) {
         echo "<h1> Ingreso invalido </h1>";
@@ -84,8 +85,7 @@ if ($permiso === 'super') {
         $_SESSION['time'] = date('H i s');
         header("location:menu_total.php");
     }
-
-}else if($permiso === 'admin'){
+} else if ($permiso === 'admin') {
 
     if ($row == 0) {
         echo "<h1> Ingreso invalido </h1>";

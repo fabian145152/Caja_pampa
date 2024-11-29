@@ -117,9 +117,8 @@ $sql_activo = "SELECT * FROM semanas WHERE 1";
                 <th>Modelo</th>
                 <th>Dominio</th>
                 <th>año</th>
-                <th>x_Viaje</th>
-                <TH>abono</TH>
-                <th>Deuda_ant</th>
+               
+               
                 <th>Detalles</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
@@ -154,10 +153,9 @@ $sql_activo = "SELECT * FROM semanas WHERE 1";
                     <th><?php echo $row['modelo'] ?></th>
                     <th><?php echo $row['dominio'] ?></th>
                     <th><?php echo $row['año'] ?></th>
-                    <th><?php echo $row['x_viaje'] ?></th>
-                    <th><?php echo $row['x_semana'] ?></th>
-                    <th><?php echo $row['deuda_anterior'] ?></th>
-
+                   <!--
+                    <th><?php //echo $row['deuda_anterior'] ?></th>
+        -->
                     <td> <a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $row['id']; ?>)">Detalles</td>
                     <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>
                     <td><button type="submit" name="q" id="q" value="<?php echo $id ?>" class=" btn btn-danger btn-sm">BORRAR</button>

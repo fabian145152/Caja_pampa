@@ -11,7 +11,7 @@ if ($_SESSION['logueado']) {
     $con = conexion();
 
     $con->set_charset("utf8mb4");
-
+    $contador = 0;
 ?>
     <!DOCTYPE html>
     <html lang="es">
@@ -22,6 +22,7 @@ if ($_SESSION['logueado']) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>USUARIOS</title>
         <?php head(); ?>
+
     </head>
 
     <body>
@@ -32,7 +33,7 @@ if ($_SESSION['logueado']) {
         <table class="table table-bordered table-sm table-hover">
             <thead class="thead-dark">
                 <tr>
-                    <th>Id</th>
+
                     <th>Nombre de usuario</th>
                     <th>Password</th>
                     <th>email</th>
@@ -48,22 +49,21 @@ if ($_SESSION['logueado']) {
                     <?php
 
                     while ($ver = $listar->fetch_assoc()) {
+                        $contador++; // Omitir el primer registro 
+                        if ($contador == 1) {
+                            continue;
+                        }
                     ?>
                         <form action="delete_usuario.php" method="get">
-
                             <tr>
-
-                                <th><?php echo $id = $ver['id_users'] ?></th>
+                                <?php $id = $ver['id_users'] ?>
                                 <th><?php echo $ver['username'] ?></th>
                                 <th><?php echo "*******" ?></th>
                                 <th><?php echo $ver['email'] ?></th>
                                 <th><?php echo $ver['initial_date'] ?></th>
                                 <th><?php echo $ver['uname'] ?></th>
                                 <th><?php echo $ver['permiso'] ?></th>
-
                                 <th><button type="submit" name="qq" id="qq" value="<?php echo $id ?>" class=" btn btn-danger btn-sm">BORRAR</button></th>
-                            </tr>
-
                             </tr>
 
                         </form>

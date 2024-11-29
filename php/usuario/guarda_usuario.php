@@ -16,6 +16,7 @@ if ($_SESSION['logueado']) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <?php head(); ?>
+
     </head>
 
     <body>
@@ -26,6 +27,7 @@ if ($_SESSION['logueado']) {
         $pass_2 = md5($_POST['pass_2']);
         $email = $_POST['email'];
         $permiso = $_POST['permiso'];
+
         echo "<br>";
         echo "<br>";
         echo $nombre;
@@ -41,7 +43,7 @@ if ($_SESSION['logueado']) {
         if ($permiso == "elija") {
             echo "<br>";
             echo "<br>";
-            echo "Seleccione permiso";
+            echo "SELECCIONE PERMISO";
         ?>
             <script>
                 alert("Seleccione Permiso")

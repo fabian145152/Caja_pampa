@@ -212,7 +212,7 @@ $id_upd = $_GET['q'];
                     <div id="columnas"> <!-- licencia y espacio libre  -->
                         <div class="form-group">
                             <label class="control-label">Licencia</label>
-                            <input type="text" class="form-control" id="licencia" name="licencia" value="<?php echo  $row['licencia_titu']; ?>">
+                            <input type="text" class="form-control" id="licencia" name="licencia" value="<?php echo  $row['licencia_titu']; ?> " readonly required>
                         </div>
                         <div class="form-group">
                             <label class="control-label"></label>

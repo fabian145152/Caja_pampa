@@ -33,14 +33,12 @@
             <br>
             <a href="http://google.com" class="btn btn-lg btn-info btn-block">SALIR</a>
         </form>
-        <ul>
-            <li>Fabian <strong> Superusuario</strong></li>
+        <ul>        
             <li>Roberto<strong>Administrador</strong></li>
             <li>Ricardo <strong> Acceso total</strong></li>
             <li>Carlos <strong> Edita Unidades</strong></li>
             <li>Jorge <strong> Solo Cobra</strong></li>
-            <li>Marcelo <strong> Actualiza Cobros</strong></li>
-            <li></li>
+            <li>Marcelo <strong> Actualiza Cobros</strong></li>                        
         </ul>
     </div>
 

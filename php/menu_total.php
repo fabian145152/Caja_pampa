@@ -7,7 +7,7 @@ $con->set_charset("utf8mb4");
 
 if ($_SESSION['logueado']) {
 
-    echo '<h4>' . "BIENVENIDO "  . $_SESSION['uname'] . " Superusuario..." . '</h4>';
+    echo '<h4>' . "BIENVENIDO "  . $_SESSION['uname'] . " Todas las opciones..." . '</h4>';
 
     $_SESSION['time'] . '<br>';
 

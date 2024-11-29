@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once "../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
@@ -89,3 +89,4 @@ if (file_exists($archivo)) {
 }
 
 header("Location: ../menu.php");
+?>

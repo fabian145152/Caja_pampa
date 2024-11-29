@@ -128,7 +128,7 @@ if ($_SESSION['logueado']) {
 
                                 <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>
 
-                                <td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $row['id']; ?>)">Borrar</td>
+                                
                                 </td>
 
                             </tr>
