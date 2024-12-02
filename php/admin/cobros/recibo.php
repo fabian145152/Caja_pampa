@@ -9,6 +9,16 @@ $height = 150;
 
 $user = $_SESSION['uname'];
 
+
+$sql_rec = "SELECT * FROM recibo ORDER BY id DESC LIMIT 1";
+$sql_reci = $con->query($sql_rec);
+$rec_numero = $sql_reci->fetch_assoc();
+$recibo_numero = $rec_numero['numero'];
+
+echo "Recibo numero: " . $recibo_numero;
+
+//exit;
+
 $dia = date("d-m-Y");
 $voucher = "$" . $tot_voucher . "-";
 $ventas = "$" . $otal_ventas . "-";
@@ -37,7 +47,7 @@ $pdf->SetFont('Arial', 'B', 16);
 
 
 // Agregar un título
-$pdf->Cell(300, 10, 'Recibo No ', 0, 1, 'C');
+$pdf->Cell(300, 10, "Recibo No: $recibo_numero  ", 0, 1, 'C');
 $pdf->Cell(200, 10,  "Fecha y hora: $fecha", 0, 2, 'C');
 $pdf->Cell(200, 10,  "Movil: $movil", 0, 2, 'C');
 
@@ -112,10 +122,6 @@ $pdf->Output('F', $pathArchivo);
 
 echo "PDF generado y guardado en: " . $pathArchivo;
 echo "<br>";
-
-
-
-
 
 
 $sql_caja_final = "SELECT * FROM caja_final ORDER BY id DESC LIMIT 1";
@@ -198,10 +204,21 @@ $stmt->bind_param(
     $user
 );
 
+
 // Ejecutar la consulta
 if ($stmt->execute()) {
     echo "Registro creado exitosamente";
 } else {
     echo "Error de creacion de registro: " . $stmt->error;
     exit;
+}
+
+
+$sql_inc_recibo = "UPDATE recibo SET numero = numero + 1 WHERE id = 1";
+
+
+if ($con->query($sql_inc_recibo) === TRUE) {
+    echo "Registro actualizado correctamente.";
+} else {
+    echo "Error al actualizar el registro: " . $con->error;
 }
