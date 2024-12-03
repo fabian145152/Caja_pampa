@@ -38,6 +38,20 @@ if ($_SESSION['logueado']) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MENU PINCIPAL</title>
         <?php head(); ?>
+        <script>
+            function confirmarAccion() {
+                // Muestra el cuadro de confirmación
+                const confirmado = confirm("OJO PONE TODOS LOS IMPORTES EN 0 NO BORRA NINGUNA UNIDAD PERO NINGUNA DEBE NADA Y SE BORRAN LAS LISTAS DE CAJA Y EXTRACIONES");
+
+                // Verifica la respuesta del usuario
+                if (confirmado) {
+
+                    window.location.href = "inicializa_deudas.php";
+                } else {
+                    alert("Acción cancelada.");
+                }
+            }
+        </script>
     </hea>
 
     <body>
@@ -147,6 +161,11 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="admin/listados/lista_numeros.php" class=" btn btn-info btn-block btn-sm">LISTADO DE MOVILES X NUMERO</a></li>
                         <br>
+                        <br><br>
+                        <h3>INICIALIZAR PROGRAMA</h3>
+
+                        <button onclick="confirmarAccion()">INICIALIZAR DEUDAS</button>
+                        </li>
 
 
                     </ul>

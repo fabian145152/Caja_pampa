@@ -59,3 +59,31 @@ function head()
 
 <?php
 }
+
+## Esta funcion se utiliza para borrar todos los archivos de una carpeta
+
+function deleteAllFilesInDirectory($dir)
+{
+    // Verificar si el directorio existe
+    if (!is_dir($dir)) {
+        return false;
+    }
+
+    // Obtener los archivos en el directorio
+    $files = scandir($dir);
+
+    foreach ($files as $file) {
+        // Ignorar los directorios "." y ".."
+        if ($file == '.' || $file == '..') {
+            continue;
+        }
+
+        // Eliminar el archivo
+        if (is_file($dir . DIRECTORY_SEPARATOR . $file)) {
+            unlink($dir . DIRECTORY_SEPARATOR . $file);
+        }
+    }
+
+    return true;
+}
+
