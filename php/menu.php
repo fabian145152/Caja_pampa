@@ -65,8 +65,11 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="ayuda/help.php" target="_blank" class="btn btn-primary btn-block btn-sm">AYUDA</a></li>
                         <h3>BACKUP</h3>
-                        <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP</a></li>
+                        <li><a href="../Backup_DDBB/back.php" class=" btn btn-primary btn-block btn-sm">BACKUP desaparecio.. 
+                            <p>Este boton se ejecuta automatico en los otros menues tarea programada en el sercidor</p>
+                        <p>Verificar que se haga de lunes a viernes a las 00:15</p> </a></li>
                     </ul>
+
                     <ul class="list-group">
                         <h3>UNIDADES</h3>
 

@@ -50,13 +50,13 @@ function foot()
 function head()
 {
 ?>
+    <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/ultima.css">
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/bootbox.min.js"></script>
-
 <?php
 }
 
@@ -86,4 +86,3 @@ function deleteAllFilesInDirectory($dir)
 
     return true;
 }
-

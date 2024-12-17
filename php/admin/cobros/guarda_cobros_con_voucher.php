@@ -173,7 +173,7 @@ if ($stmt_semanas->execute()) {
 $movil_con_a = "A" . $movil;
 
 
-$sql_voucher = "DELETE FROM voucher_validado WHERE movil = ?";
+$sql_voucher = "DELETE FROM voucher_validado WHERE movil = '$movil'";
 
 $stmt_voucher = $con->prepare($sql_voucher);
 $stmt_voucher->bind_param("s", $movil_con_a);

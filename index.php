@@ -1,3 +1,8 @@
+<?php
+include_once "funciones/funciones.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,6 +14,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+   
+    <?php head(); ?>
+    
     <style>
         * {
             background-color: burlywood;
@@ -33,12 +41,12 @@
             <br>
             <a href="http://google.com" class="btn btn-lg btn-info btn-block">SALIR</a>
         </form>
-        <ul>        
+        <ul>
             <li>Roberto<strong>Administrador</strong></li>
             <li>Ricardo <strong> Acceso total</strong></li>
             <li>Carlos <strong> Edita Unidades</strong></li>
             <li>Jorge <strong> Solo Cobra</strong></li>
-            <li>Marcelo <strong> Actualiza Cobros</strong></li>                        
+            <li>Marcelo <strong> Actualiza Cobros</strong></li>
         </ul>
     </div>
 

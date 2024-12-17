@@ -46,14 +46,19 @@ $row_cuotas = $res_cuotas->fetch_assoc();
 //---------------------------------------------------------------------
 // Verifica si tiene voucher, sino salta a vista_sin_voucher.php
 
-$sql_con_voucher = "SELECT COUNT(*) AS total_registros FROM voucher_validado WHERE movil = '$amovil'";
+$sql_con_voucher = "SELECT COUNT(*) AS total_registros FROM voucher_validado WHERE movil = '$movil'";
 $result = $con->query($sql_con_voucher);
+
+
+
+
 
 if ($result->num_rows > 0) {
     // Obtener el resultado
     $row = $result->fetch_assoc();
     $can_viajes = $row['total_registros'];
 }
+
 /*
 if ($can_viajes == 0) {
     // exit();
@@ -149,8 +154,9 @@ $debe_de_semanas =  $row_debe_semanas['total'];
 
 
 ## Voucher validads
-$sql_voucher = "SELECT * FROM voucher_validado WHERE movil = '$amovil'";
+$sql_voucher = "SELECT * FROM voucher_validado WHERE movil = '$movil'";
 $sql_voucher = $con->query($sql_voucher);
+
 
 
 ?>
@@ -220,14 +226,14 @@ $sql_voucher = $con->query($sql_voucher);
                 if ($row_voucher['cc'] >= 0) {
 
             ?>
-                    <!--
-                    <tr>
 
+                    <tr>
+                        <!--
                         <th class="col-sm-2"><?php echo $id = $row_voucher['id'] ?></th>
                         <th class="col-sm-2"><?php echo $cc = $row_voucher['cc'] ?></th>
                         <th class="col-sm-2"><?php echo $viaje_no = $row_voucher['viaje_no'] ?></th>
                         <?php $reloj = $row_voucher['reloj'] ?>
-
+                        
                         <?php $peaje = $row_voucher['peaje'] ?>
                         <?php $plus = $row_voucher['plus'] ?>
                         <?php $adicional = $row_voucher['adicional'] ?>
@@ -238,21 +244,24 @@ $sql_voucher = $con->query($sql_voucher);
                         $total += $tot_voucher;
 
                         ?>
-                        <th class="col-sm-12"><?php echo "Total" . $total ?></th>
+-->
+                        <th class="col-sm-12"><?php $total ?></th>
                     </tr>
                 <?php
                 }
                 ?>
         </tbody>
-            -->
-                <?php
+
+    <?php
             }
-                ?>
+    ?>
     </table>
     <?php
+    /*
     if ($can_viajes == 0) {
         header("Location: instancia_2.php");
     }
+        */
     ?>
     <h3><?php echo $can_viajes ?> Voucher x <?php echo "$" . $total . "-" ?></h3>
 
@@ -415,7 +424,7 @@ $sql_voucher = $con->query($sql_voucher);
                     &nbsp&nbsp&nbsp&nbsp
 
                     <button type="submit" class="btn btn-danger">GUARDAR</button>
-
+                </div>
         </form>
     <?php  }  ?>
     </div>

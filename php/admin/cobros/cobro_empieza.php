@@ -29,13 +29,13 @@
     }
 
     ## ----------------------------------------------------------
-
     // 3. Preparar la consulta SQL
-    $sql_voucher_validado = "SELECT COUNT(*) AS total FROM voucher_validado WHERE movil = ?";
+    /*
+    $sql_voucher_validado = "SELECT COUNT(*) AS total FROM voucher_validado WHERE movil = " . $mov;
 
     // 4. Usar consultas preparadas para evitar inyecciones SQL
     $stmt = $con->prepare($sql_voucher_validado);
-    $stmt->bind_param("s", $movil);
+    $stmt->bind_param("i", $movil);
 
     // 5. Ejecutar la consulta
     $stmt->execute();
@@ -44,7 +44,21 @@
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     $hay_voucher = $row['total'];
+*/
 
+    $sql = "SELECT COUNT(*) AS total FROM voucher_validado WHERE movil = " . $mov;
+    $result = $con->query($sql);
+
+    // Verificar si se obtuvieron resultados
+    if ($result->num_rows > 0) {
+        // Obtener la fila de resultados
+        $hay_voucher = $result->fetch_assoc();
+        $hay_voucher["total"];
+    } else {
+        echo "0 Voucher";
+    }
+
+    //exit;
 
 
     $sql_tiene_ventas = "SELECT * FROM completa WHERE movil = " . $mov;
@@ -59,15 +73,15 @@
     $debe_semanas = $tiene_semanas['total'];
 
 
-    /*
-echo "Cantidad de Voucher:  " . $hay_voucher;
-echo "<br>";
-echo "Productos vendidos:  " . $hay_ventas;
-echo "<br>";
-echo "Tiene deuda anterior: " . $deuda_ant;
-echo "<br>";
-*/
 
+/*
+    echo "<br>";
+    echo "Productos vendidos:  " . $hay_ventas;
+    echo "<br>";
+    echo "Tiene deuda anterior: " . $deuda_ant;
+    echo "<br>";
+*/
+    //exit;
     ## aca se hacen las 3 instancias de cobro
     ## --------------------------------------
 
