@@ -22,18 +22,19 @@ echo $fecha_fact = $_POST['inicio_fact'];
 
 //exit();
 
-$sql_sem = "SELECT * FROM abono_semanal WHERE id = '$abono_semana'";
+$sql_sem = "SELECT * FROM abono_semanal WHERE id =" . $id;
 $sql_result = $con->query($sql_sem);
 $row_sem = $sql_result->fetch_assoc();
 echo "<br>";
 
-$sql_paga_x_semana = "SELECT * FROM semanas WHERE movil= '$movil'";
+$sql_paga_x_semana = "SELECT * FROM semanas WHERE movil=" . $movil;
 $sql_seman = $con->query($sql_paga_x_semana);
 $abono_semanal = $sql_seman->fetch_assoc();
 echo "<br>";
 echo "Debe en total: " . $abono_semanal['total'];
 echo "<br>";
 echo "Paga x semana: " . $x_semana = $abono_semanal['x_semana'];
+echo "<br>";
 
 //exit();
 
@@ -66,34 +67,52 @@ if ($movil == NULL || $abono_semana == NULL || $abono_viaje == NULL || $fecha_fa
 
 
 //exit();
-$sql = "UPDATE completa SET fecha_facturacion = '$fecha_fact',
-                            x_semana = '$abono_semana', 
-                            x_viaje = '$abono_viaje'
-                            WHERE id =" . $id;
+$sql = "UPDATE completa SET fecha_facturacion = ?, x_semana = ?, x_viaje = ? WHERE id =" . $id;
 
 $stmt_comp = $con->prepare($sql);
-$stmt_comp->bind_param("dii", $fecha_fact, $abono_semana, $abono_viaje);
+
+$stmt_comp->bind_param('sii', $fecha_fact, $abono_semana, $abono_viaje);
 $stmt_comp->execute();
 
 
-$sql_imp_semana = "SELECT * FROM abono_semanal WHERE id=" . $abono_semana;
-$imp_semana = $con->query($sql_imp_semana);
-$row_cuanto = $imp_semana->fetch_assoc();
-echo "Cuanto: " . $cuanto = $row_cuanto['importe'];
 echo "<br>";
-echo "Abono semanal de abono_semanal: " . $row_cuanto['id'];
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
 
+$sql_imp_semana = "SELECT * FROM abono_semanal WHERE id= " . $abono_semana;
+$imp_semana = $con->query($sql_imp_semana);
 
+if ($imp_semana->num_rows > 0) {
+    $row_cuanto = $imp_semana->fetch_assoc();
+    echo "ABONO nombre: " . $abono_semanal_nombre = $row_cuanto['abono']; // Asumiendo que 'x_semana' es la columna que deseas imprimir
+    echo "<br>";
+    echo "ABONO importe: " . $abono_semanal_importe = $row_cuanto['importe']; // Asumiendo que 'x_semana' es la columna que deseas imprimir
+    echo "<br>";
+} else {
+    echo "No se encontraron registros.";
+}
 
+echo "NUEVO ABONO = " . $abono_semanal_nombre;
 ## antes de esto leer abono semanal para tener el importe nuevo
-$actua_semana = "UPDATE semanas SET x_semana = $cuanto";
+
+
+$actua_semana = "UPDATE semanas SET x_semana = ?  WHERE movil= ?";
 $stmt_sem = $con->prepare($actua_semana);
-$stmt_sem->bind_param("i", $cuanto);
+$stmt_sem->bind_param('ii', $abono_semanal_importe, $movil);
 $stmt_sem->execute();
 
 
 
-
-//exit();
+if ($stmt_sem->execute() === false) {
+    die("Error al ejecutar la consulta: " . $stmt_sem->error);
+    exit;
+} else {
+    echo "<br>";
+    echo "Registro actualizado correctamente.";
+    echo "<br>";
+}
 
 header("Location: inicio_arma.php");

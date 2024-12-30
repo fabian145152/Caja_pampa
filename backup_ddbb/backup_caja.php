@@ -76,8 +76,8 @@
         $contenido .= "\r\n\r\n/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;\r\n/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;\r\n/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;";
 
         # Se guardará dependiendo del directorio, en una carpeta llamada respaldos
-        $carpeta = __DIR__ . "/respaldos";
-        //$carpeta = __DIR__ . "//BaclupPampa/d:";
+        $carpeta = __DIR__ . "/respaldos";   //esta linea es en esta pc
+        //$carpeta = "\\\server-win\server-win/01_backup_caja";
 
         if (!file_exists($carpeta)) {
             mkdir($carpeta);
@@ -108,7 +108,7 @@
     echo "<br>";
     echo "Hace backup de la BBDD remises y lo guarda en localhost/backup_ddbb/respaldos";
 
-
+    
 
     ?>
     <script>

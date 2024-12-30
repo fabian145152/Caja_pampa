@@ -88,6 +88,38 @@ $row = $result_movil->fetch_assoc();
                         <input type="text" class="form-control" id="licencia_titu" name="licencia_titu" value="<?php echo $row['licencia_titu']; ?>">
                     </div>
 
+                    <label class="control-label">Estado administrativo:</label>
+
+
+
+
+                    <select name="estado_administrativo" id="estado_administrativo">
+                        <?php
+                        $estado = $row['estado_admin'];
+                        $sql_est = "SELECT * FROM estados_unidades WHERE id = $estado ";
+                        $sql_estados = $con->query($sql_est);
+                        $lee_estados = $sql_estados->fetch_assoc();
+                        ?>
+                        <option value="<?php echo $lee_estados['id'] ?>"><?php echo $lee_estados['nombre'] ?></option>
+                        <?php
+                        $op = [];
+                        if ($estados->num_rows > 0) {
+                            while ($row_2 = $estados->fetch_assoc()) {
+                                $op[] = $row_2;
+                            }
+                        } else {
+                            echo "0 resultados";
+                        }
+                        foreach ($op as $opcion) {
+                            echo "<option value=\"" . $opcion['id'] . "\" >" . $opcion['nombre'] . "</option>";
+                        }
+                        ?>
+                    </select>
+
+
+
+
+
 
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="semana_movil" name="semana_movil" value="<?php echo $row_semana['movil']; ?>">

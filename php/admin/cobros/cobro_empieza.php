@@ -28,23 +28,6 @@
         header("Location: inicio_cobros.php");
     }
 
-    ## ----------------------------------------------------------
-    // 3. Preparar la consulta SQL
-    /*
-    $sql_voucher_validado = "SELECT COUNT(*) AS total FROM voucher_validado WHERE movil = " . $mov;
-
-    // 4. Usar consultas preparadas para evitar inyecciones SQL
-    $stmt = $con->prepare($sql_voucher_validado);
-    $stmt->bind_param("i", $movil);
-
-    // 5. Ejecutar la consulta
-    $stmt->execute();
-
-    // 6. Obtener el resultado
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $hay_voucher = $row['total'];
-*/
 
     $sql = "SELECT COUNT(*) AS total FROM voucher_validado WHERE movil = " . $mov;
     $result = $con->query($sql);
@@ -74,43 +57,15 @@
 
 
 
-/*
-    echo "<br>";
-    echo "Productos vendidos:  " . $hay_ventas;
-    echo "<br>";
-    echo "Tiene deuda anterior: " . $deuda_ant;
-    echo "<br>";
-*/
-    //exit;
-    ## aca se hacen las 3 instancias de cobro
-    ## --------------------------------------
-
-    ##  INSTANCIA 1
-    ##  COBRA CON VOUCHER - DEUDA ANTERIOR - SEMANAS ANTERIORES - PRODUCTOS VENDIDOS 
-
-
+    
 
 
     if ($hay_voucher > 0) {
-        /*
-    echo "INSTANCIA 1...";
-    echo "<br>";
-    echo "COBRA CON VOUCHER...";
-    echo "<br>";
-    echo "COBRA CON DEUDA ANTERIOR...";
-    echo "<br>";
-    echo "COBRA CON SEMANAS...";
-    echo "<br>";
-    echo "COBRA CON VENTAS...";
-    echo "<br>";
-    */
-        //exit;
+ 
         $_SESSION['variable'] = $movil;
         include_once "cobro_con_voucher.php";
 
-        ##  INSTANCIA 2
-        ##  COBRA SIN VOUCHER - DEUDA ANTERIOR - SEMANAS ANTERIORES - PRODUCTOS VENDIDOS 
-
+  
 
     } elseif ($deuda_ant > 0) {
         /*

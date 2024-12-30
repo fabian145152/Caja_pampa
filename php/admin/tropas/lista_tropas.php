@@ -15,8 +15,11 @@ $con->set_charset("utf8mb4");
     <script src="../../../js/jquery-3.4.1.min.js"></script>
     <script src="../../../js/bootstrap.min.js"></script>
     <script src="../../../js/bootbox.min.js"></script>
-
     <script>
+        function cerrarPagina() {
+            window.close();
+        }
+
         function deleteProduct(cod_titular) {
 
             bootbox.confirm("Desea Eliminar?" + cod_titular, function(result) {
@@ -58,7 +61,7 @@ $con->set_charset("utf8mb4");
             &nbsp; &nbsp; &nbsp;
             <a href="insert_tropa.php" class="btn btn-primary btn-sm">NUEVA TROPA</a>
             &nbsp; &nbsp; &nbsp;
-            <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>      
+            <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
         </div>
     </div>
     <br>
@@ -111,11 +114,7 @@ $con->set_charset("utf8mb4");
         </tbody>
 
     <?php } ?>
-    <script>
-        function cerrarPagina() {
-            window.close();
-        }
-    </script>
+
     <?php foot(); ?>
 </body>
 

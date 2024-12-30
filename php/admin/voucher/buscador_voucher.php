@@ -36,6 +36,10 @@ $con->set_charset("utf8mb4");
             window.location = "delete_voucher.php?q=" + cod_voucher;
 
         }
+
+        function cerrarPagina() {
+            window.close();
+        }
     </script>
 </head>
 
@@ -72,6 +76,8 @@ $con->set_charset("utf8mb4");
     ?>
     <h2 class="titule"> <?php echo $registros ?> &nbsp; &nbsp; VOUCHER DE LA UNIDAD <?php echo $movil; ?> </h2>
     <a href="inicio_voucher.php" class="btn btn-success btn-sm">Volver</a>
+    <button onclick="cerrarPagina()" class="btn btn-primary btn-sm">CERRAR PAGINA</button>
+
     <?php
 
 

@@ -66,7 +66,7 @@ if ($_SESSION['logueado']) {
                 <thead class="thead-dark">
                     <tr>
                         <th>Movil</th>
-                      
+
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>DNI</th>
@@ -74,9 +74,9 @@ if ($_SESSION['logueado']) {
                         <th>CP</th>
                         <th>Celular</th>
                         <th>Licencia</th>
+                        <th>Estado</th>
                         <th>Tropa</th>
                         <th>Actualizar</th>
-                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,6 +88,8 @@ if ($_SESSION['logueado']) {
                     $sql = "SELECT * FROM completa WHERE 1 ORDER BY movil ASC";
                     $result = $con->query($sql);
                     while ($row = $result->fetch_assoc()) {
+
+
                     ?>
                         <form action="borrar_movil.php" method="get">
 
@@ -110,7 +112,12 @@ if ($_SESSION['logueado']) {
                                     }
                                     ?>
                                 </td>
-                               
+                                <?php
+                                $estado = $row['id'];
+                                $sql_est = "SELECT * FROM estados_unidades WHERE id = $estado ";
+                                $result_est = $con->query($sql_est);
+                                $row_estado = $result_est->fetch_assoc();
+                                ?>
                                 <td><?php echo $row['nombre_titu'] ?></td>
                                 <td><?php echo $row['apellido_titu'] ?></td>
                                 <td><?php echo $row['dni_titu'] ?></td>
@@ -118,6 +125,7 @@ if ($_SESSION['logueado']) {
                                 <td><?php echo $row['cp_titu'] ?></td>
                                 <td><?php echo $row['cel_titu'] ?></td>
                                 <td><?php echo $row['licencia_titu'] ?></td>
+                                <td style="color: <?php echo $row_estado['color']  ?>;"><?php echo $row_estado['nombre'] ?></td>
                                 <td><?php
                                     if ($row['tropa'] != 50) {
                                         echo $row['tropa'];
@@ -128,7 +136,7 @@ if ($_SESSION['logueado']) {
 
                                 <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>
 
-                                
+
                                 </td>
 
                             </tr>

@@ -4,7 +4,6 @@ include_once "../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
 
-
 if ($con->connect_error) {
     die("Error de conexión a la primera base de datos: " . $con->connect_error);
 }

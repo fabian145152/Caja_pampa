@@ -76,6 +76,7 @@ $ven_3 = 0;
 $ven_4 = 0;
 $ven_5 = 0;
 
+$saldo_a_favor = $row_comp['saldo_a_favor'];
 $nombre_titu = $row_comp['nombre_titu'];
 $apellido_titu = $row_comp['apellido_titu'];
 $nombre_chof = $row_comp['nombre_chof_1'];
@@ -178,7 +179,9 @@ $sql_voucher = $con->query($sql_voucher);
     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
         <div id="contenedor">
             <h5>Estado de cuenta del movil <?php echo $movil ?>&nbsp;
-
+                <?php
+                echo "Semana: " . $semana = date('W');
+                ?>
                 <div class="containeraa">
                     <div class="column left-column">
                         <?php
@@ -320,20 +323,59 @@ $sql_voucher = $con->query($sql_voucher);
             <div id="contenedor">
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
+
                         <li>
                             <h2>Abonos</h2>
-                            <label class="mi-label">Paga x semana <?php echo $abona_x_semana ?> <?php $abono_x_semana ?></label>
-                            <input type="text" id="abono_semanal" name="abono_semanal" value="<?php echo $debe_de_semana ?>" readonly>
+                            <label class="mi-label">Paga x semana <?php echo $abona_x_semana;
+                                                                    $abono_x_semana ?></label>
+                            <input type="text" id="abono_semanal" name="abono_semanal"
+                                value="<?php echo $debe_de_semana ?>" readonly>
                         </li>
                         <li>
                             <label class="mi-label">Paga x viaje <?php echo $nom_viaje ?><?php $nom_viaje ?></label>
-                            <input type="text" id="paga_x_viaje" name="paga_x_viaje" value="<?php echo $paga_x_viaje ?>" readonly>
+                            <input type="text" id="paga_x_viaje" name="paga_x_viaje" value="<?php echo $paga_x_viaje ?>"
+                                readonly>
+                        </li>
+                        <!----------------------------------------------------- -->
+
+                        <?php
+
+                        if ($saldo_a_favor > 0) {
+                        ?>
+                            <label class="mi-label">Saldo a favor:</label>
+                            <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $saldo_a_favor ?>"
+                                style="background-color: yellow;" readonly>
+                        <?php
+                        }
+                        if ($saldo_a_favor === 0) {
+                        ?>
+                            <label class="mi-label">Al dia...:</label>
+                            <input type="text" id="depo_mov" name="depo_mov" value="<?php echo "0" ?>"
+                                style="background-color: green;" readonly>
+                        <?php
+                        }
+                        if ($saldo_a_favor < 0) {
+
+                        ?>
+                            <label class="mi-label">Debe de la semana anterior:</label>
+                            <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $saldo_a_favor ?>"
+                                style="background-color: red;
+                                color: yellow;" readonly>
+                        <?php
+                        }
+
+                        ?>
+
+                        <li>
+                            <label for="">Saldo de la semana anterior:</label>
+                            <input type="text" id="saldo_a_favor" name="saldo_a_favor" value="<?php echo $saldo_a_favor ?> ">
                         </li>
                         <h2>Deudas anteriores</h2>
                         <input type="hidden" id="movil" name="movil" value="<?php echo $movil ?>">
                         <li>
                             <label class="mi-label">Deuda anterior</label>
-                            <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
+                            <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>"
+                                readonly>
                         </li>
                         <!--
                         <li>
@@ -342,9 +384,24 @@ $sql_voucher = $con->query($sql_voucher);
                                                                     ?>" readonly>
                         </li>
                          -->
+                        <?php
+
+                        $abo_sem = $row_semana['importe'];
+
+                        //echo "deuda de semanas" . $deuda_semanas_anteriores;
+
+
+                        $cant_sem =   $deuda_semanas_anteriores / $abo_sem;
+
+                        ?>
                         <li>
-                            <label class="mi-label">Debe de semanas anteriores</label>
-                            <input type="text" id="debe_ant" name="debe_ant" value="<?php echo $deuda_semanas_anteriores ?>" readonly>
+                            <label class="mi-label">Debe <?php echo $cant_sem ?> semanas,
+
+
+
+                            </label>
+                            <input type="text" id="debe_ant" name="debe_ant"
+                                value="<?php echo $deuda_semanas_anteriores ?>" readonly>
                         </li>
                         <li>
                             <label class="mi-label">Productos que compro</label>
@@ -352,39 +409,48 @@ $sql_voucher = $con->query($sql_voucher);
                         </li>
                         <li>
                             <label class="mi-label">Debe sumado</label>
-                            <input type="text" id="" name="" value="<?php echo $debe_deuda = $total_ventas + $deuda_semanas_anteriores + $deuda_anterior ?>" readonly>
+                            <input type="text" id="" name=""
+                                value="<?php echo $debe_deuda = $total_ventas + $deuda_semanas_anteriores + $deuda_anterior ?>"
+                                readonly>
                         </li>
-
+                        <li>
+                            <label class="mi-label">Paga por viajes realizados</label>
+                            <input type="text" id="viajes" name="viajes"
+                                value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
+                        </li>
                     </ul>
                 </div>
 
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
-                        <li>
-                            <label class="mi-label">Paga por viajes realizados</label>
-                            <input type="text" id="viajes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
-                        </li>
+
                         <input type="hidden" id="can_viajes" name="can_viajes" value="<?php echo $can_viajes ?>">
                         <li>
                             <label class="mi-label">Debe sumado</label>
-                            <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>" readonly>
+                            <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>"
+                                readonly>
                         </li>
 
                         <li>
                             <label class="mi-label">RECAUDADO EN VOUCHER </label>
-                            <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>" readonly>
+                            <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>"
+                                readonly>
                         </li>
                         <li>
                             <!--  <label class="mi-label">Comisiones</label>  -->
-                            <input type="hidden" id="comi" name="comi" value="<?php echo $diez = $total * .1 ?>" readonly>
+                            <input type="hidden" id="comi" name="comi" value="<?php echo $diez = $total * .1 ?>"
+                                readonly>
                         </li>
+                        <!--
                         <li>
                             <label class="mi-label">Suma comisiones</label>
                             <input type="text" id="comi" name="comi" value="<?php echo $suma_viaje_mas_diez = $diez + $total_de_viajes ?>">
                         </li>
+        -->
                         <li>
-                            <label class="mi-label">Poscentaje para el movil</label>
-                            <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total - $suma_viaje_mas_diez ?>" readonly>
+                            <label class="mi-label">Retiro de efectivo</label>
+                            <input type="text" id="para_movil" name="para_movil"
+                                value="<?php echo $noventa = $total - $suma_viaje_mas_diez ?>" readonly>
                         </li>
 
 
@@ -393,40 +459,59 @@ $sql_voucher = $con->query($sql_voucher);
 
                         "Cuenta final: " . $cuenta = $debe_deuda + $suma_viaje_mas_diez - $noventa;
                         echo "<br>";
-                        $total_a_pagar = $total - $suma_viaje_mas_diez - $debe_deuda;
+                        $total_a_pagar = $total - $suma_viaje_mas_diez - $debe_deuda + $saldo_a_favor;
                         if ($total_a_pagar > 0) {
                         ?>
                             <li>
                                 <label class="mi-label">Depositarle al movil</label>
-                                <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $total_a_pagar ?>" style="background-color: #FFFF00M; " readonly>
+                                <input type="text" id="depo_mov" name="depo_mov" value="<?php echo $total_a_pagar ?>"
+                                    style="background-color: yellow;" readonly>
                                 <input type="hidden" id="pesos" name="pesos" value="<?php echo $pesos = 0 ?>">
+                                <input type="hidden" id="saldo_a_favor" name="saldo_a_favor" value="<?php echo $saldo_a_favor ?>">
                             </li>
+                            <!--
                             &nbsp&nbsp&nbsp&nbsp
                             <button type="submit" class="btn btn-danger">GUARDAR</button>
-
+                        -->
                         <?php
                         } else {
                         ?>
 
                             <li>
                                 <label class="mi-label">Deposito FT:</label>
-                                <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $cuenta
-                                                                                                ?>" readonly style="background-color: red; color: #FFFF00; ">
-                                <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus required>
+                                <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $cuenta - $saldo_a_favor
+                                                                                                ?>" readonly
+                                    style="background-color: red; color: #FFFF00; ">
+                                <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus
+                                    required>
                                 <label class="mi-label">Deposito MP:</label>
-                                <input type="text" id="dep_mp" name="dep_mp" placeholder="Ingrese Mercado Pago" autofocus required>
+                                <input type="text" id="dep_mp" name="dep_mp" placeholder="Ingrese Mercado Pago" autofocus
+                                    required>
                             </li>
 
                             <li>
                                 <p>debe cargar algun valor si no no seguira adelante</p>
                             </li>
                     </ul>
-                    &nbsp&nbsp&nbsp&nbsp
+                    &nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <button type="submit" class="btn btn-danger">GUARDAR</button>
-                </div>
+
+
+
+                    <!-- -------------------------------------------------------------------------------------- -->
+
+
+
+
+                    <!-- -------------------------------------------------------------------------------------- -->
         </form>
     <?php  }  ?>
+    
+    
+    <label for="obs">DESCRIBA EL PAGO</label>
+    <br>
+    <textarea id="obs" name="obs" rows="3" cols="70" style="border-radius: 10px; border: 2px solid black; padding: 10px; "></textarea><br><br>
+    <button type="submit" class="btn btn-danger">GUARDAR</button>
     </div>
     <a href=" inicio_cobros.php" class="btn btn-info">VOLVER</a></li>
     </div>

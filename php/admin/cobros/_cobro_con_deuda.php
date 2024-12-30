@@ -1,8 +1,9 @@
 <?php
-
+//session_start();
 include_once "../../../funciones/funciones.php";
 $con = conexion();
 $con->set_charset("utf8mb4");
+
 
 
 // Obtener la variable desde la sesión
@@ -145,8 +146,7 @@ $paga_x_semana = $row_debe_semanas['x_semana'];
 $debe_de_semanas =  $row_debe_semanas['total'];
 
 //$amovil;
-
-
+//exit;
 
 ## Voucher validads
 $sql_voucher = "SELECT * FROM voucher_validado WHERE movil = '$amovil'";
@@ -172,7 +172,10 @@ $sql_voucher = $con->query($sql_voucher);
 <body>
     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
         <div id="contenedor">
-            <h5>Estado de cuenta del movil <?php echo $movil ?>&nbsp;
+            <h5>Estado de cuenta del movil <?php echo $movil; ?>&nbsp;
+                <?php
+                echo "Semana: " . $semana = date('W');
+                ?>
 
                 <div class="containeraa">
                     <div class="column left-column">
@@ -250,7 +253,6 @@ $sql_voucher = $con->query($sql_voucher);
             }
                 ?>
     </table>
-
     <?php
     /*
     if ($can_viajes == 0) {
@@ -260,8 +262,7 @@ $sql_voucher = $con->query($sql_voucher);
     ?>
     <h3><?php echo $can_viajes ?> Voucher x <?php echo "$" . $total . "-" ?></h3>
 
-    <!-- EN ESTA LINEA VA EL target="_blank" PARA QUE ABRA EN OTRA SOLAPA-->
-    <form action="guarda_cobros_con_voucher.php" method="post">
+    <form action="guarda_cobros_con_voucher.php" method="post" target="_blank">
 
 
         <?php
@@ -330,13 +331,10 @@ $sql_voucher = $con->query($sql_voucher);
                             <label class="mi-label">Deuda anterior</label>
                             <input type="text" id="deuda_ant" name="deuda_ant" value="<?php echo $deuda_anterior ?>" readonly>
                         </li>
-                        <!--
                         <li>
                             <label class="mi-label">Ultimo pago deuda:</label>
-                            <input type="text" id="" name="" value="<?php //echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] 
-                                                                    ?>" readonly>
+                            <input type="text" id="" name="" value="<?php echo $row_comp['pago_ant'] . " " . $row_comp['fe_pago'] ?>" readonly>
                         </li>
-                         -->
                         <li>
                             <label class="mi-label">Debe de semanas anteriores</label>
                             <input type="text" id="debe_ant" name="debe_ant" value="<?php echo $deuda_semanas_anteriores ?>" readonly>
@@ -349,16 +347,16 @@ $sql_voucher = $con->query($sql_voucher);
                             <label class="mi-label">Debe sumado</label>
                             <input type="text" id="" name="" value="<?php echo $debe_deuda = $total_ventas + $deuda_semanas_anteriores + $deuda_anterior ?>" readonly>
                         </li>
-
+                        <li>
+                            <label class="mi-label">Paga por viajes realizados</label>
+                            <input type="text" id="viajes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
+                        </li>
                     </ul>
                 </div>
 
                 <div>
                     <ul style="border: 2px solid black; padding: 10px; border-radius: 10px; list-style-type: none;">
-                        <li>
-                            <label class="mi-label">Paga por viajes realizados</label>
-                            <input type="text" id="viajes" name="viajes" value="<?php echo $total_de_viajes = $paga_x_viaje * $can_viajes ?>" readonly>
-                        </li>
+
                         <li>
                             <label class="mi-label">Debe sumado</label>
                             <input type="text" id="debe_sumado" name="debe_sumado" value="<?php echo $debe_deuda ?>" readonly>
@@ -369,21 +367,25 @@ $sql_voucher = $con->query($sql_voucher);
                             <input type="text" id="tot_voucher" name="tot_voucher" value="<?php echo $total ?>" readonly>
                         </li>
                         <li>
-                            <!--  <label class="mi-label">Comisiones</label>  -->
+                            <label class="mi-label">Comisiones</label>
                             <input type="hidden" id="comi" name="comi" value="<?php echo $diez = $total * .1 ?>" readonly>
                         </li>
+
                         <li>
                             <label class="mi-label">Suma comisiones</label>
                             <input type="text" id="comi" name="comi" value="<?php echo $suma_viaje_mas_diez = $diez + $total_de_viajes ?>">
                         </li>
+
                         <li>
-                            <label class="mi-label">Poscentaje para el movil</label>
+                            <label class="mi-label">Retiro de efectivo</label>
                             <input type="text" id="para_movil" name="para_movil" value="<?php echo $noventa = $total - $suma_viaje_mas_diez ?>" readonly>
                         </li>
 
 
 
                         <?php
+
+
 
                         "Cuenta final: " . $cuenta = $debe_deuda + $suma_viaje_mas_diez - $noventa;
                         echo "<br>";
@@ -403,11 +405,11 @@ $sql_voucher = $con->query($sql_voucher);
                         ?>
 
                             <li>
-                                <label class="mi-label">Deposito FT:</label>
+                                <label class="mi-label">El movil debe pagar:</label>
                                 <input type="text" id="debe_abonar" name="debe_abonar" value="<?php echo $cuenta
                                                                                                 ?>" readonly style="background-color: red; color: #FFFF00; ">
                                 <input type="text" id="dep_ft" name="dep_ft" placeholder="Ingrese dinero" autofocus required>
-                                <label class="mi-label">Deposito MP:</label>
+                                <label class="mi-label">El movil debe pagar:</label>
                                 <input type="text" id="dep_mp" name="dep_mp" placeholder="Ingrese Mercado Pago" autofocus required>
                             </li>
 
@@ -415,7 +417,7 @@ $sql_voucher = $con->query($sql_voucher);
                                 <p>debe cargar algun valor si no no seguira adelante</p>
                             </li>
                     </ul>
-                  
+
                     &nbsp&nbsp&nbsp&nbsp
                     <button type="submit" class="btn btn-danger">GUARDAR</button>
 

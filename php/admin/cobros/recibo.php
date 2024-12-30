@@ -15,7 +15,7 @@ $sql_reci = $con->query($sql_rec);
 $rec_numero = $sql_reci->fetch_assoc();
 $recibo_numero = $rec_numero['numero'];
 
-echo "Recibo numero: " . $recibo_numero;
+//echo "Recibo numero: " . $recibo_numero;
 
 //exit;
 
@@ -129,13 +129,15 @@ $sql_caja = $con->query($sql_caja_final);
 $sql_row = $sql_caja->fetch_assoc();
 
 
-echo "Deposito en FT hoy: " . $dep_ft;
-echo "<br>";
-echo "Deposito de hoy en MP: " . $dep_mercado;
-echo "<br>";
-echo "Deposito anterior en FT: " . $deposito_ant_ft_ant = $sql_row['dep_ant_ft'];
-echo "<br>";
-echo "Deposito anterior en MP: " . $deposito_ant_mp_ant = $sql_row['dep_ant_mp'];
+//echo "Deposito en FT hoy: " . $dep_ft;
+//echo "<br>";
+//echo "Deposito de hoy en MP: " . $dep_mercado;
+//echo "<br>";
+//echo "Deposito anterior en FT: " . 
+$deposito_ant_ft_ant = $sql_row['dep_ant_ft'];
+//echo "<br>";
+//echo "Deposito anterior en MP: " . 
+$deposito_ant_mp_ant = $sql_row['dep_ant_mp'];
 
 echo "<br>";
 
@@ -208,6 +210,7 @@ $stmt->bind_param(
 // Ejecutar la consulta
 if ($stmt->execute()) {
     echo "Registro creado exitosamente";
+    echo "<br>";
 } else {
     echo "Error de creacion de registro: " . $stmt->error;
     exit;
